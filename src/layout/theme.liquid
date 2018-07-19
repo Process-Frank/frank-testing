@@ -32,22 +32,11 @@
   {%- endif -%}
 
   {% include 'social-meta-tags' %}
+
   {% include 'style-tags', layout: 'theme' %}
-  {% include 'css-variables' %}
+  {% include 'tool.css-variables' %}
 
-  <script>
-    document.documentElement.className = document.documentElement.className.replace('no-js', '');
-
-    window.theme = {
-      strings: {
-        addToCart: {{ 'products.product.add_to_cart' | t | json }},
-        soldOut: {{ 'products.product.sold_out' | t | json }},
-        unavailable: {{ 'products.product.unavailable' | t | json }}
-      },
-      moneyFormat: {{ shop.money_format | json }}
-    };
-  </script>
-
+  {% include 'tool.js-variables' -%}
   {% include 'script-tags', layout: 'theme' %}
 
   {{ content_for_header }}

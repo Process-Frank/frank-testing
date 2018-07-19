@@ -9,7 +9,7 @@ const alias = {
 
 module.exports = {
   slateCssVarLoader: {
-    cssVarLoaderLiquidPath: ['src/snippets/css-variables.liquid'],
+    cssVarLoaderLiquidPath: ['src/snippets/tool.css-variables.liquid'],
   },
   slateTools: {
     extends: {
