@@ -43,15 +43,18 @@
 
     {% comment %} JavaScript {% endcomment %}
     {% include 'tool.js-variables' -%}
-    {% include 'script-tags', layout: 'theme' %}
 
     {% comment %} Shopify Injects {% endcomment %}
     {{ content_for_header }}
   </head>
 
   <body>
-    <main role="main" id="MainContent">
-      {{ content_for_layout }}
-    </main>
+    {{ content_for_layout }}
+    <div id="app">
+      Testing some stuff here
+    </div>
+    
+    {% comment %} Finally we can load the JS for the site {% endcomment %}
+    {% include 'script-tags', layout: 'theme' %}
   </body>
 </html>

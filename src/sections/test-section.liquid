@@ -1,0 +1,27 @@
+{%- include 'tool.json-section' with {
+  name: 'Test Section',
+  class: 'c-section__test-section',
+  settings: 'title',
+  settingTypes: 'text'
+} -%}
+
+{% schema %}
+  {
+    "name": "Test Section",
+    "class": "c-section__test-section",
+    "settings": [
+      {
+        "id": "title",
+        "label": "Title",
+        "default": "MY Test Title",
+        "type": "text"
+      }
+    ],
+    "presets": [
+      {
+        "name": "test section",
+        "category": "Content"
+      }
+    ]
+  }
+{% endschema %}

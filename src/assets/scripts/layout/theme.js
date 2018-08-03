@@ -23,4 +23,15 @@
 
 'use strict';
 
+console.log(Sections);
+
+//Required modules
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Theme from './../components/Theme';
+
+//Import our styles
 import Styles from './../../styles/theme.scss';
+
+//Setup the initial render.
+ReactDOM.render(<Theme />, document.getElementById("app"));

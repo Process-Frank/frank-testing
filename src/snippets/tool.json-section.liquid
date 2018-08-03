@@ -1,0 +1,57 @@
+{%- comment -%}
+  JSON Section
+    Simple snippet used for generating JSON data for a section, provides common
+    tools and overrides for most common data types (linklist, product etc)
+
+  Parameters:
+    name - Name of the section
+    class - Class of the section
+    settings -  CSV of Setting id's
+    settingTypes - CSV of Setting Types (matching the ID's indexes)
+
+  Version:
+    1.0.0 - 2018/08/02
+{%- endcomment -%}
+{%- assign isJSON = false -%}
+{%- if template contains 'json' -%}
+  {%- assign isJSON = true -%}
+{%- endif -%}
+
+{%- comment -%} First we need to generate the correct data {%- endcomment -%}
+{%- assign settingsArray = settings | split: ',' -%}
+{%- assign settingTypesArray = settingTypes | split: ',' -%}
+
+{%- comment -%} Now we can generate our JSON {%- endcomment -%}
+{%- unless isJSON -%}
+  {%- include 'tool.get-template-type' -%}
+  <script type="text/javascript">
+    window.Sections = window.Sections || {};
+    window.Sections[{{ templateType | json }}] = window.Sections[{{ templateType | json }}] || [];
+    window.Sections[{{ templateType | json }}].push(
+{%- endunless -%}
+  {
+    "id": {{ section.id | json }},
+    "name": {{ name | json }},
+    "class": {{ class | json }},
+    "settings": [
+      {%- for setting in settingsArray -%}
+        {
+          "setting": {{ setting | json }},
+          "valueRaw": {{ section.settings[setting] | json }},
+          "type": {{ section.settingTypesArray[forloop.index0] | json }},
+          {%- comment -%} Now we can generate the correct data {%- endcomment -%}
+          "value": {{ section.settings[setting] | json }}
+        }
+        {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  }
+{%- unless isJSON -%}
+    );
+  </script>
+
+  {%- comment -%}
+    TODO: If SEO is becoming an issue we can consider generating "mockup data" here
+    for the crawlers to see?
+  {%- endcomment -%}
+{%- endunless -%}
