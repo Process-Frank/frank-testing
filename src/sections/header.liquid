@@ -1,0 +1,54 @@
+{% comment %}
+  Header Section
+    Header Section, features logo and navigation.
+
+  Dependencies:
+    snippets/tool.json-section.liquid
+
+  Version:
+    1.0.0 - 2018/08/05
+{% endcomment %}
+{%- capture listJSON -%}
+  {%- include 'tool.json-setting' with {
+    type: 'link_list',
+    valueRaw: section.settings.menu_left
+  -%}
+  ,
+  {%- include 'tool.json-setting' with {
+    type: 'link_list',
+    valueRaw: section.settings.menu_right
+  -%}
+{%- endcapture -%}
+
+{%- include 'tool.json-section' with {
+  name: 'Header',
+  class: 'c-section__header',
+  component: 'HeaderSection',
+  group: 'header',
+  extraSettings: listJSON
+} -%}
+
+{% schema %}
+  {
+    "name": "Header",
+    "class": "c-section__header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Menu Settings"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_left",
+        "label": "Menu (Left)",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_right",
+        "label": "Menu (Right)",
+        "default": "main-menu"
+      }
+    ]
+  }
+{% endschema %}

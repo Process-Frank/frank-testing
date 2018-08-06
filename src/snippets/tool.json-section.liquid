@@ -3,11 +3,17 @@
     Simple snippet used for generating JSON data for a section, provides common
     tools and overrides for most common data types (linklist, product etc)
 
+  Dependencies:
+    snippets/tool.get-template-type - Used to fetch the template type.
+
   Parameters:
     name - Name of the section
     class - Class of the section
+    componentName - React Component Name
     settings -  CSV of Setting id's
     settingTypes - CSV of Setting Types (matching the ID's indexes)
+    group (Optional) - The group that this section belong to, use this for static sections (Header, Footer etc)
+                        Defaults to the current template type.
 
   Version:
     1.0.0 - 2018/08/02
@@ -21,29 +27,37 @@
 {%- assign settingsArray = settings | split: ',' -%}
 {%- assign settingTypesArray = settingTypes | split: ',' -%}
 
+{%- unless group != blank -%}
+  {%- include 'tool.get-template-type' -%}
+  {%- assign group = templateType -%}
+{%- endunless -%}
+{%- assign groupJSON = group | json -%}
+
 {%- comment -%} Now we can generate our JSON {%- endcomment -%}
 {%- unless isJSON -%}
-  {%- include 'tool.get-template-type' -%}
   <script type="text/javascript">
     window.Sections = window.Sections || {};
-    window.Sections[{{ templateType | json }}] = window.Sections[{{ templateType | json }}] || [];
-    window.Sections[{{ templateType | json }}].push(
+    window.Sections[{{ groupJSON }}] = window.Sections[{{ groupJSON }}] || [];
+    window.Sections[{{ groupJSON }}].push(
 {%- endunless -%}
   {
     "id": {{ section.id | json }},
     "name": {{ name | json }},
     "class": {{ class | json }},
+    "componentName": {{ component | json }},
+    "group": {{ groupJSON }},
     "settings": [
       {%- for setting in settingsArray -%}
-        {
-          "setting": {{ setting | json }},
-          "valueRaw": {{ section.settings[setting] | json }},
-          "type": {{ section.settingTypesArray[forloop.index0] | json }},
-          {%- comment -%} Now we can generate the correct data {%- endcomment -%}
-          "value": {{ section.settings[setting] | json }}
-        }
-        {%- unless forloop.last -%},{%- endunless -%}
+        {%- assign type = settingTypesArray[forloop.index0] -%}
+        {%- assign valueRaw = section.settings[setting] -%}
+        {%- include 'tool.json-setting' with { type: type, valueRaw: valueRaw } -%}
       {%- endfor -%}
+
+      {%- comment -%}/* Extra Settings (Good for bypassing that forloop */{%- endcomment -%}
+      {%- if extraSettings != blank -%}
+        {%- if settingsArray.size > 0 -%},{%- endif -%}
+        {{ extraSettings }}
+      {%- endif -%}
     ]
   }
 {%- unless isJSON -%}

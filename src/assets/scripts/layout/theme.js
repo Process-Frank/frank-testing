@@ -22,16 +22,30 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 'use strict';
-
-console.log(Sections);
+import 'babel-polyfill';//Required polyfills
 
 //Required modules
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import RootReducer from './../reducers/RootReducer';
 import Theme from './../components/Theme';
 
 //Import our styles
 import Styles from './../../styles/theme.scss';
 
+//Create our redux middleware
+const store = createStore(RootReducer);
+const unsubscrube = store.subscribe(() => {
+  //Called whenever the store gets updated, for the sake of testing we're going
+  //to log state updates.
+  console.log(store.getState());
+});
+
 //Setup the initial render.
-ReactDOM.render(<Theme />, document.getElementById("app"));
+ReactDOM.render((
+  <Provider store={store}>
+    <Theme />
+  </Provider>
+), document.getElementById("main"));

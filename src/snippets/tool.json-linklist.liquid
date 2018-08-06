@@ -1,0 +1,19 @@
+{%- comment -%}
+  JSON LinkList
+    Generates a simple JSON LinkList object
+{%- endcomment -%}
+{%- if list -%}
+  {
+    "handle": {{- list.handle | json -}},
+    "levels": {{- list.levels | json -}},
+    "title": {{- list.title | json -}},
+    "links": [
+      {%- for link in list.links -%}
+        {%- include 'tool.json-link' with { link: link } -%}
+        {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  }
+{%- else -%}
+  null
+{%- endif -%}

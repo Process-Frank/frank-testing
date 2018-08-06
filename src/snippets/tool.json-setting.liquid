@@ -1,0 +1,30 @@
+{%- comment -%}
+  JSON Setting
+    Simple snippet to generate a JSON Setting object
+
+  Parameters:
+    type - Setting type
+    valueRaw - Setting Raw Value
+
+  Version:
+    1.0.0 - 2018/08/06
+{%- endcomment -%}
+
+{%- comment -%} Determine the value {%- endcomment -%}
+{%- capture value -%}
+  {%- case type -%}
+    {%- when 'link_list' -%}
+      {%- include 'tool.json-linklist' with { list: linklists[valueRaw] } -%}
+    {%- else -%}
+      {{ value | json }}
+  {%- endcase -%}
+{%- endcapture -%}
+
+{
+  "id": {{- setting | json -}},
+  "valueRaw": {{- valueRaw | json -}},
+  "type": {{- type | json -}},
+  {%- comment -%} Now we can generate the correct data {%- endcomment -%}
+  "value": {{- value -}}
+}
+{%- unless forloop.last -%},{%- endunless -%}

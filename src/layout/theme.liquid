@@ -1,6 +1,6 @@
 <!doctype html>
-<!--[if IE 9]> <html class="ie9 no-js supports-no-cookies" lang="{{ shop.locale }}"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js supports-no-cookies" lang="{{ shop.locale }}"> <!--<![endif]-->
+<!--[if IE 9]> <html class="ie9 no-js" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{ shop.locale }}"> <!--<![endif]-->
   <head>
     {% comment %} Browser Meta tags {% endcomment %}
     <meta charset="utf-8">
@@ -49,11 +49,20 @@
   </head>
 
   <body>
+    {% comment %} Static Header Sections {% endcomment %}
+    {%- section 'header' -%}
+
+    {% comment %} JSON Content for Layout {% endcomment %}
     {{ content_for_layout }}
-    <div id="app">
+
+    {% comment %} Static Footer Sections {% endcomment %}
+
+
+    {% comment %} The actual page container {% endcomment %}
+    <div id="main">
       Testing some stuff here
     </div>
-    
+
     {% comment %} Finally we can load the JS for the site {% endcomment %}
     {% include 'script-tags', layout: 'theme' %}
   </body>

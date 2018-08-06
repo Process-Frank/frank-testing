@@ -1,0 +1,36 @@
+{%- comment -%}
+  JSON Link
+    Printable JSON for link, can also be used to fetch nested menu.
+
+  Parameters:
+    link - Link to generate.
+
+  Version:
+    1.0.0 - 2018/08/06
+{%- endcomment -%}
+{%- if link != blank -%}
+  {
+    "levels": {{- link.levels | json -}},
+    "handle": {{- link.handle | json -}},
+    "title": {{- link.title | json -}},
+    "type": {{- link.type | json -}},
+    {%- if link.object != blank -%}
+      "hasObject": true,
+      "objectId": {{- link.object.id | json -}},
+      "objectHandle": {{- link.object.handle | json -}},
+    {%- else -%}
+      "hasObject": false,
+      "objectId": null,
+      "objectHandle": null,
+    {%- endif -%}
+    "url": {{- link.url | json -}},
+    "submenu":
+      {%- if link.levels > 0 -%}
+        {%- include 'tool.json-linklist' with { list: linklists[link.handle] } -%}
+      {%- else -%}
+        null
+      {%- endif -%}
+  }
+{%- else -%}
+  null
+{%- endif -%}
