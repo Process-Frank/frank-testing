@@ -10,22 +10,19 @@
     name - Name of the section
     class - Class of the section
     componentName - React Component Name
-    settings -  CSV of Setting id's
-    settingTypes - CSV of Setting Types (matching the ID's indexes)
+    sectionSettings -  CSV of Setting id's
+    sectionSettingTypes - CSV of Setting Types (matching the ID's indexes)
     group (Optional) - The group that this section belong to, use this for static sections (Header, Footer etc)
                         Defaults to the current template type.
 
   Version:
     1.0.0 - 2018/08/02
 {%- endcomment -%}
-{%- assign isJSON = false -%}
-{%- if template contains 'json' -%}
-  {%- assign isJSON = true -%}
-{%- endif -%}
+{%- include 'tool.is-json-template' -%}
 
 {%- comment -%} First we need to generate the correct data {%- endcomment -%}
-{%- assign settingsArray = settings | split: ',' -%}
-{%- assign settingTypesArray = settingTypes | split: ',' -%}
+{%- assign settingsArray = sectionSettings | split: ',' -%}
+{%- assign settingTypesArray = sectionSettingTypes | split: ',' -%}
 
 {%- unless group != blank -%}
   {%- include 'tool.get-template-type' -%}
@@ -47,15 +44,20 @@
     "componentName": {{ component | json }},
     "group": {{ groupJSON }},
     "settings": [
-      {%- for setting in settingsArray -%}
+      {%- for s in settingsArray -%}
         {%- assign type = settingTypesArray[forloop.index0] -%}
-        {%- assign valueRaw = section.settings[setting] -%}
-        {%- include 'tool.json-setting' with { type: type, valueRaw: valueRaw } -%}
+        {%- assign valueRaw = section.settings[s] -%}
+        {%- include 'tool.json-setting' with {
+          id: s,
+          type: type,
+          valueRaw: valueRaw
+        } -%}
+        {%- unless forloop.last -%},{%- endunless -%}
       {%- endfor -%}
 
       {%- comment -%}/* Extra Settings (Good for bypassing that forloop */{%- endcomment -%}
       {%- if extraSettings != blank -%}
-        {%- if settingsArray.size > 0 -%},{%- endif -%}
+        {%- if settingTypesArray.size > 0 -%},{%- endif -%}
         {{ extraSettings }}
       {%- endif -%}
     ]

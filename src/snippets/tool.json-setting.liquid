@@ -3,6 +3,7 @@
     Simple snippet to generate a JSON Setting object
 
   Parameters:
+    id - ID of the setting
     type - Setting type
     valueRaw - Setting Raw Value
 
@@ -16,7 +17,7 @@
     {%- when 'link_list' -%}
       {%- include 'tool.json-linklist' with { list: linklists[valueRaw] } -%}
     {%- else -%}
-      {{ value | json }}
+      {{ valueRaw | json }}
   {%- endcase -%}
 {%- endcapture -%}
 
@@ -27,4 +28,3 @@
   {%- comment -%} Now we can generate the correct data {%- endcomment -%}
   "value": {{- value -}}
 }
-{%- unless forloop.last -%},{%- endunless -%}

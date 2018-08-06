@@ -1,0 +1,30 @@
+{%- comment -%}
+  JSON Address
+    Tool to return valid JSON for an address object
+
+  Parameters:
+    address - Address to generate JSON for.
+
+  Version:
+    1.0.0 - 2018/08/06
+{%- endcomment -%}
+{%- if address -%}
+  {
+    "address1": {{ address.address1 | json }},
+    "address2": {{ address.address2 | json }},
+    "city": {{ address.city | json }},
+    "company": {{ address.company | json }},
+    "country": {{ address.country | json }},
+    "country_code": {{ address.country_code | json }},
+    "first_name": {{ address.first_name | json }},
+    "last_name": {{ address.last_name | json }},
+    "name": {{ address.name | json }},
+    "phone": {{ address.phone | json }},
+    "province": {{ address.province | json }},
+    "province_code": {{ address.province_code | json }},
+    "street": {{ address.street | json }},
+    "zip": {{ address.zip | json }}
+  }
+{%- else -%}
+  null
+{%- endif -%}

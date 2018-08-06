@@ -10,11 +10,13 @@
 {% endcomment %}
 {%- capture listJSON -%}
   {%- include 'tool.json-setting' with {
+    id: 'menu_left',
     type: 'link_list',
     valueRaw: section.settings.menu_left
   -%}
   ,
   {%- include 'tool.json-setting' with {
+    id: 'menu_right',
     type: 'link_list',
     valueRaw: section.settings.menu_right
   -%}
