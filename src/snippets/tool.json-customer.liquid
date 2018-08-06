@@ -29,7 +29,7 @@
         {%- endfor -%}
       ],
       "address_count": {{- customer.address_count | json -}},
-      "default_address": {%- include 'tool.address' with { address: customer.default_address } -%},
+      "default_address": {%- include 'tool.json-address' with { address: customer.default_address } -%},
       "email": {{- customer.email | json -}},
       "fist_name": {{- customer.first_name | json -}},
       "has_account": {{- customer.has_account | json -}},

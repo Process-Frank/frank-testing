@@ -1,0 +1,17 @@
+{%- comment -%}
+  Image JSON
+    JSON Data for an image
+
+  Parameters:
+    image - Image to generate JSON data for.
+
+  Version:
+    1.0.0 - 2018/08/06
+{%- endcomment -%}
+{%- if image -%}
+  {
+    "id": {{ image.id | json }}
+  }
+{%- else -%}
+  null
+{%- endif -%}

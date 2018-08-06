@@ -1,4 +1,4 @@
-const initialState = null;
+const initialState = window.Customer || null;
 
 //Finally we can actually make the reducer
 const customer = function(state, action) {
