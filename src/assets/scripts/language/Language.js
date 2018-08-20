@@ -1,5 +1,7 @@
 import React from 'react';
 
+import English from './../../languages/en.default.js';
+
 class Language {
   static getLanguages() {
     return LANGUAGES
@@ -45,5 +47,5 @@ export default Language;
 
 
 export const LANGUAGES = {
-  "en": new Language("English", "en", require('./../../languages/en.default.js'))
+  "en": new Language("English", "en", English)
 };

@@ -1,6 +1,5 @@
 import React from 'react';
-import { HeaderIcon } from './HeaderIconNav';
-import Image from './../../../image/Image';
+import { HeaderIcon } from './../HeaderIconNav';
 import { connect } from 'react-redux';
 
 const mapStateToProps = function(state) {
@@ -9,10 +8,12 @@ const mapStateToProps = function(state) {
   }
 }
 
-export default connect(mapStateToProps)( (props) => {
+export default connect(mapStateToProps)((props) => {
   return (
-    <HeaderIcon to="/cart">
-      <Image asset="icon-cart.svg" alt="Cart" title="Cart" />
-    </HeaderIcon>
+    <HeaderIcon
+      to="/cart"
+      asset="icon-cart.svg"
+      title={ props.language.get("header.cart.title") }
+    />
   );
-} );
+});

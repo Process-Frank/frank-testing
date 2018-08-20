@@ -4,6 +4,8 @@
   border: 1px solid red;
   display: inline-block;
 
+  //Icons && Menu
+  &__icon-menu,
   &__menu {
     list-style-type: none;
     padding: 0;
@@ -20,13 +22,18 @@
       display: inline-block;
       padding: 1em;
     }
+  }
+
+  //Menu Specific
+  &__menu {
+    &-item { }
+    &-link { }
 
     &--level-0 {
       @include t-flexbox();
       @include t-justify-content(space-between);
 
-      &__link {
-      }
+      &__link {}
     }
 
     //Level 1 + 2 Only, add hover treatment
@@ -49,6 +56,27 @@
       top: 0;
       right: 0;
       @include t-translate-x(100%);
+    }
+  }
+
+  &__icon-menu {
+    text-align: right;
+    &-item {
+      
+      + & {
+        margin-left: 1em;
+      }
+    }
+
+    &-link {
+      padding: 0.75em;
+    }
+
+    &-icon {
+      display: inline-block;
+      width: 1.75em;
+      height: 1.75em;
+      object-fit: contain;
     }
   }
 }

@@ -5,7 +5,7 @@ import PageBoundary from './../layout/boundary/PageBoundary';
 
 import Logo from './logo/Logo';
 import HeaderNav from './navigation/HeaderNav';
-import HeaderIconNav from './navigation/icon/HeaderIconNav';
+import HeaderIconNav from './navigation/HeaderIconNav';
 import HeaderStyles from './Header.scss';
 
 class Header extends React.Component {
