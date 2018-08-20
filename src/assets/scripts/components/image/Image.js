@@ -11,10 +11,29 @@ class Image extends React.Component {
 
     if(props.asset) {
       //Asset URL
-      let asset = props.asset;
+      let asset = ""+props.asset;
       delete props.asset;
 
-      //There
+      //This is a Shopify based image (maybe, it could also just be an SVG)
+      if(this.props.theme.isShopifyImage(asset)) {
+        //This is a Shopify Image! Generate a set of requested sizes.
+        let sizes = props.sizes || [500, 750, 1000];
+        let width = props.width || props.size || 1400;
+        if(sizes.indexOf(width) === -1) sizes.push(width);
+
+        //TODO: We may end up adding support for scales here...
+        props.sources = props.sources || [];
+        for(let i = 0; i < sizes.length; i++) {
+          let s = sizes[i];
+
+          props.sources.push({
+            width: s,
+            src: this.props.theme.getImageURL(asset, s)
+          });
+        }
+      } else {
+        props.src = this.props.theme.getAsset(asset);
+      }
     }
 
     //Props.image is essentialy a "detect if sources or src"

@@ -31,6 +31,10 @@ export default class ShopifyTheme {
     return this.getAssetURL() + asset + '?' + this.cacheTime;
   }
 
+  isShopifyImage(src) {
+    return src.match(/\.(jpg|jpeg|gif|png|bmp|bitmap|tiff|tif)(\?v=\d+)?$/i);
+  }
+
   getImageURL(src, size) {
     size = size + "";//To String
 
@@ -42,14 +46,14 @@ export default class ShopifyTheme {
     //Must end with x, e.g. 1400x
     if(!size.endsWith("x")) size += "x";
 
-    var match = src.match(/\.(jpg|jpeg|gif|png|bmp|bitmap|tiff|tif)(\?v=\d+)?$/i);
+    let match = this.isShopifyImage(src);
     if (match) {
-      var prefix = src.split(match[0]);
-      var suffix = match[0];
+      let prefix = src.split(match[0]);
+      let suffix = match[0];
 
       return this.getAsset(prefix[0] + '_' + size + suffix);
     } else {
-      return this.getAsset(null);
+      return this.getAsset(src);
     }
   }
 }

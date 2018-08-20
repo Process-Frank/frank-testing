@@ -11,12 +11,20 @@
   I'm attempting to fix an issue built into slate here... This will force slate
   to use the REAL asset url.
 {% endcomment %}
-{%- capture url -%}
-  {{- 'icon-cart.svg' | asset_url -}}
-{%- endcapture -%}
-{%- assign url = url | split: '?' -%}
-{%- assign url = url[0] -%}
-{%- assign url = url | remove: 'icon-cart.svg' -%}
+
+{% comment %} Are we in debug mode? {% endcomment %}
+{%- include 'tool.is-debug-mode' -%}
+
+{%- if IsDebug -%}
+  {%- capture url -%}//localhost:8080/{%- endcapture -%}
+{%- else -%}
+  {%- capture url -%}
+    {{- 'icon-cart.svg' | asset_url -}}
+  {%- endcapture -%}
+  {%- assign url = url | split: '?' -%}
+  {%- assign url = url[0] -%}
+  {%- assign url = url | remove: 'icon-cart.svg' -%}
+{%- endif -%}
 
 {% comment %} is this a JSON Template? {% endcomment %}
 {%- include 'tool.is-json-template' -%}
