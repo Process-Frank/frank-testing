@@ -1,16 +1,19 @@
 import React from 'react';
-import HeaderNavStyles from './HeaderNav.scss';
-import Link from './../../routing/Link';
-import Image from './../../image/Image';
+import HeaderNavStyles from './../HeaderNav.scss';
+import Link from './../../../routing/Link';
+import Image from './../../../image/Image';
 
-import AccountIcon from './icon/AccountIcon';
-import CartIcon from './icon/CartIcon';
+import AccountIcon from './AccountIcon';
+import CartIcon from './CartIcon';
 
 const HeaderIcon = (props) => {
-  let { to, children } = props;
+  let { to, children, className } = props;
+
+  let clazz = "c-header-nav__icon-menu-item";
+  if(className) clazz += " " +className;
 
   return (
-    <li className="c-header-nav__icon-menu-item">
+    <li className={clazz}>
       <Link
         to={ to }
         className="c-header-nav__icon-menu-link"
@@ -40,8 +43,8 @@ class HeaderIconNav extends React.Component {
     return (
       <nav role="navigation" className={clazz}>
         <ul className="c-header-nav__icon-menu">
-          <AccountIcon />
-          <CartIcon />
+          <AccountIcon className="c-header-nav__icon-account" />
+          <CartIcon className="c-header-nav__icon-cart" />
         </ul>
       </nav>
     );

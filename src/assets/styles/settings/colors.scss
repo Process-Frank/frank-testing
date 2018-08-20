@@ -5,4 +5,6 @@
  *  Version:
  *    1.0.0 - 2018/07/09
  */
-$s-color--border: #EEE;
+$s-color--primary: #F2395B;
+$s-color--primary-hover: darken($s-color--primary, 11%);
+$s-color--secondary: white;

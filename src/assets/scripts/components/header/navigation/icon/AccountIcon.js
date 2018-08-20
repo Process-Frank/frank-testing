@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderIcon } from './../HeaderIconNav';
+import { HeaderIcon } from './HeaderIconNav';
 import { connect } from 'react-redux';
 
 const mapStateToProps = function(state) {
@@ -23,6 +23,7 @@ export default connect(mapStateToProps)((props) => {
     <HeaderIcon
       to={ to }
       asset="icon-account.svg"
+      className={ props.className }
       title={ props.language.get(title) }
     />
   );

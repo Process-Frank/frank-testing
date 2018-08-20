@@ -18,7 +18,7 @@ export default class Link extends React.Component {
   render() {
     let clonedProps = Object.assign({}, this.props);
     clonedProps.activeClassName = clonedProps.activeClassName || "is-active";
-    if(isExternal(clonedProps.to)) {
+    if(clonedProps.to && isExternal(clonedProps.to)) {
       delete clonedProps.activeClassName;
       return <a {...clonedProps} href={ clonedProps.to } />;
     }

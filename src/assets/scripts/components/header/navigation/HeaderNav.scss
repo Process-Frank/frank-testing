@@ -1,7 +1,8 @@
 @import './../../../../styles/global.scss';
 
+$c-header-nav--menu-bottom-thick: 4px;
+
 .c-header-nav {
-  border: 1px solid red;
   display: inline-block;
 
   //Icons && Menu
@@ -10,7 +11,6 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
-    background: pink;
     white-space: nowrap;
 
     &-item {
@@ -20,26 +20,44 @@
 
     &-link {
       display: inline-block;
-      padding: 1em;
+      padding: 1em 1.5em;
     }
   }
 
   //Menu Specific
   &__menu {
-    &-item { }
-    &-link { }
 
+    //Level 0 (Top) only!
     &--level-0 {
       @include t-flexbox();
-      @include t-justify-content(space-between);
 
       &__link {}
+
+      //Hover effect on top level links
+      &__item {
+        .c-header-nav__menu--level-0__link {
+          border-bottom: $c-header-nav--menu-bottom-thick solid transparent;
+          transition: all 0.2s $s-animation--ease-out;
+        }
+
+        &:hover {
+          .c-header-nav__menu--level-0__link {
+            border-bottom: $c-header-nav--menu-bottom-thick solid $s-color--primary;
+          }
+        }
+      }
     }
 
     //Level 1 + 2 Only, add hover treatment
     &--level-1,&--level-2 {
-      display: none;
       position: absolute;
+      background: $s-color--primary;
+      color: $s-color--secondary;
+      display: none;
+
+      &:hover {
+        background: $s-color--primary-hover;
+      }
 
       .c-header-nav__menu-item:hover > & {
         display: block;
@@ -47,36 +65,53 @@
     }
 
     &--level-1 {
+      @include t-translate-y(100%);
       bottom: 0;
       left: 0;
-      @include t-translate-y(100%);
     }
 
     &--level-2 {
+      @include t-translate-x(100%);
       top: 0;
       right: 0;
-      @include t-translate-x(100%);
     }
   }
 
-  &__icon-menu {
-    text-align: right;
-    &-item {
-      
-      + & {
-        margin-left: 1em;
+  //Icon Menu
+  &__icon {
+    &-menu {
+      text-align: right;
+      &-item {
+        + & {
+          margin-left: 1em;
+        }
+      }
+
+      &-link {
+        padding: 0.75em;
+      }
+
+      &-icon {
+        width: 1.4em;
+        object-fit: contain;
       }
     }
 
-    &-link {
-      padding: 0.75em;
+    &-account {
+      display: none;
     }
+  }
 
-    &-icon {
-      display: inline-block;
-      width: 1.75em;
-      height: 1.75em;
-      object-fit: contain;
+  @include t-media-query($s-xsmall-up) {
+    &__icon{
+      &-account {
+        display: inline-block;
+      }
+
+      &-menu-icon {
+        width: 1.75em;
+        height: 1.75em;
+      }
     }
   }
 }
