@@ -1,5 +1,5 @@
 //Imports...
-import ShopifySection from './../shopify/ShopifySection';
+import ShopifySection from './../../shopify/ShopifySection';
 
 //Setup the initial state...
 const initialState = {};

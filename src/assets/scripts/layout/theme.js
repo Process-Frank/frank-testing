@@ -43,6 +43,8 @@ const unsubscrube = store.subscribe(() => {
   console.log(store.getState());
 });
 
+window.store = store;
+
 //Setup the initial render.
 ReactDOM.render((
   <Provider store={store}>

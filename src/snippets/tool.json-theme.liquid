@@ -1,0 +1,36 @@
+{% comment %}
+  JSON Theme
+    Simple snippet that generates all the needed information for the theme on
+    React's side
+
+  Version:
+    1.0.0 - 2018/08/10
+{% endcomment %}
+
+{% comment %}
+  I'm attempting to fix an issue built into slate here... This will force slate
+  to use the REAL asset url.
+{% endcomment %}
+{%- capture url -%}
+  {{- 'icon-cart.svg' | asset_url -}}
+{%- endcapture -%}
+{%- assign url = url | split: '?' -%}
+{%- assign url = url[0] -%}
+{%- assign url = url | remove: 'icon-cart.svg' -%}
+
+{% comment %} is this a JSON Template? {% endcomment %}
+{%- include 'tool.is-json-template' -%}
+{%- unless isJSON -%}
+  <script type="text/javascript">
+    window.Theme = window.Theme ||
+{%- endunless -%}
+
+{
+  assetUrl: {{ url | json }},
+  id: {{ theme.id | json }},
+  name: {{ theme.name | json }}
+}
+
+{%- unless isJSON -%}
+  </script>
+{%- endunless -%}

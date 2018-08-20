@@ -10,15 +10,9 @@
 {% endcomment %}
 {%- capture listJSON -%}
   {%- include 'tool.json-setting' with {
-    id: 'menu_left',
+    id: 'menu',
     type: 'link_list',
-    valueRaw: section.settings.menu_left
-  -%}
-  ,
-  {%- include 'tool.json-setting' with {
-    id: 'menu_right',
-    type: 'link_list',
-    valueRaw: section.settings.menu_right
+    valueRaw: section.settings.menu
   -%}
 {%- endcapture -%}
 
@@ -41,14 +35,8 @@
       },
       {
         "type": "link_list",
-        "id": "menu_left",
-        "label": "Menu (Left)",
-        "default": "main-menu"
-      },
-      {
-        "type": "link_list",
-        "id": "menu_right",
-        "label": "Menu (Right)",
+        "id": "menu",
+        "label": "Menu",
         "default": "main-menu"
       }
     ]

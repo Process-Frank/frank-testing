@@ -1,4 +1,28 @@
 @import './../../../styles/global.scss';
 
 .c-header {
+
+  &.is-fixed {
+    position: fixed;
+    top: 0;
+  }
+
+  &__wrapper {
+    @include t-flexbox();
+    @include t-justify-content(space-between);
+    @include t-align-items(center);
+    padding: 2em 0;
+    border: 1px solid red;
+  }
+
+  &__logo {
+    width: 50%;
+    text-align: center;
+    max-width: 220px;
+  }
+
+  &__menu,
+  &__icon-nav {
+    width: 25%;
+  }
 }
