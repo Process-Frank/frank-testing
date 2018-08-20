@@ -20,7 +20,7 @@ class HeaderIconNav extends React.Component {
     if(this.props.className) clazz += " " + this.props.className;
 
     let icons = [];
-    icons.push(<CartIcon />);
+    icons.push(<CartIcon key="cart" />);
 
     return (
       <nav role="navigation" className={clazz}>
