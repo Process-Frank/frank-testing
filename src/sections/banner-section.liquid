@@ -1,0 +1,33 @@
+{%- include 'tool.json-section' with {
+  name: 'Banner',
+  class: 'c-section__banner-section',
+  component: 'BannerSection',
+  sectionSettings: 'title,image',
+  sectionSettingTypes: 'text,image_picker'
+} -%}
+
+{% schema %}
+  {
+    "name": "Banner",
+    "class": "c-section__banner-section",
+    "settings": [
+      {
+        "id": "title",
+        "label": "Title",
+        "default": "MY Test Title",
+        "type": "text"
+      },
+      {
+        "id": "image",
+        "label": "Test Image",
+        "type": "image_picker"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Banner",
+        "category": "Content"
+      }
+    ]
+  }
+{% endschema %}

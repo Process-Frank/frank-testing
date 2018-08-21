@@ -16,6 +16,8 @@
   {%- case type -%}
     {%- when 'link_list' -%}
       {%- include 'tool.json-linklist' with { list: linklists[valueRaw] } -%}
+    {%- when 'image_picker' -%}
+      {%- include 'tool.json-image' with { image: valueRaw } -%}
     {%- else -%}
       {{ valueRaw | json }}
   {%- endcase -%}

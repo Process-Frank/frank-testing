@@ -8,14 +8,40 @@ class Image extends React.Component {
 
   render() {
     let props = Object.assign({}, this.props);//Let's clone the props
+    let { theme } = this.props;
 
+    /* Handle Shopify Images */
+    let shopifyUrl;/* Contains either the URL or the Asset/Filename */
+    let shopifyType;/* Can be (as of writing this) asset or file */
     if(props.asset) {
       //Asset URL
-      let asset = ""+props.asset;
+      shopifyUrl = props.asset;
+      shopifyType = "asset";
       delete props.asset;
+    }
 
-      //This is a Shopify based image (maybe, it could also just be an SVG)
-      if(this.props.theme.isShopifyImage(asset)) {
+    if(props.file) {
+      shopifyUrl = props.file;
+      shopifyType = 'file';
+      delete props.file;
+    }
+
+    if(shopifyUrl) {
+
+      if(typeof shopifyUrl.image !== typeof undefined) {
+        let imageSetting = shopifyUrl;
+        shopifyUrl = shopifyUrl.image;
+        props.width = props.width || imageSetting.width;
+        props.height = props.height || imageSetting.height;
+        props.alt = props.alt || imageSetting.alt;
+      }
+
+      shopifyUrl = shopifyUrl.split('/');
+      shopifyUrl = shopifyUrl[shopifyUrl.length-1].split('?')[0];
+
+      //First determine if this is a resizable image (PNG, JPG, etc) or an asset.
+      if(this.props.theme.isShopifyImageType(shopifyUrl)) {
+
         //This is a Shopify Image! Generate a set of requested sizes.
         let sizes = props.sizes || [500, 750, 1000];
         let width = props.width || props.size || 1400;
@@ -28,11 +54,15 @@ class Image extends React.Component {
 
           props.sources.push({
             width: s,
-            src: this.props.theme.getImageURL(asset, s)
+            src: theme.get(theme.getImageURL(shopifyUrl, s), shopifyType)
           });
         }
+
+        props.src = theme.get(theme.getImageURL(shopifyUrl, width), shopifyType);
       } else {
-        props.src = this.props.theme.getAsset(asset);
+
+        //This is not a shopify image, we just need to fetch the raw URL
+        props.src = theme.get(shopifyUrl, shopifyType);
       }
     }
 

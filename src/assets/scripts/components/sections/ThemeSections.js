@@ -1,6 +1,6 @@
 //Theme Sections
-import TestSection from './test/TestSection';
+import BannerSection from './banner/BannerSection';
 
 export default {
-  TestSection
+  BannerSection
 }

@@ -15,16 +15,8 @@
 {% comment %} Are we in debug mode? {% endcomment %}
 {%- include 'tool.is-debug-mode' -%}
 
-{%- if IsDebug -%}
-  {%- capture url -%}//localhost:8080/{%- endcapture -%}
-{%- else -%}
-  {%- capture url -%}
-    {{- 'icon-cart.svg' | asset_url -}}
-  {%- endcapture -%}
-  {%- assign url = url | split: '?' -%}
-  {%- assign url = url[0] -%}
-  {%- assign url = url | remove: 'icon-cart.svg' -%}
-{%- endif -%}
+{%- capture assetUrl-%}{{- 'icon-cart.svg' | asset_url | remove: 'icon-cart.svg' -}}{%- endcapture -%}
+{%- capture fileUrl -%}{{- 'icon-cart.svg' | file_url | remove: 'icon-cart.svg' -}}{%- endcapture -%}
 
 {% comment %} is this a JSON Template? {% endcomment %}
 {%- include 'tool.is-json-template' -%}
@@ -34,7 +26,8 @@
 {%- endunless -%}
 
 {
-  assetUrl: {{ url | json }},
+  assetUrl: {{ assetUrl | json }},
+  fileUrl: {{ fileUrl | json }},
   id: {{ theme.id | json }},
   name: {{ theme.name | json }}
 }
