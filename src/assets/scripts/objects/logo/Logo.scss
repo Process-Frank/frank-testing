@@ -1,0 +1,9 @@
+@import './../../../styles/global.scss';
+
+.o-logo {
+  &__image {
+    display: block;
+    border: 1px solid red;
+    width: 100%;
+  }
+}

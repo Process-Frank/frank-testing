@@ -1,0 +1,11 @@
+@import './../../../../styles/global.scss';
+
+.c-cart-drawer {
+  &__button {
+    padding: 1em;
+
+    &-image {
+      width: 1.2em;
+    }
+  }
+}

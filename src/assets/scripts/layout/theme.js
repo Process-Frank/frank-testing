@@ -30,7 +30,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import RootReducer from './../reducers/RootReducer';
-import Theme from './../components/Theme';
+import Theme from './../Theme';
 
 //Import our styles
 import Styles from './../../styles/theme.scss';

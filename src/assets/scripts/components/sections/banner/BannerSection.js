@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageSection from './../image/ImageSection';
+import PageBoundary from './../../../objects/layout/boundary/PageBoundary';
 
 export default class BannerSection extends React.Component {
   constructor(props) {
@@ -11,7 +12,9 @@ export default class BannerSection extends React.Component {
 
     return (
       <ImageSection {...this.props} file={ image.value }>
-        { title.value }
+        <PageBoundary>
+          { title.value }
+        </PageBoundary>
       </ImageSection>
     );
   }

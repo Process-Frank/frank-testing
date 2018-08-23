@@ -1,42 +1,23 @@
 @import './../../../styles/global.scss';
 
 .c-header {
-
-  &.is-fixed {
-    position: fixed;
-    top: 0;
-  }
-
   &__wrapper {
     @include t-flexbox();
     @include t-justify-content(space-between);
     @include t-align-items(center);
-    padding: 2em 0;
+
+    position: relative;
   }
 
   &__logo {
-    width: 40%;
-    text-align: center;
+    @include t-absolute-center-x-y();
+    width: 100%;
     max-width: 220px;
   }
 
-  &__icon-nav,
-  &__hamburger-menu {
-    width: 30%;
+  &__hamburger {
   }
 
-  &__menu { display: none; }
-
-  @include t-media-query($s-small-up) {
-    &__logo,
-    &__menu,
-    &__icon-nav {
-      display: block;
-      width: 33%;
-    }
-
-    &__hamburger-menu {
-      display: none;
-    }
+  &__cart {
   }
 }

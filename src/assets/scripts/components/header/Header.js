@@ -1,60 +1,28 @@
 //StaticHeader Section
 import React from 'react';
 import { connect } from 'react-redux';
-import PageBoundary from './../layout/boundary/PageBoundary';
+import StaticSection from './../sections/StaticSection';
+import PageBoundary from './../../objects/layout/boundary/PageBoundary';
 
-import Logo from './logo/Logo';
-import HamburgerMenu from './navigation/hamburger/HamburgerMenu';
-import HeaderNav from './navigation/HeaderNav';
-import HeaderIconNav from './navigation/icon/HeaderIconNav';
+import HamburgerMenu from './hamburger/HamburgerMenu';
+import Logo from './../../objects/logo/Logo';
+import CartDrawer from './cart/CartDrawer';
 import HeaderStyles from './Header.scss';
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { fixed: false };
-  }
+const Header = (props) => {
+  let { menu } = props.data.settingsById;
 
-  render() {
-    let { sections } = this.props;
-    let { fixed } = this.state;
-    let section = sections["header"][0];
+  return (
+    <header role="banner" className={"c-header"}>
+      <PageBoundary className="c-header__wrapper">
+        <HamburgerMenu className="c-header__hamburger" data={ menu.value } />
+        <Logo className="c-header__logo" />
+        <CartDrawer className="c-header__cart" />
+      </PageBoundary>
+    </header>
+  );
+};
 
-    return (
-      <header role="banner" className={"c-header" + (fixed?" is-fixed":"")}>
-        <PageBoundary className="c-header__wrapper">
-          {/* Mobile Drawer */}
-          <HamburgerMenu
-            className="c-header__hamburger-menu"
-            data={ section.getSetting("menu").value }
-          />
-
-          {/* Left Side Menu */}
-          <HeaderNav
-            className="c-header__menu"
-            data={ section.getSetting("menu").value }
-            side="left"
-          />
-
-          {/* Logo */}
-          <Logo className="c-header__logo" />
-
-          {/* Icon Menu */}
-          <HeaderIconNav
-            className="c-header__icon-nav"
-          />
-        </PageBoundary>
-      </header>
-    );
-  }
+export default (props) => {
+  return <StaticSection {...props} group="header" component={Header} />;
 }
-
-//State Props
-const mapStateToProps = function(state) {
-  return {
-    sections: state.sections,
-    customer: state.customer
-  }
-}
-
-export default connect(mapStateToProps)(Header);

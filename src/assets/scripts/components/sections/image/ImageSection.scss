@@ -6,7 +6,7 @@
   .c-image-section {
     &__image {
       //TODO: Add absolute fill
-      //@include t-absolute-fill();
+      @include t-absolute-fill();
       object-fit: cover;
       object-position: bottom center;
     }
