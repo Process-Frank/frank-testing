@@ -31,17 +31,17 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import RootReducer from './../reducers/RootReducer';
 import Theme from './../Theme';
+import promiseMiddleware from 'redux-promise-middleware';
+import { createLogger } from 'redux-logger';
 
 //Import our styles
 import Styles from './../../styles/theme.scss';
 
-//Create our redux middleware
-const store = createStore(RootReducer);
-const unsubscrube = store.subscribe(() => {
-  //Called whenever the store gets updated, for the sake of testing we're going
-  //to log state updates.
-  console.log(store.getState());
-});
+//Create our redux && middleware
+const store = createStore(RootReducer, applyMiddleware(
+  promiseMiddleware(),
+  createLogger({ collapsed: true })
+));
 
 window.store = store;
 

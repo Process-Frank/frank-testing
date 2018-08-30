@@ -5,8 +5,9 @@ import LanguageReducer from './LanguageReducer';
 import HamburgerMenuReducer from './HamburgerMenuReducer';
 
 //Shopify Reducers
-import SectionReducer from './shopify/SectionReducer';
+import CollectionReducer from './shopify/CollectionReducer';
 import CustomerReducer from './shopify/CustomerReducer';
+import SectionReducer from './shopify/SectionReducer';
 import ThemeReducer from './shopify/ThemeReducer';
 
 
@@ -15,7 +16,7 @@ const RootReducer = combineReducers({
   language: LanguageReducer,
   hamburgerMenu: HamburgerMenuReducer,
 
-
+  collection: CollectionReducer,
   customer: CustomerReducer,
   sections: SectionReducer,
   theme: ThemeReducer

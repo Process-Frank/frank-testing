@@ -41,14 +41,7 @@ export default class ShopifySection {
     }
   }
 
-  getID() {return this.id;}
-  getName() {return this.name;}
-  getClazz() {return this.clazz;}
-  getComponentName() {return this.component;}
+  //High Level API
   getComponent() {return ThemeSections[this.component];}
-  getGroup() {return this.group;}
-  getSettings() {return this.settings;}
-  getBlocks() {return this.blocks;}
-
   getSetting(name) { return this.settingsById[name] || null; }
 }

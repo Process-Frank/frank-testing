@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ThemeSections from './../sections/ThemeSections';
+import ThemeSections from './../../sections/ThemeSections';
+import Template from './../Template';
+
+import Link from './../../../routing/Link';
 
 class IndexTemplate extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-
   }
 
   render() {
@@ -24,10 +23,11 @@ class IndexTemplate extends React.Component {
     }
 
     return (
-      <div>
+      <Template name="index">
         { sectionElements }
+        <Link to="/collections/all">Shop All</Link>
         End of sections
-      </div>
+      </Template>
     );
   }
 }

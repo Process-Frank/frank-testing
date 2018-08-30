@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import TopBar from './components/promotion/topbar/TopBar';
 import Header from './components/header/Header';
-import Routes from './routing/Routes';
+import TemplateList from './components/templates/TemplateList';
 
 export default (props) => {
   return (
@@ -17,7 +17,7 @@ export default (props) => {
       <React.Fragment>
         <TopBar />
         <Header />
-        <Routes />
+        <TemplateList />
       </React.Fragment>
     </BrowserRouter>
   );
