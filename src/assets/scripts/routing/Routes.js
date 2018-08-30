@@ -3,18 +3,14 @@ import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 
 import Loadable from 'react-loadable';
-//import LoadingTemplate from './../components/templates/loading/LoadingTemplate'
-//import LoadingFailedTemplate from './../components/templates/loading/LoadingFailedTemplate'
 
 const Loading = (props) => {
   if (props.error) {
-    return <div>{ props.error }</div>;
+    return <LoadingFailedTemplate {...props} />;
   } else if (props.pastDelay) {
-    return <div>Loading</div>
-  } else {
-    return <div>Start</div>
-;
+    return <LoadingTemplate {...props} />;
   }
+  return <div />;//Stops flickering on load?
 };
 
 //Define our Route Wrapper (Literally to wrap routes in)

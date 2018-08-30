@@ -4,7 +4,8 @@ import Template from './../Template';
 export default (props) => {
   return (
     <Template>
-      Failed to load template!
+      Failed to load template:<br />
+      { props.error || "Unknown Error" }
     </Template>
   );
 }
