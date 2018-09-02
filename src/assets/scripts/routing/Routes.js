@@ -3,6 +3,8 @@ import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 
 import Loadable from 'react-loadable';
+import LoadingTemplate from './../components/templates/loading/LoadingTemplate.js';
+import LoadingFailedTemplate from './../components/templates/loading/LoadingFailedTemplate.js';
 
 const Loading = (props) => {
   if (props.error) {

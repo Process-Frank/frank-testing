@@ -9,7 +9,7 @@ const stateToProps = (state) => {
 };
 
 const dispatchToProps = (dispatch) => {
-
+  return {};
 };
 
 export const withIndexTemplate = (Wrapped) => {

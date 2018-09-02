@@ -13,17 +13,8 @@
 {% endcomment %}
 
 {% comment %} Are we in debug mode? {% endcomment %}
-{%- include 'tool.is-debug-mode' -%}
-
 {%- capture assetUrl-%}{{- 'icon-cart.svg' | asset_url | remove: 'icon-cart.svg' -}}{%- endcapture -%}
 {%- capture fileUrl -%}{{- 'icon-cart.svg' | file_url | remove: 'icon-cart.svg' -}}{%- endcapture -%}
-
-{% comment %} is this a JSON Template? {% endcomment %}
-{%- include 'tool.is-json-template' -%}
-{%- unless isJSON -%}
-  <script type="text/javascript">
-    window.Theme = window.Theme ||
-{%- endunless -%}
 
 {
   assetUrl: {{ assetUrl | json }},
@@ -31,7 +22,3 @@
   id: {{ theme.id | json }},
   name: {{ theme.name | json }}
 }
-
-{%- unless isJSON -%}
-  </script>
-{%- endunless -%}

@@ -1,0 +1,5 @@
+{% layout none %}
+{%- capture test -%}
+  {{ content_for_index }}
+{%- endcapture -%}
+{{ test | strip_html }}

@@ -1,17 +1,20 @@
-import { templateFetch } from './../utils/URLUtilities'
+import { templateFetch } from './../utils/URLUtilities';
+import ShopifyCollection from './ShopifyCollection';
 
-class ShopifyCollection {
-  static async fetchCollection(collection) {
+class ShopfiyProduct {
+  static async fetchProduct(collection) {
     let data = await templateFetch(ShopifyCollection.getCollectionURL(collection));
     return data;
   }
 
-  static getCollectionURL(collection) {
-    return '/collections/'+collection;
+  static getProductURL(product, collection) {
+    let end = '/product/' + product;
+    if(collection) return ShopfiyCollection.getCollectionURL(collection)+end;
+    return end;
   }
 
   static fromJSON(data) {
-    let x = new ShopifyCollection(
+    let x = new ShopfiyProduct(
       data.id, data.handle, data.all_tags, data.default_sort_by,
       data.description, data.image, data.products, data.template_suffix,
       data.title, data.url
@@ -37,4 +40,4 @@ class ShopifyCollection {
   }
 }
 
-export default ShopifyCollection;
+export default ShopfiyProduct;

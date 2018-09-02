@@ -15,5 +15,4 @@
   the collection object again
 {%- endcomment -%}
 {%- assign coll = collections[collection.handle] -%}
-
-{%- include 'tool.json-collection' with { collection: coll } -%}
+{%- include 'tool.json-collection' with { collection: coll, includeProductData: true } -%}

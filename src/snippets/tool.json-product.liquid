@@ -1,0 +1,27 @@
+{%- comment -%}
+  Product JSON
+    Generates some product data in a nice JSON format.
+
+  Dependencies:
+    snippets/tool.product-json.liquid
+
+  Version:
+    1.0.0 - 2018/07/23
+{%- endcomment -%}
+{
+  "id": {{- product.id -}},
+  "handle": {{- product.handle | json -}},
+  "title": {{- product.title | json -}},
+  "price": {{- product.price | json -}},
+  "vendor": {{- product.vendor | json -}},
+  "tags": {{- product.tags | json -}},
+  "options": {{- product.options | json -}},
+  "image": {{- product.featured_image | json -}},
+  "url": {{- product.url | json -}},
+  "variants": [
+    {%- for variant in product.variants -%}
+      {%- include 'tool.json-variant' with { variant: variant, product: product } -%}
+      {%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+}

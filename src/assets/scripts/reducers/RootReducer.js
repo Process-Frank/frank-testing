@@ -8,6 +8,7 @@ import HamburgerMenuReducer from './HamburgerMenuReducer';
 import CollectionReducer from './shopify/CollectionReducer';
 import CustomerReducer from './shopify/CustomerReducer';
 import SectionReducer from './shopify/SectionReducer';
+import ProductReducer from './shopify/ProductReducer';
 import ThemeReducer from './shopify/ThemeReducer';
 
 
@@ -18,6 +19,7 @@ const RootReducer = combineReducers({
 
   collection: CollectionReducer,
   customer: CustomerReducer,
+  product: ProductReducer,
   sections: SectionReducer,
   theme: ThemeReducer
 });

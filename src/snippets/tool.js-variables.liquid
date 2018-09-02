@@ -1,6 +1,7 @@
 <script type="text/javascript">
   /* JS Is available! */
   document.documentElement.className = document.documentElement.className.replace('no-js', 'has-js');
+  
+  window.Theme = window.Theme || {%- include 'tool.json-theme' -%};
+  window.Customer = window.Customer || {%- include 'tool.json-customer' -%};
 </script>
-{%- include 'tool.json-theme' -%}
-{%- include 'tool.json-customer' -%}

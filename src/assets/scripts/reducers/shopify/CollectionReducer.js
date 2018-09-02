@@ -4,7 +4,6 @@ import ShopifyCollection from '../../shopify/ShopifyCollection';
 
 //Initial State
 const initialState = {
-  currentCollection: 'all',
   collections: {}
 };
 
@@ -23,6 +22,7 @@ const collection = (state, action) => {
 
   switch(action.type) {
     case String(CollectionActions.fetchCollection.pending):
+      //Starting to fetch collection data.
       state = { ...state };
       state.collections = { ...state.collections };
       state.collections[action.meta.collection] = {
@@ -32,16 +32,18 @@ const collection = (state, action) => {
       return state;
 
     case String(CollectionActions.fetchCollection.fulfilled):
+      //Collection data is fetching
       state = { ...state };
       state.collections = { ...state.collections };
       state.collections[action.meta.collection] = {
-        ...action.payload,
+        ...ShopifyCollection.fromJSON(action.payload),
         pending: false,
         error: undefined
       };
       return state;
 
     case String(CollectionActions.fetchCollection.rejected):
+      //Collection Data failed to fetch
       state = { ...state };
       state.collections = { ...state.collections };
       state.collections[action.meta.collection] = {

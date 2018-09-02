@@ -9,19 +9,36 @@
     1.0.0 - 2018/08/29
 {%- endcomment -%}
 
-{% comment %} Is this a JSON Template? {% endcomment %}
-{%- include 'tool.is-json-template' -%}
-{%- unless isJSON -%}
-  <script type="text/javascript">
-    window.Collections = window.Collections || {};
-    window.Collections[{{ collection.handle | json }}] =
-{%- endunless -%}
-
 {%- comment -%}/*
   Since collections/all is not a real collection, as well as the fact that
   {{ collection | json }} won't work for product data.. we need a more
   consistent print of collection data.
 */{%- endcomment -%}
+{%- assign productHandles = '' -%}
+{%- assign productData = '' -%}
+{%- paginate collection.products by collection.all_products_count -%}
+  {%- comment -%}/*
+    We're going to iterate over the products here and cache the results to save
+    on having to use two forloops.
+  */{%- endcomment -%}
+  {%- for product in collection.products -%}
+    {%- assign pHandle = product.handle | json -%}
+    {%- assign productHandles = productHandles | append: pHandle -%}
+
+    {%- if includeProductData -%}
+      {%- capture pd -%}
+        {%- include 'tool.json-product' with { product: product } -%}
+      {%- endcapture -%}
+      {%- assign productData = productData | append: pd -%}
+    {%- endif -%}
+
+    {%- if forloop.last -%}{%- break -%}{%- endif -%}
+
+    {%- assign productHandles = productHandles | append: ',' -%}
+    {%- assign productData = productData | append: ',' -%}
+  {%- endfor -%}
+{%- endpaginate -%}
+
 {
   "id": {{- collection.id | json -}},
   "handle": {{- collection.handle | json -}},
@@ -30,18 +47,14 @@
   "description": {{- collection.description | json -}},
   "image": {%- include 'tool.json-image' with { image: collection.image } -%},
   "products": [
-    {%- paginate collection.products by collection.all_products_count -%}
-      {%- for product in collection.products -%}
-        {{- product.handle | json -}}
-        {%- unless forloop.last -%},{%- endunless -%}
-      {%- endfor -%}
-    {%- endpaginate -%}
+    {{- productHandles -}}
   ],
+  {%- if includeProductData -%}
+    "productData": [
+      {{- productData -}}
+    ],
+  {%- endif -%}
   "template_suffix": {{- collection.template_suffix | json -}},
   "title": {{- collection.title | json -}},
   "url": {{- collection.url | json -}}
 }
-
-{%- unless isJSON -%}
-; </script>
-{%- endunless -%}

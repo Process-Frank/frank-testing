@@ -3,4 +3,7 @@
   the collection object again
 {%- endcomment -%}
 {%- assign coll = collections[collection.handle] -%}
-{%- include 'tool.json-collection' with { collection: coll } -%}
+<script type="text/javascript">
+  window.Collections = window.Collections || {};
+  window.Collections[{{ coll.handle | json }}] = {%- include 'tool.json-collection' with { collection: coll, includeProductData: true } -%};
+</script>
