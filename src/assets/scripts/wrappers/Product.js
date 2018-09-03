@@ -47,7 +47,7 @@ export const withProduct = (Wrapped) => {
       let data = {};
 
       if(handle) {
-        data = this.props.products[handle];
+        if(this.props.products) data = this.props.products[handle];
 
         if(data && data.error) {
           error = data.error;
