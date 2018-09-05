@@ -4,6 +4,8 @@ import { withCollectionTemplate } from './../../../wrappers/CollectionTemplate';
 import ProductThumbnail from './../../../objects/product/ProductThumbnail';
 import Template from './../Template';
 
+import Link from './../../../routing/Link';
+
 class CollectionTemplate extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +31,7 @@ class CollectionTemplate extends React.Component {
     return (
       <Template className="c-collection-template">
         { children }
+        <Link to="/">HOME</Link>
       </Template>
     );
   }

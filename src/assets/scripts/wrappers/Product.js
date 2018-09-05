@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as ProductActions from './../actions/ProductActions';
+import * as ProductActions from './../actions/shopify/ProductActions';
 
 const stateToProps = (state) => {
   return {

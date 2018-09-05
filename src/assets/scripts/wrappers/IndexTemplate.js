@@ -1,15 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import * as SectionActions from './../actions/shopify/SectionActions';
 
 const stateToProps = (state) => {
   return {
-    sections: state.sections
+    sectionData: state.sections.index
   }
 };
 
 const dispatchToProps = (dispatch) => {
-  return {};
+  return {
+    fetchIndexSections: () => {
+      dispatch(SectionActions.fetchIndexSections());
+    }
+  };
 };
 
 export const withIndexTemplate = (Wrapped) => {
@@ -19,20 +24,18 @@ export const withIndexTemplate = (Wrapped) => {
     }
 
     componentDidMount() {
-
+      if(!this.props.fetchIndexSections) return;
+      if(this.props.sections) return;
+      this.props.fetchIndexSections();
     }
 
-    componentWillUnmount() {
-
-    }
+    componentWillUnmount() {}
 
     render() {
-      let sections = [];
-      if(this.props.sections && this.props.sections.index) {
-        sections = this.props.sections.index || [];
-      }
-
-      return <Wrapped {...this.props} sections={sections} />;
+      let sectionData = this.props.sectionData || {};
+      let { pending, error, sections } = sectionData;
+      sections = sections || [];
+      return <Wrapped {...this.props} pending={pending} error={error} sections={sections} />;
     }
   }
 

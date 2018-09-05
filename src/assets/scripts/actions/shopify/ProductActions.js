@@ -1,5 +1,5 @@
 import { createAsyncAction } from 'redux-promise-middleware-actions';
-import ShopifyProduct from './../shopify/ShopifyProduct';
+import ShopifyProduct from './../../shopify/ShopifyProduct';
 
 export const FETCH_PRODUCT = 'FETCH_PRODUCT';
 

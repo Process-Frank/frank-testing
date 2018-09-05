@@ -1,29 +1,30 @@
-//StaticHeader Section
 import React from 'react';
-import StaticSection from './../../sections/StaticSection';
+import { withSection } from './../../../wrappers/Section';
+
 import PageBoundary from './../../../objects/layout/boundary/PageBoundary';
 import TopBarStyles from './TopBar.scss';
 
-const TopBar = (props) => {
-  let settings = props.data.settingsById;
+const TopBar = withSection((props) => {
+  let { link, title } = props.settings;
   let children;
 
-  if(settings.link.value) {
-    children = <Link to={settings.link.value} className="c-topbar__link" children={settings.title.value} />;
+  if(link && link.value) {
+    children = (
+      <Link to={ link.value } className="c-topbar__link">
+        { title.value }
+      </Link>
+    );
   } else {
-    children = <span className="c-topbar__link">{ settings.title.value }</span>;
+    children = <span className="c-topbar__link">{ title.value }</span>;
   }
 
   return (
-    <div className="c-topbar">
+    <div {...props} className="c-topbar">
       <PageBoundary className="c-topbar__boundary">
         { children }
       </PageBoundary>
     </div>
   );
-};
+});
 
-//Wrap in static section
-export default (props) => {
-  return <StaticSection {...props} group="topbar" component={TopBar} />;
-}
+export default (props) => <TopBar group="topbar" {...props} />;

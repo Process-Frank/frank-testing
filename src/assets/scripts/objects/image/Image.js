@@ -26,7 +26,12 @@ class Image extends React.Component {
       delete props.file;
     }
 
+    if(shopifyUrl && shopifyUrl.value === null) {
+      shopifyUrl = null;
+    }
+
     if(shopifyUrl) {
+      if(shopifyUrl.value) shopifyUrl = shopifyUrl.value;
 
       if(typeof shopifyUrl.image !== typeof undefined) {
         let imageSetting = shopifyUrl;

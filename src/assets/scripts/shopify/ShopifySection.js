@@ -1,6 +1,12 @@
 import ThemeSections from './../components/sections/ThemeSections';
+import { templateFetch } from './../utils/URLUtilities'
 
 export default class ShopifySection {
+  static async fetchIndexSections(template) {
+    let data = await templateFetch('/', undefined, 'json-sections');
+    return data;
+  }
+
   static fromJSON(json) {
 
     let section = new ShopifySection(

@@ -1,4 +1,4 @@
-import * as CollectionActions from './../../actions/CollectionActions';
+import * as CollectionActions from './../../actions/shopify/CollectionActions';
 import ShopifyCollection from '../../shopify/ShopifyCollection';
 import SimpleReducer from './SimpleReducer';
 

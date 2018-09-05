@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import * as CollectionActions from './../actions/CollectionActions';
+import * as CollectionActions from './../actions/shopify/CollectionActions';
 
 //Redux Connector for the High Order Component
 const stateToProps = (state) => {
@@ -43,9 +43,7 @@ export const withCollectionTemplate = (Wrapped) => {
       this.props.fetchCollection(handle);
     }
 
-    componentWillUnmount() {
-
-    }
+    componentWillUnmount() {}
 
     render() {
       let error, handle;

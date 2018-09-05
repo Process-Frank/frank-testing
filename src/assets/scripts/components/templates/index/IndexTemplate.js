@@ -13,20 +13,27 @@ class IndexTemplate extends React.Component {
   render() {
     //Fetch the sections that belong to the index template
     let { sections } = this.props;
+    let children;
 
-    //Now we're going to get the components that these sections are mapped to
-    let sectionElements = [];
-    for(let i = 0; i < sections.length; i++) {
-      let s = sections[i];
-      let CustomElement = s.getComponent();
-      sectionElements.push(<CustomElement data={s} key={s.id} />);
+    if(this.props.pending) {
+      children = <div>Please Wait...</div>;
+
+    } else if(this.props.error) {
+      children = <div>{ this.props.error }</div>;
+
+    } else {
+
+      //Now we're going to get the components that these sections are mapped to
+      children = sections.map((s) => {
+        let Element = s.getComponent();
+        return <Element section={s} key={s.id} />;
+      });
     }
 
     return (
       <Template name="index">
-        { sectionElements }
-        End of sections
-        <Link to="/collections/all">Shop All</Link>
+        { children }
+        <Link to="/collections/all">Collection Template</Link>
       </Template>
     );
   }

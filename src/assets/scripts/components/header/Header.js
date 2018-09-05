@@ -1,16 +1,15 @@
 //StaticHeader Section
 import React from 'react';
-import { connect } from 'react-redux';
-import StaticSection from './../sections/StaticSection';
-import PageBoundary from './../../objects/layout/boundary/PageBoundary';
+import { withSection } from './../../wrappers/Section';
 
+import PageBoundary from './../../objects/layout/boundary/PageBoundary';
 import HamburgerMenu from './hamburger/HamburgerMenu';
 import Logo from './../../objects/logo/Logo';
 import CartDrawer from './cart/CartDrawer';
 import HeaderStyles from './Header.scss';
 
-const Header = (props) => {
-  let { menu } = props.data.settingsById;
+const Header = withSection((props) => {
+  let { menu } = props.settings;
 
   return (
     <header role="banner" className={"c-header"}>
@@ -21,8 +20,6 @@ const Header = (props) => {
       </PageBoundary>
     </header>
   );
-};
+});
 
-export default (props) => {
-  return <StaticSection {...props} group="header" component={Header} />;
-}
+export default (props) => <Header group="header" {...props} />;
