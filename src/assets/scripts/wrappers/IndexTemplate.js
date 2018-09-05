@@ -25,7 +25,7 @@ export const withIndexTemplate = (Wrapped) => {
 
     componentDidMount() {
       if(!this.props.fetchIndexSections) return;
-      if(this.props.sections) return;
+      if(this.props.sectionData) return;
       this.props.fetchIndexSections();
     }
 

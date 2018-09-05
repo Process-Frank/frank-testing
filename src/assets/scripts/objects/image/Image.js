@@ -7,7 +7,7 @@ class Image extends React.Component {
   }
 
   render() {
-    let props = Object.assign({}, this.props);//Let's clone the props
+    let props = {...this.props};//Let's clone the props
     let { theme } = this.props;
 
     /* Handle Shopify Images */
