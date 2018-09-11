@@ -1,9 +1,10 @@
 import React from 'react';
-import { withProduct } from './../../wrappers/Product'
+import { withProduct } from './../../wrappers/Product';
+import Link from './../../routing/Link';
 
 const ProductThumbnail = (props) => {
   let { handle, data, error } = props;
-  
+
   return (
     <div className="o-product-thumbnail">
       { data.title }

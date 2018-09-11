@@ -33,7 +33,7 @@ class ShopifyCollection {
     this.products = products || [];
     this.template_suffix = template_suffix || null;
     this.title = title;
-    url = url || ShopifyCollection.getCollectionURL(this.handle);
+    this.url = url || ShopifyCollection.getCollectionURL(this.handle);
   }
 }
 

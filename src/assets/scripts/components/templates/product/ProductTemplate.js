@@ -1,12 +1,11 @@
 import React from 'react';
-import { withCollectionTemplate } from './../../../wrappers/CollectionTemplate';
+import { withProductTemplate } from './../../../wrappers/ProductTemplate';
 
-import ProductThumbnail from './../../../objects/product/ProductThumbnail';
 import Template from './../Template';
 
 import Link from './../../../routing/Link';
 
-class CollectionTemplate extends React.Component {
+class ProductTemplate extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -23,7 +22,7 @@ class CollectionTemplate extends React.Component {
       children = (
         <div>
           <h1>{ data.title }</h1>
-          {data.products.map( (product, i) => <ProductThumbnail key={ i } collection={ data } handle={ product } /> )}
+          {data.products.map( (product, i) => <ProductThumbnail key={ i } handle={ product } /> )}
         </div>
       );
     }
@@ -37,4 +36,4 @@ class CollectionTemplate extends React.Component {
   }
 }
 
-export default withCollectionTemplate(CollectionTemplate);
+export default withProductTemplate(ProductTemplate);

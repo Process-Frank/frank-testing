@@ -38,7 +38,10 @@ class ShopifyProduct {
     this.products = products || [];
     this.template_suffix = template_suffix || null;
     this.title = title;
-    url = url || ShopifyCollection.getCollectionURL(this.handle);
+  }
+
+  getUrl(collection) {
+    return ShopifyProduct.getProductURL(this, collection);
   }
 }
 
