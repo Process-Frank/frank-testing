@@ -31,7 +31,6 @@ class CollectionTemplate extends React.Component {
     return (
       <Template className="c-collection-template">
         { children }
-        <Link to="/">HOME</Link>
       </Template>
     );
   }

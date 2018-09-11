@@ -1,0 +1,15 @@
+/*
+ *  Font Settings
+ *    Settings for the fonts used throughout the site.
+ *
+ *  Version:
+ *    1.0.0 - 2018/09/11
+ */
+$s-font-family--default: "roboto";
+$s-font-weight--default: 400;
+$s-font-size--default: 14px;
+
+// Promotional Font (Top Bar, Sale, Etc.) //
+%s-font--promotion {
+  text-transform: uppercase;
+}

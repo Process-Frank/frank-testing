@@ -1,5 +1,9 @@
+@import './../global.scss';
+
 body {
   padding: 0;
   margin: 0;
-  font-size: 14px;
+  font-family: $s-font-family--default;
+  font-weight: $s-font-weight--default;
+  font-size: $s-font-size--default;
 }

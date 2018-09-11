@@ -5,6 +5,9 @@
  *  Version:
  *    1.0.0 - 2018/07/09
  */
-$s-color--primary: #F2395B;
+$s-color--primary: #978c5e;
 $s-color--primary-hover: darken($s-color--primary, 11%);
-$s-color--secondary: white;
+$s-color--primary-compliment: white;
+
+$s-color--secondary: transparent;
+$s-color--secondary-compliment: $s-color--primary;

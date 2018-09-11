@@ -1,7 +1,7 @@
 @import './../../../../styles/global.scss';
 
-$c-topbar--background: #F6F6F6;
-$c-topbar--text: black;
+$c-topbar--background: $s-color--primary;
+$c-topbar--text: $s-color--primary-compliment;
 
 .c-topbar {
 
@@ -9,12 +9,15 @@ $c-topbar--text: black;
   }
 
   &__link {
+    @extend %s-font--promotion;
+    
     display: block;
     width: 100%;
     padding: 0.5em 0;
+    font-size: 0.95em;
+    text-align: center;
+
     background: $c-topbar--background;
     color: $c-topbar--text;
-    font-size: 0.9em;
-    text-align: center;
   }
 }
