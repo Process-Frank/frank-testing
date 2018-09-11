@@ -10,11 +10,11 @@ $c-topbar--text: $s-color--primary-compliment;
 
   &__link {
     @extend %s-font--promotion;
-    
+
     display: block;
     width: 100%;
     padding: 0.5em 0;
-    font-size: 0.95em;
+    font-size: 0.8em;
     text-align: center;
 
     background: $c-topbar--background;

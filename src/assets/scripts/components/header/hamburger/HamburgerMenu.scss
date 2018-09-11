@@ -4,10 +4,12 @@ $c-hamburger--menu-background: white;
 
 .c-hamburger-menu {
   &__button {
-    padding: 1em;
+    padding: 0.5em;
 
     &-image {
-      width: 1.2em;
+      width: 2em;
+      height: 1.5em;
+      object-fit: contain;
     }
   }
 

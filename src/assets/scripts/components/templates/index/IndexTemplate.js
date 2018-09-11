@@ -30,9 +30,15 @@ class IndexTemplate extends React.Component {
       });
     }
 
+    let crap = [];
+    for(let i = 0; i < 1000; i++) {
+      crap.push(<div key={i}>Crap {i}</div>);
+    }
+
     return (
       <Template name="index">
         { children }
+        {crap}
       </Template>
     );
   }

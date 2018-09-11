@@ -1,23 +1,44 @@
 @import './../../../styles/global.scss';
 
+$c-header--bar-color: $s-color--header-text;
+
 .c-header {
+  top: 0;
+  position: absolute;
+  position: sticky;
+  border-bottom: 1px solid blue;
+  background: rgba(0, 0, 0, 0.5);
+
   &__wrapper {
     @include t-flexbox();
     @include t-justify-content(space-between);
     @include t-align-items(center);
 
     position: relative;
+    margin-bottom: 4em;
   }
 
   &__logo {
-    @include t-absolute-center-x-y();
+    @include t-absolute-center-x();
+    top: 1.5em;
     width: 100%;
-    max-width: 220px;
+    max-width: 120px;
   }
 
   &__hamburger {
   }
 
   &__cart {
+  }
+
+  &__bar {
+    position: absolute;
+    bottom: 0;
+    width: 36%;
+    border-top: 1px solid $c-header--bar-color;
+    position: absolute;
+
+    &--left {left:0;}
+    &--right {right:0;}
   }
 }

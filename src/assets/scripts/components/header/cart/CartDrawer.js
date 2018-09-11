@@ -8,6 +8,9 @@ export default (props) => {
   return (
     <div className={"c-cart-drawer"+(props.className?" "+props.className:"")}>
       <Link to="/cart" className="c-cart-drawer__button">
+        <span className="c-cart-drawer__button-count">
+          ( 2 )
+        </span>
         <Image asset="icon-cart.svg" className="c-cart-drawer__button-image" />
       </Link>
     </div>

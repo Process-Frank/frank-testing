@@ -12,11 +12,14 @@ const Header = withSection((props) => {
   let { menu } = props.settings;
 
   return (
-    <header role="banner" className={"c-header"}>
+    <header role="banner" className={"c-header"+(props.className ? " "+props.className : "")}>
       <PageBoundary className="c-header__wrapper">
         <HamburgerMenu className="c-header__hamburger" data={ menu.value } />
         <Logo className="c-header__logo" />
         <CartDrawer className="c-header__cart" />
+
+        <div className="c-header__bar c-header__bar--left" />
+        <div className="c-header__bar c-header__bar--right" />
       </PageBoundary>
     </header>
   );
