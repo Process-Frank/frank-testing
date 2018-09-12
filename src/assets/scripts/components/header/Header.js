@@ -12,14 +12,24 @@ const Header = withSection((props) => {
   let { menu } = props.settings;
 
   return (
-    <header role="banner" className={"c-header"+(props.className ? " "+props.className : "")}>
+    <header role="banner" className={"c-header is-sticky"+(props.className ? " "+props.className : "")}>
       <PageBoundary className="c-header__wrapper">
-        <HamburgerMenu className="c-header__hamburger" data={ menu.value } />
-        <Logo className="c-header__logo" />
-        <CartDrawer className="c-header__cart" />
+        
+        {/* Icons and Hamburger Menu */}
+        <div className="c-header__icons">
+          <HamburgerMenu className="c-header__hamburger" data={ menu.value } />
+          <CartDrawer className="c-header__cart" />
+        </div>
 
+        {/* Logo */}
+        <Logo className="c-header__logo" />
+
+        {/* Logo Bars */}
         <div className="c-header__bar c-header__bar--left" />
         <div className="c-header__bar c-header__bar--right" />
+
+        {/* Menu */}
+
       </PageBoundary>
     </header>
   );

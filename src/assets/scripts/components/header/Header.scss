@@ -3,34 +3,41 @@
 $c-header--bar-color: $s-color--header-text;
 
 .c-header {
-  top: 0;
-  position: absolute;
-  position: sticky;
   border-bottom: 1px solid blue;
   background: rgba(0, 0, 0, 0.5);
 
-  &__wrapper {
-    @include t-flexbox();
-    @include t-justify-content(space-between);
-    @include t-align-items(center);
+  //Add Option for mobile to be sticky
+  &.is-sticky {
+    position: sticky;
+    top: 0;
+  }
 
+  //Wrapped (Contains the elements)
+  &__wrapper {
     position: relative;
     margin-bottom: 4em;
   }
 
+  //Icons (contains.. icons)
+  &__icons {
+    @include t-flexbox();
+    @include t-justify-content(space-between);
+    @include t-align-items(center);
+  }
+
+  //Logo positioning
   &__logo {
     @include t-absolute-center-x();
+    display: block;
     top: 1.5em;
     width: 100%;
     max-width: 120px;
   }
 
-  &__hamburger {
-  }
+  &__hamburger {}
+  &__cart {}
 
-  &__cart {
-  }
-
+  //Bars (On Mobile)
   &__bar {
     position: absolute;
     bottom: 0;
@@ -40,5 +47,31 @@ $c-header--bar-color: $s-color--header-text;
 
     &--left {left:0;}
     &--right {right:0;}
+  }
+
+  //Desktop Header
+  @include t-media-query($s-small-up) {
+    //Disable Sticky Navigation
+    &.is-sticky {position: relative;}
+
+    //Hide Bars and Hamburger Menu, Replace with dropdown
+    &__hamburger,
+    &__bar
+    {display: none;}
+
+    //Remove absolute element padding
+    &__wrapper { margin-bottom: 0; }
+
+    //Move Icons to right
+    &__icons { @include t-justify-content(flex-end); }
+
+    //Stop logo floating and center X naturally.
+    &__logo {
+      position: relative;
+      @include t-transform(none);
+      left: initial;
+      top: initial;
+      margin: 0 auto 1em;
+    }
   }
 }

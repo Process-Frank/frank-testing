@@ -1,0 +1,80 @@
+{%- comment -%}
+  Carousel
+    Carousel Settings for Carousel Section.
+    Provides options for selecting images, text, etc.
+
+  Version:
+    1.0.0 - 2018/09/11
+{%- endcomment -%}
+{%- include 'tool.json-section' with {
+  name: 'Carousel',
+  class: 'c-section__carousel',
+  component: 'CarouselSection',
+  sectionSettings: 'arrows,dots,loop,autoplay',
+  sectionSettingTypes: 'bool,bool,bool,bool'
+} -%}
+
+{% schema %}
+  {
+    "name": "Carousel",
+    "class": "c-section__carousel",
+
+    "settings": [
+      {
+        "type": "header",
+        "content": "Carousel Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "arrows",
+        "label": "Show Arrows",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "dots",
+        "label": "Show Dots",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "loop",
+        "label": "Loop Slides",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Auto Scroll Slides",
+        "default": true
+      }
+    ],
+
+    "blocks": [
+
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Hello World"
+          }
+        ]
+      }
+
+    ],
+
+
+    "presets": [
+      {
+        "name": "Carousel",
+        "category": "Layout",
+        "blocks": [
+        ]
+      }
+    ]
+  }
+{% endschema %}
