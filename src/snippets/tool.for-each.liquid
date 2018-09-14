@@ -8,6 +8,12 @@
     array - Array to forEach for (String Arrays Only)
     data - Extra data to pass
 
+  Passed to snippet:
+    item - String item in the array
+    stack - The parent stack, don't modify this, this is only for nesting for-each snippets
+    data - The data object passed to the loop
+    forindex - The current index of the forloop you're in.
+
   Note:
     You can access the current item inside the snippet as "item", and the extra
     data as "data"
@@ -42,7 +48,6 @@
 {%- assign currentItem = currentArray[currentIteration] -%}
 {%- include do with {
   item: currentItem,
-  stack: stack,
   data: data
   stack: currentStack,
   forindex: currentIteration

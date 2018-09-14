@@ -6,15 +6,25 @@
   Version:
     1.0.0 - 2018/09/11
 {%- endcomment -%}
+{%- capture blocks -%}
+slide::
+  title:text,
+  image:image,
+  something:link_list
+;
+video::
+  video:video,
+  title:text
+;
+{%- endcapture -%}
+
 {%- include 'tool.json-section' with {
   name: 'Carousel',
   class: 'c-section__carousel',
   component: 'CarouselSection',
-  sectionSettings: 'arrows,dots,loop,autoplay',
-  sectionSettingTypes: 'bool,bool,bool,bool',
 
-  blockslideSettings: 'title',
-  blockslideSettingTypes: 'text'
+  settingTypes: 'arrows:checkbox,dots:checkbox,loop:checkbox,autoplay:checkbox',
+  blocks: blocks
 } -%}
 
 {% schema %}
@@ -23,6 +33,12 @@
     "class": "c-section__carousel",
 
     "settings": [
+      {
+        "type": "text",
+        "id": "test",
+        "label": "Test",
+        "default": "lorem ipsum"
+      },
       {
         "type": "header",
         "content": "Carousel Settings"
@@ -64,6 +80,12 @@
             "id": "title",
             "label": "Title",
             "default": "Hello World"
+          },
+          {
+            "type": "link_list",
+            "id": "something",
+            "label": "test",
+            "default": "main-menu"
           }
         ]
       }
