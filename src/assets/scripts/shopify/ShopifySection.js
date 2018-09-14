@@ -8,7 +8,6 @@ export default class ShopifySection {
   }
 
   static fromJSON(json) {
-
     let section = new ShopifySection(
       json.id,
       json.name,

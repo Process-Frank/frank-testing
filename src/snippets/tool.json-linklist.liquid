@@ -8,10 +8,21 @@
     "levels": {{- list.levels | json -}},
     "title": {{- list.title | json -}},
     "links": [
-      {%- for link in list.links -%}
-        {%- include 'tool.json-link' with { link: link } -%}
-        {%- unless forloop.last -%},{%- endunless -%}
+      {%- assign links = '' -%}
+      {%- for l in list.links -%}
+        {%- capture index -%}{{ forloop.index0 }}{%- endcapture -%}
+        {%- assign links = links | append: index -%}
+        {%- unless forloop.last -%}
+          {%- assign links = links | append: ',' -%}
+        {%- endunless -%}
       {%- endfor -%}
+      {%- assign links = links | split: ',' -%}
+
+      {%- include 'tool.for-each' with {
+        array: links,
+        do: 'tool.json-linklist-links',
+        data: list.links
+      } -%}
     ]
   }
 {%- else -%}

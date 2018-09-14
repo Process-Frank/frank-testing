@@ -74,7 +74,7 @@ class HamburgerMenuLink extends React.Component {
 
     let clickHandler;
     let submenu;
-    let hasChildren = data.submenu && data.submenu.links && data.submenu.links.length;
+      let hasChildren = data.submenu && data.submenu.links && data.submenu.links.length;
     let expandIcon;
 
     //Class manipulation
@@ -94,7 +94,7 @@ class HamburgerMenuLink extends React.Component {
     if(expanded) {
       itemClazz += " is-expanded";
       expandIcon = <Image asset="icon-close.svg" className={ iconClazz } />;
-    } else {
+    } else if(hasChildren) {
       expandIcon = <Image asset="icon-plus.svg" className={ iconClazz } />;
     }
 

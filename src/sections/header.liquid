@@ -8,20 +8,14 @@
   Version:
     1.0.0 - 2018/08/05
 {% endcomment %}
-{%- capture listJSON -%}
-  {%- include 'tool.json-setting' with {
-    id: 'menu',
-    type: 'link_list',
-    valueRaw: section.settings.menu
-  -%}
-{%- endcapture -%}
-
 {%- include 'tool.json-section' with {
   name: 'Header',
   class: 'c-section__header',
   component: 'HeaderSection',
   group: 'header',
-  extraSettings: listJSON
+
+  sectionSettings: 'menu',
+  sectionSettingTypes: 'link_list'
 } -%}
 
 {% schema %}
