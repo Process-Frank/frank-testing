@@ -1,8 +1,6 @@
 import React from 'react';
 import Routes, { RouteWrapper } from './../../routing/Routes';
 
-import IndexTemplate from './index/IndexTemplate';
-
 export default (props) => {
   return (
     <Routes>
@@ -13,6 +11,8 @@ export default (props) => {
       <RouteWrapper exact path="/collections/:collection/:tag/products/:product" template={ () => import('./product/ProductTemplate') } />
       <RouteWrapper exact path="/collections/:collection/products/:product" template={ () => import('./product/ProductTemplate') } />
       <RouteWrapper exact path="/products/:product" template={ () => import('./product/ProductTemplate') } />
+
+      <RouteWrapper exact path="/test/kitchen-sink" template={ () => import('./test/KitchenSinkTemplate') } />
     </Routes>
   );
 }

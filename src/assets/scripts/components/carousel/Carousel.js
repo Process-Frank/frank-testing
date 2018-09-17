@@ -4,12 +4,14 @@ import Slider from "react-slick";
 
 //Slide Component
 const CarouselSlide = (props) => {
+  let { className, children } = props;
+
   let clazz = "c-carousel__slide";
-  if(props.className) clazz += " " + props.className;
+  if(className) clazz += " " + className;
 
   return (
     <div className={clazz}>
-      { props.children }
+      { children }
     </div>
   );
 };
@@ -40,7 +42,6 @@ class Carousel extends React.Component {
     let clazz = "c-carousel";
 
     if(className) clazz += " " + className;
-
     return (
       <Slider {...settings} className={clazz}>
         { children }

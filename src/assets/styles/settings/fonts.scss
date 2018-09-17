@@ -9,7 +9,21 @@ $s-font-family--default: "roboto";
 $s-font-weight--default: 400;
 $s-font-size--default: 14px;
 
+$s-font-family--heading: "proxima-nova-extra-condensed";
+$s-font-weight--heading: 900;
+
 // Promotional Font (Top Bar, Sale, Etc.) //
 %s-font--promotion {
   text-transform: uppercase;
+}
+
+%s-font--heading {
+  font-family: $s-font-family--heading;
+  font-weight: $s-font-weight--heading;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+%s-font--button {
+  @extend %s-font--heading;
 }

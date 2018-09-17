@@ -1,5 +1,6 @@
 import ThemeSections from './../components/sections/ThemeSections';
-import { templateFetch } from './../utils/URLUtilities'
+import { templateFetch } from './../utils/URLUtilities';
+import ShopifyBlock from './ShopifyBlock';
 
 export default class ShopifySection {
   static async fetchIndexSections(template) {
@@ -36,7 +37,12 @@ export default class ShopifySection {
     //Optional Attributes
     this.clazz = clazz;
     this.settings = settings || [];//Raw settings array
-    this.blocks = blocks || [];
+
+    //Blocks
+    this.blocks = [];
+    blocks.forEach((block) => {
+      this.blocks.push(ShopifyBlock.fromJSON(block));
+    });
 
     //TODO: Map the setting types to a common useable format (e.g. images etc)
     this.settingsById = {};

@@ -7,15 +7,12 @@
     1.0.0 - 2018/09/11
 {%- endcomment -%}
 {%- capture blocks -%}
-slide::
-  title:text,
-  image:image,
-  something:link_list
-;
-video::
-  video:video,
-  title:text
-;
+  slide::
+    imageMobile:image_picker,
+    contentPosition:select,
+    buttonUrl:url,
+    buttonText:text,
+
 {%- endcapture -%}
 
 {%- include 'tool.json-section' with {
@@ -66,6 +63,13 @@ video::
         "id": "autoplay",
         "label": "Auto Scroll Slides",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "autoheight",
+        "label": "Auto carousel height",
+        "default": true,
+        "info": "When checked the carousel will auto resize to match the image height."
       }
     ],
 
@@ -76,16 +80,82 @@ video::
         "name": "Slide",
         "settings": [
           {
+            "type": "header",
+            "content": "Image Settings"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "We recommend a 3000x1500 JPEG Image of no more than 10MB. For optimization tips read [this guide](//lucid.nz/blogs/blog/how-to-best-optimise-your-images-for-shopify)"
+          },
+          {
+            "type": "image_picker",
+            "id": "imageMobile",
+            "label": "Mobile Specific Image",
+            "info": "This image will only show on mobile screens."
+          },
+
+
+          {
+            "type": "header",
+            "content": "Content Settings"
+          },
+          {
+            "type": "select",
+            "id": "contentPosition",
+            "label": "Content Position",
+            "options": [
+              {"value": "left top", "label": "Top Left"},
+              {"value": "center top", "label": "Top Middle"},
+              {"value": "right top", "label": "Top Right"},
+              {"value": "left middle", "label": "Middle Left"},
+              {"value": "center middle", "label": "Center"},
+              {"value": "right middle", "label": "Middle Right"},
+              {"value": "left bottom", "label": "Bottom Left"},
+              {"value": "center bottom", "label": "Bottom Middle"},
+              {"value": "right bottom", "label": "Bottom Right"}
+            ]
+          },
+          {
             "type": "text",
             "id": "title",
             "label": "Title",
             "default": "Hello World"
           },
           {
-            "type": "link_list",
-            "id": "something",
-            "label": "test",
-            "default": "main-menu"
+            "type": "textarea",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "Lorem ipsum dolor sit amet"
+          },
+
+          {
+            "type": "header",
+            "content": "Button Settings"
+          },
+          {
+            "type": "text",
+            "id": "buttonText",
+            "label": "Button Text",
+            "default": "Shop Now"
+          },
+          {
+            "type": "url",
+            "id": "buttonUrl",
+            "label": "Button URL",
+            "default": "/collections/all"
+          },
+
+          {
+            "type": "header",
+            "content": "Colour Settings"
+          },
+          {
+            "type": "color",
+            "label": "Title Colour",
+            "default": "#000",
+            "id": "titleColor"
           }
         ]
       }

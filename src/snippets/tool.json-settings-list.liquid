@@ -8,8 +8,9 @@
 {%- capture commonTypes -%}
   title:text,
   text:text,
+  subtitle:text,
   menu:link_list,
-  image:image
+  image:image_picker,
 {%- endcapture -%}
 {%- assign settingTypesArray = settingTypes | append:',' | append: commonTypes | split: ',' -%}
 

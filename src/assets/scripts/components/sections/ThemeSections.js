@@ -3,5 +3,5 @@ import SectionImportWrapper from './../../wrappers/SectionImportWrapper'
 
 export default {
   //BannerSection: SectionImportWrapper(() => import('./banner/BannerSection'))
-  CarouselSection: SectionImportWrapper(() => import('./image/carousel/CarouselSection'))
+  CarouselSection: SectionImportWrapper(() => import('./carousel/CarouselSection'))
 }

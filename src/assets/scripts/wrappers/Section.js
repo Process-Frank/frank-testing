@@ -39,7 +39,12 @@ export const withSection = (Wrapped) => {
     section = section || {};
     let settings = section.settingsById || {};
 
-    return <Wrapped {...props} section={ section } settings={ settings } />;
+    return <Wrapped
+      { ...props }
+      section={ section || {} }
+      settings={ settings || {} }
+      blocks={ section.blocks || [] }
+    />;
   };
 
   return connect(stateToProps, dispatchToProps)(SectionWrapper);

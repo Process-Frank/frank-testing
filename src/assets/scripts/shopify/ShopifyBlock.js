@@ -18,5 +18,10 @@ export default class ShopifyBlock {
     this.shopifyAttributes = shopifyAttributes;
 
     //TODO: Map settings into a common usable format
+    this.settingsById = {};
+    for(let i = 0; i < this.settings.length; i++) {
+      let s = this.settings[i];
+      this.settingsById[s.id] = s;
+    }
   }
 }

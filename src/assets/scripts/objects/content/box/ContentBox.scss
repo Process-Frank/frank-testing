@@ -1,0 +1,43 @@
+@import './../../../../styles/global.scss';
+
+.o-content-box {
+  padding: 1em;
+  width: 100%;
+
+  &__inner {
+    position: relative;
+    width: 100%;
+  }
+
+  &.is-floating {
+    @include t-absolute-position-options();
+  }
+
+  //Size Definitions
+  &.is-medium,&.is-large {
+    width: 100%;
+  }
+
+  /*** Media Queries ***/
+  @include t-media-query($s-xsmall-up) {
+    &.is-medium {
+      width: 450px;
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    &.is-large {
+      width: 700px;
+    }
+  }
+
+  @include t-media-query($s-large-up) {
+    &.is-medium {
+      width: 550px;
+    }
+
+    &.is-large {
+      width: 750px;
+    }
+  }
+}
