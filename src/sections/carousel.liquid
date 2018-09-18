@@ -10,8 +10,11 @@
   slide::
     imageMobile:image_picker,
     contentPosition:select,
+    textAlign:select,
     buttonUrl:url,
     buttonText:text,
+    titleColor:color
+    subtitleColor:color
 
 {%- endcapture -%}
 
@@ -115,7 +118,19 @@
               {"value": "left bottom", "label": "Bottom Left"},
               {"value": "center bottom", "label": "Bottom Middle"},
               {"value": "right bottom", "label": "Bottom Right"}
-            ]
+            ],
+            "default": "center middle"
+          },
+          {
+            "type": "select",
+            "id": "textAlign",
+            "label": "Text Align",
+            "options": [
+              {"value": "left", "label": "Left"},
+              {"value": "center","label": "Center"},
+              {"value": "right","label":"Right"}
+            ],
+            "default": "center"
           },
           {
             "type": "text",
@@ -156,6 +171,12 @@
             "label": "Title Colour",
             "default": "#000",
             "id": "titleColor"
+          },
+          {
+            "type": "color",
+            "label": "Subtitle Colour",
+            "default": "#666",
+            "id": "subtitleColor"
           }
         ]
       }

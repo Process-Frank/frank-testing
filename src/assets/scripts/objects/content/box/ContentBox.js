@@ -2,16 +2,18 @@ import React from 'react';
 import ContentBoxStyles from './ContentBox.scss';
 
 export default (props) => {
+  props = {...props};
   let clazz = "o-content-box";
 
   //Floating?
   if(props.floating) clazz += " is-floating";
 
   //Size Definitions
-  if(props.small) pros.size = "small";
+  if(props.small) props.size = "small";
   if(props.medium) props.size = "medium";
   if(props.large) props.size = "large";
   if(props.size) clazz += " is-" + props.size;
+  delete props.size;
 
   //Positions
   let pos = props.position;

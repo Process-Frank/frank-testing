@@ -3,19 +3,21 @@
 $c-header--bar-color: $s-color--header-text;
 
 .c-header {
-  border-bottom: 1px solid blue;
-  background: rgba(0, 0, 0, 0.5);
+  max-height: 0;
 
   //Add Option for mobile to be sticky
   &.is-sticky {
     position: sticky;
     top: 0;
+    z-index: $s-z--nav;
   }
 
   //Wrapped (Contains the elements)
   &__wrapper {
     position: relative;
-    margin-bottom: 4em;
+    padding-bottom: 4em;
+    border-bottom: 1px solid blue;
+    background: rgba(0, 0, 0, 0.5);
   }
 
   //Icons (contains.. icons)
@@ -51,8 +53,11 @@ $c-header--bar-color: $s-color--header-text;
 
   //Desktop Header
   @include t-media-query($s-small-up) {
-    //Disable Sticky Navigation
-    &.is-sticky {position: relative;}
+    &.is-sticky {
+      //"Absolute styled" sticky hack
+      max-height: 0;
+      overflow: visible;
+    }
 
     //Hide Bars and Hamburger Menu, Replace with dropdown
     &__hamburger,

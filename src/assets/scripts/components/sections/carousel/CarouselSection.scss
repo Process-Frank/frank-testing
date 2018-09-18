@@ -1,0 +1,19 @@
+@import './../../../../styles/global';
+
+.c-carousel-section {
+  &__slide {
+    &-image {
+      display: none;
+      &--mobile {display: block;}
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    &__slide {
+      &-image {
+        display: block;
+        &--mobile {display: none;}
+      }
+    }
+  }
+}
