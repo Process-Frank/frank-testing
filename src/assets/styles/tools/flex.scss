@@ -6,7 +6,7 @@
  *  https://github.com/mastastealth/sass-flex-mixin/blob/master/_flex.scss
  *
  *  Version:
- *    3.0.0 - 2018/08/06
+ *    2.0.0 - 2018/07/09
  */
 
 //Flex/Flexbox
@@ -26,6 +26,14 @@
   }
 }
 
+%t-flexbox {
+  @include t-flexbox;
+}
+
+%t-flexbox-important {
+  @include t-flexbox( true );
+}
+
 //Inline Flex/Inline Flexbox
 @mixin t-inline-flex {
   display: -webkit-inline-box;
@@ -33,6 +41,10 @@
   display: -moz-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+}
+
+%t-inline-flex {
+  @include t-inline-flex;
 }
 
 //Align-items
@@ -164,4 +176,13 @@
   -moz-flex-basis: $value;
   -ms-flex-preferred-size: $value;
   flex-basis: $value;
+}
+
+//Grow
+@mixin t-flex-grow($int: 0) {
+	-webkit-box-flex: $int;
+	-webkit-flex-grow: $int;
+	-moz-flex-grow: $int;
+	-ms-flex-positive: $int;
+	flex-grow: $int;
 }

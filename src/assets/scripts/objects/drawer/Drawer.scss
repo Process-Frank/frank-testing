@@ -1,0 +1,35 @@
+@import './../../../styles/global';
+
+$o-drawer--background: rgba(0, 0, 0, 0.7);
+$o-drawer--body-background: white;
+
+.o-drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: $s-z--drawer;
+
+  &.is-open {
+    display: block;
+  }
+
+  &__background {
+    @include t-absolute-fill();
+    background: $o-drawer--background;
+  }
+
+  &__body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    max-width: 90%;// For Mobile, don't quite fill the screen //
+    height: 100%;
+    overflow-y: auto;
+    background: $o-drawer--body-background;
+  }
+}

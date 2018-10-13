@@ -4,17 +4,18 @@
   "private": true,
   "author": "Process Creative",
   "devDependencies": {
-    "@shopify/slate-tools": "^1.0.0-beta.6",
-    "babel-preset-shopify": "^16.5.0",
-    "eslint-plugin-shopify": "^23.0.0",
-    "stylelint-config-prettier": "^3.3.0",
-    "stylelint-config-shopify": "^5.1.2"
+    "@shopify/slate-tools": "1.0.0-beta.8",
+    "babel-preset-shopify": "^16.2.0",
+    "eslint-plugin-shopify": "^19.0.0",
+    "stylelint-config-prettier": "^3.0.4",
+    "stylelint-config-shopify": "^5.0.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "cross-fetch": "^2.2.2",
+    "extract-text-webpack-plugin": "^3.0.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-loadable": "^5.5.0",

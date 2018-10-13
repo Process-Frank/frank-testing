@@ -1,4 +1,4 @@
-import ThemeSections from './../components/sections/ThemeSections';
+import ThemeSections from './../section/ThemeSections';
 import { templateFetch } from './../utils/URLUtilities';
 import ShopifyBlock from './ShopifyBlock';
 

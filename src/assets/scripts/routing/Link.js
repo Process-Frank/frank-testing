@@ -6,7 +6,7 @@ const checkDomain = function(url) {
   return url.toLowerCase().replace(/([a-z])?:\/\//,'$1').split('/')[0];
 };
 
-const isExternal = function(url) {
+export const isExternal = (url) => {
   return ( ( url.indexOf(':') > -1 || url.indexOf('//') > -1 ) && checkDomain(location.href) !== checkDomain(url) );
 };
 
@@ -28,6 +28,5 @@ export default class Link extends React.Component {
 }
 
 export {
-  checkDomain,
-  isExternal
+  checkDomain
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withProduct } from './../../wrappers/Product';
+import { withProduct } from './../../wrappers/product/Product';
 import Link from './../../routing/Link';
 
 const ProductThumbnail = (props) => {

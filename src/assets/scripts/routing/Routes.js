@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
-import TemplateImportWrapper from './../wrappers/TemplateImportWrapper';
+import TemplateImportWrapper from './../wrappers/template/TemplateImportWrapper';
 
 //Define our Route Wrapper (Literally to wrap routes in)
 export const RouteWrapper = (props) => {

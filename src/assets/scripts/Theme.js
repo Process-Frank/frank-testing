@@ -5,18 +5,14 @@
  *
  */
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';//Our router, works in tangent with Shopify
 
-import TopBar from './components/promotion/topbar/TopBar';
-import Header from './components/Header/Header';
-import TemplateList from './components/templates/TemplateList';
+import TemplateList from './template/TemplateList';//Import our template list
 
 export default (props) => {
   return (
     <BrowserRouter>
       <React.Fragment>
-        <TopBar />
-        <Header />
         <TemplateList />
       </React.Fragment>
     </BrowserRouter>

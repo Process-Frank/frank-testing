@@ -3,7 +3,7 @@
 //Settings
 @import './settings/animation.scss';
 @import './settings/colors';
-@import './settings/fonts'; 
+@import './settings/fonts';
 @import './settings/responsive';
 @import './settings/z';
 
@@ -12,5 +12,6 @@
 @import './tools/prefix';
 
 @import './tools/_absolute-centering';
+@import './tools/_box-shadow.scss';
 @import './tools/_responsive';
 @import './tools/_transform';

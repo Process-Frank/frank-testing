@@ -8,8 +8,8 @@ export const queryURL = (url, query) => {
 }
 
 export const templateFetch = async (url, params, view) => {
-  if(typeof params === typeof undefined) params = {};
-  if(typeof view === typeof undefined) view = 'json';
+  if(!params) params = {};
+  if(!view) view = 'json';
   params = {
     view,
     ...params

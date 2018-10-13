@@ -1,0 +1,25 @@
+/*
+ *  Box Shadow
+ *    Box Shadow Mixins
+ *
+ *  Dependencies:
+ *    styles/tools/prefix.scss
+ *
+ *  Version:
+ *    1.0.0 - 2018/05/14
+ */
+@mixin t-box-shadow($horizontal, $vertical, $blur, $spread, $color, $inset:false) {
+  @if $inset == true {
+    @include t-prefix-property(box-shadow, inset #{$horizontal} #{$vertical} #{$blur} #{$spread} #{$color}, spec webkit moz);
+  } @else {
+    @include t-prefix-property(box-shadow, #{$horizontal} #{$vertical} #{$blur} #{$spread} #{$color}, spec webkit moz);
+  }
+}
+
+@mixin t-drop-shadow($horizontal, $vertical, $blur, $color, $inset:false) {
+  @if $inset == true {
+    @include t-prefix-property(filter, drop-shadow( #{$horizontal} #{$vertical} #{$blur} #{$color} ), spec webkit moz);
+  } @else {
+    @include t-prefix-property(filter, drop-shadow( #{$horizontal} #{$vertical} #{$blur} #{$color} ), spec webkit moz);
+  }
+}
