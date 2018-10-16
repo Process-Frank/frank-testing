@@ -1,0 +1,41 @@
+{%- comment -%}
+  JSON Shop
+    Provides a JSON Converter for the Shop object.
+
+  Version:
+    1.0.0 - 2018/10/16
+{%- endcomment -%}
+{%- capture keyList -%}
+  address;
+  collections_count;
+  currency;
+  description;
+  domain;
+  email;
+  enabled_payment_types;
+  locale;
+  metafields;
+  money_format;
+  money_with_currency_format;
+  name;
+  password_message;
+  permanent_domain;
+  phone;
+  policies;
+  products_count;
+  secure_url;
+  taxes_included;
+  types;
+  url;
+  vendors;
+  customer_accounts_enabled
+{%- endcapture -%}
+{%- assign keyArray = keyList | split: ';' -%}
+
+{
+  {%- for key in keyArray -%}
+    {%- assign keyFix = key | strip -%}
+    {{ keyFix | json }}: {{ shop[keyFix] | json }}
+    {%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+}

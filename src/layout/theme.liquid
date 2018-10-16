@@ -50,6 +50,8 @@
 
   <body>
     {% comment %} Static Header Sections {% endcomment %}
+    {%- section 'topbar' -%}
+    {%- section 'header' -%}
 
     {% comment %} JSON Content for Layout {% endcomment %}
     {{ content_for_layout }}

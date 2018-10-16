@@ -13,19 +13,19 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  @include t-translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 @mixin t-absolute-center-x() {
   position: absolute;
   left: 50%;
-  @include t-translate-x(-50%);
+  transform: translateX(-50%);
 }
 
 @mixin t-absolute-center-y() {
   position: absolute;
   top: 50%;
-  @include t-translate-y(-50%);
+  transform: translateY(-50%);
 }
 
 @mixin t-absolute-fill() {
@@ -57,15 +57,15 @@
 
   &.is-middle {
     top: 50%;
-    @include t-translate-y(-50%);
+    transform: translateY(-50%);
   }
 
   &.is-center {
     left: 50%;
-    @include t-translate-x(-50%);
+    transform: translateX(-50%);
   }
 
   &.is-middle.is-center {
-    @include t-translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 }

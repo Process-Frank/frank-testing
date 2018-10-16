@@ -1,0 +1,30 @@
+{%- comment -%}
+  Header
+    Simple Promotional Bar
+
+  Components:
+    section/header/Header.js
+{%- endcomment -%}
+
+{%- include 'tool.json-section' with {
+  name: 'Header',
+  class: 'c-section__header',
+  component: 'Header',
+  group: 'header',
+  sectionSettings: 'menu',
+  sectionSettingTypes: 'link_list'
+} -%}
+
+{% schema %}
+  {
+    "name": "Header",
+    "class": "c-section__header",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Main Menu"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,50 @@
+@import './../../../styles/global';
+
+.c-header {
+
+  &__boundary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1em 0;
+    background: #666;
+  }
+
+  //Menu, Hamburger and Icons
+  &__menu,
+  &__hamburger,
+  &__icons {
+    width: 20%;
+    border: 1px solid blue;
+  }
+
+  //Logo
+  &__logo {
+    width: 60%;
+    border: 1px solid green;
+  }
+
+  //Menu
+  &__menu { display: none; }
+
+
+
+  /*** Responsive ***/
+  @include t-media-query($s-small-up) {
+    //Swap out menus
+    &__menu { display: block; }
+    &__hamburger { display: none; }
+
+    //Resize things to better fit.
+    &__menu,
+    &__hamburger,
+    &__icons {
+      width: 30%;
+    }
+
+    //Logo
+    &__logo {
+      width: 40%;
+    }
+  }
+}

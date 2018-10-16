@@ -5,8 +5,11 @@ import Link from './../../routing/Link';
 const Menu = (props) => {
   let { className, listItem, data, level } = props;
 
-  //Defaults
+  //Section mapping
   data = data || {};
+  if(data.value) data = data.value;
+
+  //Defaults
   data.links = data.links || [];
   level = level || 0;
 
