@@ -36,6 +36,7 @@ class IndexTemplate extends React.Component {
 
     return (
       <Template name="index">
+        <Link to="/collections/all">Test a Collection</Link>
         { /*children*/ }
         {crap}
       </Template>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Template from './../Template';
-import { withCollectionTemplate } from './../../wrappers/collection/CollectionTemplate';
+import { withCollectionTemplate } from './../../wrappers/ShopifyWrappers';
 
 import ProductThumbnail from './../../objects/product/ProductThumbnail';
 
