@@ -1,39 +1,28 @@
 @charset 'UTF-8';
 
-/**
- * [replace with theme name] | Built with Slate
- */
+
+
+//Settings
+@import './settings/responsive';
+
+//Tools
+@import './tools/_responsive';
+
+//Resets
 @import '~normalize.css/normalize';
 
-// Settings
-@import './variables';
+//Elements
 
-// Tools
-@import './tools/mixins';
-@import './tools/functions';
+//Objects
 
-// Core
-@import './core/forms';
-@import './core/helpers';
-@import './core/layout';
-@import './core/media';
-@import './core/responsive-tables';
-@import './core/rte';
-@import './core/typography';
+//Components
+@import './components/_page';
 
-// Components
-@import './components/buttons';
-@import './components/hero-banner';
-@import './components/icons';
-@import './components/placeholders';
-@import './components/responsive-images';
+//Templates
 
-// Sections
-@import './sections/blog-posts';
-@import './sections/collection-list';
-@import './sections/featured-collection';
-@import './sections/image-with-text';
+//Utilities
+@import './utilities/visually-hidden';
 
-// Templates
-@import './templates/gift_card';
-@import './templates/product';
+//Vendor
+
+//Trumps

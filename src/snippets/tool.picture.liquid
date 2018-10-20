@@ -1,0 +1,73 @@
+{% comment %}
+  Picture
+    Picture snippet to create a picture element with multiple scales and sizes.
+
+  Settings:
+    image - Image to add elements for.
+    alt (Optional) - Optional ALT Tag for passed Image URLs
+    width (Optional) - The width of the image in pixels (defaults to 1400)
+    sizes (Optional) - Sizes for the sourcesets, default is 500,750 and 1000
+    class (Optional) - Additional class(es) to attach to the img element.
+
+  Version:
+    1.1.0 - 2018/07/18
+
+{% endcomment %}
+{%-unless width-%}{%-assign width = 1400-%}{%-endunless-%}
+{%-unless sizes-%}{%-assign sizes = '500,750,1000'-%}{%-endunless-%}
+{%-assign sizes_spl = sizes | split: ','-%}
+
+{%-assign image_alt = '' -%}
+{%- if alt -%}
+  {%-assign image_alt = alt -%}
+{%- elsif image.alt != blank -%}
+  {%- assign image_alt = image.alt -%}
+{%- elsif product.title != blank -%}
+  {%- assign image_alt = product.title -%}
+{%- elsif product_title != blank -%}
+  {%- assign image_alt = product_title -%}
+{%- endif -%}
+
+
+{%- unless image.src != blank -%}
+  {% comment %}
+    Handle cases where just an image URL was passed
+  {% endcomment %}
+  <picture>
+      <img
+        src="{{ image }}"
+        {%- if image_alt -%}alt="{{ image_alt | escape }}"{%- endif -%}
+        {%-if class != blank -%}class="{{class}}"{%-endif-%}
+      />
+  </picture>
+
+{%- else -%}
+
+  <picture>
+    {%-for size in sizes_spl-%}
+      {%-assign w = size | append: 'x' -%}
+      <source
+        media="(max-width:{{size}}px)"
+        srcset="{{ image | img_url: w -}}, {{ image | img_url: w, scale: '2x' }} 2x, {{ image | img_url: w, scale: '4x' }} 4x"
+        {%- if image_alt -%}alt="{{ image_alt | escape }}"{%- endif -%}
+      />
+    {%-endfor-%}
+
+    {%-assign w = width | append:'x'-%}
+    {%-if sizes_spl.last -%}
+      <source
+        media="(min-width:{{sizes_spl | last}}px)"
+        srcset="{{ image | img_url: w -}}, {{ image | img_url: w, scale: '2x' }} 2x, {{ image | img_url: w, scale: '4x' }} 4x"
+        {%- if image_alt -%}alt="{{ image_alt | escape }}"{%- endif -%}
+      />
+    {%-endif-%}
+    <img
+      src="{{ image | img_url: w }}"
+      width="{{ image.width }}"
+      height="{{ image.height }}"
+      {%- if image_alt -%}alt="{{ image_alt | escape }}"{%- endif -%}
+      {%-if class != blank -%}class="{{class}}"{%-endif-%}
+    />
+  </picture>
+
+{%- endunless -%}

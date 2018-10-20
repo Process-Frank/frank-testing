@@ -1,0 +1,89 @@
+{%- comment -%} Copyright Snippet {%- endcomment -%}
+{%- include 'tool.copyright' -%}
+
+
+{%- comment -%} Browser detailed Meta Information {%- endcomment -%}
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="{{ settings.color_primary }}" />
+<link rel="canonical" href="{{ canonical_url }}" />
+
+
+{%- comment -%}SEO Friendly page title{%- endcomment -%}
+{%- capture seo_title -%}
+  {{ page_title }}
+  {% if current_tags %}
+    {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+  {% endif %}
+  {% if current_page != 1 %}
+    &ndash; {{ 'general.meta.page' | t: page: current_page }}
+  {% endif %}
+  {% unless page_title contains shop.name %}
+    &ndash; {{ shop.name }}
+  {% endunless %}
+{%- endcapture -%}
+{%- if template contains 'password' -%}
+  {%- assign seo_title = shop.name -%}
+{%- endif -%}
+<title>{{ seo_title | strip }}</title>
+
+
+{%- comment -%}Conditionally based meta tags{%- endcomment -%}
+{%- if page_description -%}
+  <meta name="description" content="{{ page_description | escape }}" />
+{%- endif -%}
+
+
+{%- comment -%}Social Media meta tags{%- endcomment -%}
+{% include 'tool.social-meta-tags' %}
+
+
+{%- comment -%} Favicon {%- endcomment -%}
+{%- if settings.favicon != blank -%}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+{%- endif -%}
+
+
+{%- comment -%} Stylesheets {%- endcomment -%}
+{% include 'style-tags', layout: 'theme' %}
+{% include 'tool.css-variables' %}
+
+{%- comment -%} Shopify's Currencies Script {%- endcomment -%}
+{{- '/services/javascripts/currencies.js' | script_tag -}}
+
+
+{%- comment -%} Customer Scripts {%- endcomment -%}
+{%- if template.directory == 'customers' -%}
+  <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+
+{%- comment -%}
+  Inject Liquid variables into Window Object for use by Javascript
+  Also tell CSS that we have Javascript available.
+{%- endcomment -%}
+<script>
+  /* {% comment %} Tell CSS that JS is available {% endcomment %} */
+  document.documentElement.className = document.documentElement.className.replace('js-unavailable', 'js-available');
+
+
+  /* {% comment %} Pass Liquid Variables through to the scripts {% endcomment %} */
+  window.Currency = window.Currency || {};
+  window.Currency.format = {{ settings.currency_conversion_format | json }} || {{ shop.money_format | json }};
+  window.Currency.currency = {{ shop.currency | json}};
+
+  window.Cart = window.Cart || {};
+  window.Cart.data = window.Cart.data || {{ cart | json }};
+
+  window.Language = window.Language || {};
+  window.Language.strings = window.Language.strings || {};
+</script>
+
+
+{%- comment -%} Pass our Language strings to JS {%- endcomment -%}
+{%- include 'tool.global-language-keys' -%}
+
+
+{%- comment -%} Theme JS {%- endcomment -%}
+{% include 'script-tags', layout: 'theme' %}

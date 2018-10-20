@@ -1,0 +1,18 @@
+{% comment %}
+  Global Language Keys
+    Simple snippet to globally setup what language keys are required throughout
+    the template.
+
+  Dependencies:
+    snippets/tool.language-strings.liquid
+
+  Version:
+    1.0.0 - 2018/08/03
+{% endcomment %}
+
+{% comment %} Language Strings can be defined here, use a ; to seperate {% endcomment %}
+{%- capture languageKeys -%}
+  products.product.add_to_cart;
+  products.product.sold_out;
+{%- endcapture -%}
+{%- include 'tool.language-strings' with { keys: languageKeys } -%}

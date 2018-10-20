@@ -1,0 +1,13 @@
+/*
+ *  Visually Hidden Utilities
+ *    Simple Utilities to hide elements from the page. Nothing should be able
+ *    to turn these elements visible and should be reserved for accessibility
+ *    options only.
+ *
+ *  Version:
+ *    1.0.0 - 2018/10/20
+ */
+.u-visually-hidden {
+  visibility: hidden;
+  display: none;
+}

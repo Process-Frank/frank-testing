@@ -8,8 +8,8 @@
 
 import $ from 'jquery';
 import Variants from '@shopify/theme-variants';
-import {formatMoney} from '@shopify/theme-currency';
-import {register} from '@shopify/theme-sections';
+import { formatMoney } from '@shopify/theme-currency';
+import { register } from '@shopify/theme-sections';
 
 const selectors = {
   addToCart: '[data-add-to-cart]',
