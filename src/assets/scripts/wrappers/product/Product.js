@@ -44,7 +44,7 @@ export const withProduct = (Wrapped) => {
       let error;
       let handle = this.getProductHandle();
       let pending = false;
-      let data = {};
+      let data;
 
       if(handle) {
         if(this.props.products) data = this.props.products[handle];
@@ -55,7 +55,6 @@ export const withProduct = (Wrapped) => {
         } else if(data) {
           pending = data.pending;
         } else {
-          data = {};
           error = "Invalid Product Data!";
         }
       } else {

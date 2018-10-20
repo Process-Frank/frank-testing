@@ -1,4 +1,4 @@
-import { templateFetch } from './../utils/URLUtilities'
+import { templateFetch } from './../utils/URLUtilities';
 
 class ShopifyCollection {
   static async fetchCollection(collection) {
@@ -7,6 +7,8 @@ class ShopifyCollection {
   }
 
   static getCollectionURL(collection) {
+    if(collection.data && collection.data.handle) collection = collection.data.handle;
+    if(collection.handle) collection = collection.handle;
     return '/collections/'+collection;
   }
 

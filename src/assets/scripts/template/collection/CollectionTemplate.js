@@ -23,7 +23,9 @@ class CollectionTemplate extends React.Component {
       children = (
         <div>
           <h1>{ data.title }</h1>
-          {data.products.map( (product, i) => <ProductThumbnail key={ i } collection={ data } handle={ product } /> )}
+          {data.products.map((product, i) => {
+            return <ProductThumbnail key={ i } collection={ data } handle={ product } />
+          })}
         </div>
       );
     }

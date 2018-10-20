@@ -8,6 +8,8 @@ class ShopifyProduct {
   }
 
   static getProductURL(product, collection) {
+    if(product.data && product.data.handle) product = product.data.handle;
+    if(product.handle) product = product.handle;
     let end = '/products/' + product;
     if(collection) {
       return ShopfiyCollection.getCollectionURL(collection)+end;
@@ -17,27 +19,25 @@ class ShopifyProduct {
 
   static fromJSON(data) {
     let x = new ShopifyProduct(
-      data.id, data.handle, data.all_tags, data.default_sort_by,
-      data.description, data.image, data.products, data.template_suffix,
-      data.title, data.url
+      data.id, data.handle, data.image, data.options, data.price,
+      data.tags, data.title, data.url, data.variants, data.vendor
     );
     return x;
   }
 
   //Instance
   constructor(
-    id, handle, tags, default_sort, description, image, products,
-    template_suffix, title, url
+    id, handle, image, options, price, tags, title, url, variants, vendor
   ) {
     this.id = id;
     this.handle = handle;
+    this.image = image;
+    this.options = options || [];
+    this.price = price;
     this.tags = tags || [];
-    this.default_sort = default_sort || "manual";
-    this.description = description || null;
-    this.image = image || null;
-    this.products = products || [];
-    this.template_suffix = template_suffix || null;
     this.title = title;
+    this.url = url;
+    this.variants = variants;
   }
 
   getUrl(collection) {
