@@ -1,22 +1,39 @@
-@import './global';
+@charset 'UTF-8';
 
-//Resets
+/**
+ * [replace with theme name] | Built with Slate
+ */
+@import '~normalize.css/normalize';
 
-//Elements
-@import './elements/all';
-@import './elements/a';
-@import './elements/button';
-@import './elements/html';
-@import './elements/img';
+// Settings
+@import './variables';
 
-@import './elements/_body';
-@import './elements/_headings';
+// Tools
+@import './tools/mixins';
+@import './tools/functions';
 
-//Utilities
-@import './utilities/_text-align';
+// Core
+@import './core/forms';
+@import './core/helpers';
+@import './core/layout';
+@import './core/media';
+@import './core/responsive-tables';
+@import './core/rte';
+@import './core/typography';
 
-//Vendor
-@import './vendor/fonts';
+// Components
+@import './components/buttons';
+@import './components/hero-banner';
+@import './components/icons';
+@import './components/placeholders';
+@import './components/responsive-images';
 
-//Trumps
-@import './trumps/debug';
+// Sections
+@import './sections/blog-posts';
+@import './sections/collection-list';
+@import './sections/featured-collection';
+@import './sections/image-with-text';
+
+// Templates
+@import './templates/gift_card';
+@import './templates/product';

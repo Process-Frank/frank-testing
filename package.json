@@ -1,34 +1,38 @@
 {
-  "name": "process-slate",
-  "version": "1.0.0",
+  "name": "starter-theme",
+  "version": "1.0.0-alpha.1",
   "private": true,
-  "author": "Process Creative",
+  "author": "Shopify Inc.",
+  "description": "An opinionated, Slate compatible, starting point for developing Shopify themes.",
+  "keywords": [
+    "shopify",
+    "theme"
+  ],
+  "bugs": "https://github.com/Shopify/starter-theme/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shopify/starter-theme.git"
+  },
   "devDependencies": {
-    "@shopify/slate-tag-webpack-plugin": "^1.0.0-beta.10",
-    "@shopify/slate-tools": "^1.0.0-beta.8",
+    "@shopify/slate-tools": "1.0.0-beta.8",
     "babel-preset-shopify": "^16.2.0",
     "eslint-plugin-shopify": "^19.0.0",
     "stylelint-config-prettier": "^3.0.4",
     "stylelint-config-shopify": "^5.0.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "cross-fetch": "^2.2.2",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-loadable": "^5.5.0",
-    "react-redux": "^5.0.7",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "react-slick": "^0.23.1",
-    "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "redux-promise-middleware": "^5.1.1",
-    "redux-promise-middleware-actions": "^2.1.0",
-    "slick-carousel": "^1.8.1"
+    "@shopify/theme-a11y": "^1.0.1",
+    "@shopify/theme-cart": "^1.0.0-alpha.7",
+    "@shopify/theme-currency": "^1.0.0-alpha.7",
+    "@shopify/theme-images": "^1.0.0-alpha.7",
+    "@shopify/theme-rte": "^1.0.0-alpha.7",
+    "@shopify/theme-sections": "^1.1.0",
+    "@shopify/theme-variants": "^1.0.0-alpha.8",
+    "jquery": "^3.2.1",
+    "lazysizes": "^4.1.1",
+    "lodash-es": "^4.17.4",
+    "normalize.css": "^7.0.0"
   },
   "scripts": {
     "start": "slate-tools start",

@@ -97,7 +97,7 @@ The `package.json` includes NPM/Yarn scripts for you to be able to use Slate Too
 
 `slate.config.js`
 
-The Slate config file enables users to customize Slate to their specific needs. For more information, visit the [`@shopify/slate-config` docs](https://github.com/Shopify/slate/wiki/Slate-config).
+The Slate config file enables users to customize Slate to their specific needs. For more information, visit the [`@shopify/slate-config` docs](https://github.com/Shopify/slate/wiki/Slate-Configuration).
 
 #### 7. Yarn.lock
 
@@ -169,4 +169,4 @@ All developers who wish to contribute through code or issues, take a look at the
 
 ## License
 
-Copyright (c) 2018 Shopify. See [LICENSE](https://github.com/Shopify/starter-theme/blob/master/LICENSE) for further details.
+Copyright © 2018 Shopify. See [LICENSE](https://github.com/Shopify/starter-theme/blob/master/LICENSE) for further details.
