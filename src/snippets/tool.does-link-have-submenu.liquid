@@ -1,0 +1,22 @@
+{%- comment -%}
+  Does Link have Submenu Snippet
+    Returns either true or false depending on whether the supplied link has a
+    submenu.
+
+  Parameters:
+    link - Link to check
+
+  Returns:
+    hasSubmenu - true if the link has a submenu.
+
+  Version:
+    1.0.0 - 2018/09/19
+{%- endcomment -%}
+{%- assign hasSubmenu = false -%}
+{%- if link -%}
+  {%- assign linkHandle = link.handle -%}
+  {%- assign ss = linklists[linkHandle] -%}
+  {%- if ss and ss.links and ss.links.size > 0 -%}
+    {%- assign hasSubmenu = true -%}
+  {%- endif -%}
+{%- endif -%}

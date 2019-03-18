@@ -1,0 +1,213 @@
+{%- comment -%}
+  Vendor Collection Template
+    Provides the display for a vendor on a collection page
+
+  Version:
+    1.0.0 - 2019/02/06
+{%- endcomment -%}
+
+{%- assign mfg = collection.metafields.vendor -%}
+{%- include 'tool.get-type-for-vendor' with { vendor: collection.title } -%}
+
+<div class="c-vendor-template">
+  <h1 class="c-vendor-template__title">{{- collection.title | escape -}}</h1>
+
+  {%- comment -%} Banner Section {%- endcomment -%}
+  <header role="banner" class="c-vendor-template__header">
+
+    <div class="c-vendor-template__header-details">
+      <div class="c-vendor-template__logo">
+        {%- if mfg.logo != blank -%}
+          {%- include 'tool.picture' with {
+            image: mfg.logo,
+            class: 'c-vendor-template__logo-image'
+          } -%}
+        {%- endif -%}
+
+        {%- if mfg.location != blank -%}
+          <span class="o-location is-alt">
+            {%- include 'object.icon' with {
+              icon: 'location', class: 'o-location__icon',
+              title: mfg.location
+            } -%}
+            <span class="o-location__title">
+              {{- mfg.location | escape -}}
+            </span>
+          </span>
+        {%- endif -%}
+      </div>
+
+      <div class="c-vendor-template__header-description">
+        {%- if mfg.add_description != blank -%}
+          <p>{{- mfg.add_description | escape | newline_to_br -}}</p>
+        {%- endif -%}
+
+        {%- if customer -%}
+          <a href="/pages/edit-vendors?type={{ vendorType | escape }}" class="c-vendor-template__header-description-button o-btn is-secondary is-large is-wide">
+            {{- 'collections.vendor.edit_bundle' | t -}}
+          </a>
+        {%- else -%}
+          <a href="/account/register" class="c-vendor-template__header-description-button o-btn is-secondary is-large is-wide">
+            {{- 'collections.vendor.add_bundle' | t -}}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="c-vendor-template__header-picture">
+      {%- if mfg.image_1 != blank -%}
+        {%- include 'tool.picture' with {
+          image: mfg.image_1,
+          class: 'c-vendor-template__header-picture-image'
+        } -%}
+      {%- endif -%}
+    </div>
+  </header>
+
+  {%- comment -%} Contact Section {%- endcomment -%}
+  <section class="c-vendor-template__section">
+    <div class="c-vendor-template__section-picture is-left">
+      {%- if mfg.image_2 != blank -%}
+        {%- include 'tool.picture' with {
+          image: mfg.image_2, class: 'c-vendor-template__section-picture-image'
+        } -%}
+      {%- endif -%}
+    </div>
+
+    <div class="c-vendor-template__section-details is-right">
+      <div class="c-vendor-template__section-details-inner">
+        {%- if mfg.website != blank -%}
+          <a href="{{ mfg.website | escape }}" class="o-heading is-size-2">
+            {{- mfg.website | escape -}}
+          </a>
+        {%- endif -%}
+
+        {%- if mfg.email != blank -%}
+          <a href="mailto:{{ mfg.email | escape }}" class="o-heading is-size-2">
+            {{- mfg.email | escape -}}
+          </a>
+        {%- endif -%}
+
+        {%- if mfg.phone != blank -%}
+          <a href="tel:{{ mfg.phone | remove: '(' | remove: ')' | remove: ' ' }}" class="o-heading is-size-2">
+            {{ mfg.phone | escape }}
+          </a>
+        {%- endif -%}
+
+        {%- if mfg.address != blank -%}
+          <a href="//www.google.com/maps/search/?api=1&query={{ mfg.address | url_param_escape }}" class="o-heading is-size-2">
+            {{ mfg.address | escape | newline_to_br }}
+          </a>
+        {%- endif -%}
+
+
+        {%- if mfg.description_2 != blank -%}
+          <p class="c-vendor-template__section-details-description">
+            {{- mfg.description_2 | escape | newline_to_br -}}
+          </p>
+        {%- endif -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Generic Content Sections {%- endcomment -%}
+  {%- for i in (3..10) -%}
+    {%- assign imageLeft = false -%}
+    {%- assign t = forloop.index0 | modulo: 2 -%}
+    {%- if t == 1 %}{% assign imageLeft = true %}{% endif -%}
+
+    {%- assign imageKey = 'image_' | append: i -%}
+    {%- assign descriptionKey = 'description_' | append: i -%}
+
+    {%- assign image = mfg[imageKey] -%}
+    {%- assign description = mfg[descriptionKey] -%}
+
+    {%- if image == blank and description == blank %}{% continue %}{% endif -%}
+
+    <section class="c-vendor-template__section">
+      <div class="c-vendor-template__section-picture {% if imageLeft %}is-left{% endif %}">
+        {%- if image != blank -%}
+          {%- include 'tool.picture' with {
+            image: image, class: 'c-vendor-template__section-picture-image'
+          } -%}
+        {%- endif -%}
+      </div>
+
+      <div class="c-vendor-template__section-details {% if imageLeft %}is-right{% endif %}">
+        <div class="c-vendor-template__section-details-inner">
+          {%- if description != blank -%}
+            <p class="c-vendor-template__section-details-description">
+              {{- description | escape | newline_to_br -}}
+            </p>
+          {%- endif -%}
+        </div>
+      </div>
+    </section>
+  {%- endfor -%}
+
+  {%- comment -%} Product Carousel {%- endcomment -%}
+  {%- assign x = 'collections.vendor.carousel_title' | t -%}
+  {%- assign buttonLabel = 'collections.vendor.view_all' | t -%}
+  {%- assign buttonUrl = collections.all.url | append: '?type=' | append: vendorType -%}
+  {%- assign carouselTitle = mfg.carousel_title | default: x -%}
+  {%- include 'collection-carousel' with {
+    collection: collection,
+    title: carouselTitle,
+    class: 'c-vendor-template__carousel',
+    attributes: 'data-featured-collection-carousel',
+    thumbnail: 'object.product-thumbnail-collection',
+    button: true,
+    buttonLabel: buttonLabel,
+    url: buttonUrl
+  } -%}
+
+
+  {%- comment -%} Reviews {%- endcomment -%}
+  {%- capture reviewCarousel -%}
+    {%- for i in (1..10) -%}
+      {%- assign nameKey  = 'review_' | append: i | append: '_name' -%}
+      {%- assign quoteKey = 'review_' | append: i | append: '_quote' -%}
+      {%- assign starsKey = 'review_' | append: i | append: '_stars' -%}
+
+      {%- assign name = mfg[nameKey] | escape -%}
+      {%- assign quote = mfg[quoteKey] | escape | newline_to_br -%}
+      {%- assign stars = mfg[starsKey] -%}
+
+      {%- if name == blank or quote == blank or stars == blank %}{% continue %}{% endif -%}
+      {%- include 'review-carousel-slide' with { rating: stars, author: name, quote: quote } -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- if reviewCarousel != blank -%}
+    <section class="c-reviews-carousel" data-reviews-carousel>
+      <header role="banner" class="c-section__heading">
+        <h2 class="o-heading is-size-1">{{- 'collections.vendor.reviews' | t -}}</h2>
+      </header>
+
+      <div class="c-reviews-carousel__carousel has-peak has-arrows-inset" data-reviews-carousel-carousel>
+        {{- reviewCarousel -}}
+      </div>
+    </section>
+  {%- endif -%}
+
+
+  {%- comment -%} Instagram {%- endcomment -%}
+  {%- if mfg.instagram_token != blank -%}
+    {%- include 'instagram' with {
+      link: mfg.social_instagram,
+      follow: mfg.instagram_follow
+      token: mfg.instagram_token,
+      class: 'c-vendor-template__instagram'
+    } -%}
+  {%- endif -%}
+
+
+  {%- comment -%} Shop All {%- endcomment -%}
+  <footer class="c-section__footer">
+    <a
+      href="{{ collections.all.url }}?type={{ vendorType | escape }}"
+      class="o-btn is-secondary is-large is-wide"
+    >
+      {{- 'collections.vendor.shop_all' | t -}}
+    </a>
+  </footer>
+</div>

@@ -1,0 +1,23 @@
+/*
+ *  Button Styles
+ *    Button reset styles
+ *
+ *  Version:
+ *    2.0.0 - 2018/11/01
+ */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"]
+{
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  -webkit-appearance: none;
+
+  &:-moz-focusring {
+    outline: none;
+  }
+}

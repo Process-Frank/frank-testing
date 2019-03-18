@@ -1,0 +1,101 @@
+/*
+ *  Account Page
+ *    Styles for account page.
+ *
+ *  Dependencies:
+ *
+ *  Version:
+ *    1.1.0 - 2018/08/06
+ */
+.c-account-template {
+  padding: $s-gutter--xsmall;
+
+  &__btn-logout {
+    float: right;
+  }
+
+  &__sections {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__section {
+    margin-bottom: 4em;
+
+    &-details {
+      width: 100%;
+    }
+
+    &-orders {
+      width: 100%;
+    }
+
+    &-btn {
+      width: 100%;
+    }
+  }
+
+  &__orders {
+    border-collapse: collapse;
+    width: 100%;
+
+    th,td {
+      text-align: center;
+      &:first-of-type {text-align: left;}
+      &:last-of-type {text-align: right;}
+    }
+
+    tbody td {
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+
+    thead tr:last-of-type th {
+      border-bottom: 1px solid black;
+      padding-bottom: 1em;
+    }
+  }
+
+  @include t-media-query($s-xsmall-up) {
+    padding: $s-gutter--small;
+  }
+
+  @include t-media-query($s-small-up) {
+    padding: $s-gutter--medium;
+
+    &__sections {
+      flex-wrap: nowrap;
+    }
+
+    &__section {
+      &-details {
+        width: 40%;
+        padding-right: $s-gutter--small / 2;
+      }
+
+      &-orders {
+        width: 60%;
+        padding-left: $s-gutter--small / 2;
+      }
+
+
+      &-btn {
+        text-align: left;
+        margin-bottom: 1em;
+      }
+    }
+  }
+
+  @include t-media-query($s-medium-up) {
+    padding: $s-gutter--large;
+
+    &__section {
+      &-details { width:: 30%; }
+      &-orders { width: 70%; }
+    }
+  }
+
+  @include t-media-query($s-large-up) {
+    padding: $s-gutter--xlarge;
+  }
+}

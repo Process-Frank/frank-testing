@@ -1,0 +1,54 @@
+/*
+ *  Reviews Carousel
+ *    Styles for reviews, setup in a carousel (handled by JS)
+ *
+ *  Version:
+ *    1.0.0 - 2018/11/30
+ */
+.c-reviews-carousel {
+  &__carousel {
+
+  }
+
+  &__review {
+    padding: $s-gutter--xsmall;
+    text-align: center;
+
+    &-stars {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+
+      &-star {
+        width: 1.25em;
+        height: 1.25em;
+        margin: 0 0.25em;
+
+        &,* { fill: $s-color--grey-star; }
+
+        &.is-gold {
+          &,* { fill: $s-color--gold-star; }
+        }
+      }
+
+      padding-bottom: $s-gutter--small;
+    }
+
+    &-author {
+      color: $s-color--primary;
+    }
+  }
+
+
+  @include t-media-query($s-xsmall-up) {
+    &__review {
+      padding: $s-gutter--small;
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    &__review {
+      padding: $s-gutter--medium;
+    }
+  }
+}

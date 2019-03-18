@@ -1,0 +1,59 @@
+{% comment %}
+  Collection JSON
+    Generates a set of data for a Collection in a JSON format.
+
+  Dependencies:
+    collection/json.product.liquid
+
+  Parameters you MUST supply:
+    collection - Collection to print data for
+
+  Version:
+    2.0.0 - 2018/07/23
+{% endcomment %}
+{%- if products == blank -%}
+  {%- assign products = collection.products -%}
+{%- endif -%}
+
+{%- if all_products_count == blank -%}
+  {%- assign all_products_count = collection.all_products_count -%}
+{%- endif -%}
+
+{%- if all_product_handles == blank and
+  paginate.current_page == 1 and
+  products != blank and
+  genHandles != false
+-%}
+  {%- capture all_product_handles -%}
+    {%- paginate products by all_products_count -%}
+      {%- for product in products -%}
+        {{ product.handle | json }}
+        {%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    {%- endpaginate -%}
+  {%- endcapture -%}
+{%- endif -%}
+
+{%- if page == blank -%}
+  {%- assign page = paginate.current_page -%}
+{%- endif -%}
+
+{
+  "id": {% if collection.id %}{{ collection.id | json }}{% else %}0{% endif %},
+  "handle": {{ collection.handle | json }},
+  "title": {{ collection.title | json }},
+  "all_tags": {{ collection.all_tags | json }},
+  "all_types": {{ collection.all_types | json }},
+  "all_products_count": {{ all_products_count | json }},
+  "page": {{ page | json }},
+  "default_sort_by": {{ collection.default_sort_by | json }},
+  "products": [
+    {%- for product in products -%}
+      {%- include 'json.product' with { collection: collection, product: product } -%}
+      {%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+  {%- if all_product_handles != blank -%}
+  , "all_product_handles": [ {{- all_product_handles -}} ]
+  {%- endif -%}
+}

@@ -1,0 +1,16 @@
+/*
+ *  Z-Index Settings
+ *    Provides a manageable Z Index order list so that elements don't overflow
+ *    when they shouldn't.
+ *
+ *  Version:
+ *    2.0.0 - 2018/10/31
+ */
+$s-z--mint: 5;
+
+$s-z--topbar: 10;
+$s-z--dropdown: 10;
+$s-z--loader: 10;
+$s-z--drawer: 20;
+
+$s-z--collection-top-bar-menu: 10;

@@ -1,0 +1,28 @@
+{%- comment -%}
+  Vendor JSON Search Template
+    Custom search template to return product results in a format to mimic json-collection
+
+  Version:
+    1.0.0 - 2019/02/06
+{%- endcomment -%}
+{%- layout none -%}
+{%- include 'tool.collection-per-page' -%}
+{%- assign fauxCollection = collections.all -%}
+
+{%- paginate search.results by search.results_count -%}
+  {%- capture all_product_handles -%}
+    {%- for product in search.results -%}
+      {{- product.handle | json -}}
+      {%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+{%- endpaginate -%}
+
+{%- paginate search.results by perPage -%}
+  {%- include 'json.collection' with {
+    collection: fauxCollection,
+    products: search.results,
+    all_products_count: search.results_count,
+    page: paginate.current_page
+  } -%}
+{%- endpaginate -%}

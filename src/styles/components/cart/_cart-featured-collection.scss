@@ -1,0 +1,28 @@
+.c-cart-featured-collection {
+  &__heading {
+    .o-heading { text-transform: initial; margin: 0;}
+  }
+
+  &__products {
+    padding: 0 $s-gutter--xsmall;
+    .o-product-thumbnail-collection { width: 100%; }
+  }
+
+  @include t-media-query($s-xsmall-up) {
+    &__products {
+      padding: 0 $s-gutter--small;
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    &__heading .o-heading { text-align: left; }
+
+    &__products {
+      padding: 0 $s-gutter--medium;
+      flex-wrap: nowrap;
+    }
+  }
+
+  @include t-media-query($s-large-up) {
+  }
+}

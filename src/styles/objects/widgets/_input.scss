@@ -1,0 +1,71 @@
+/*
+ *  Input Styles
+ *    Styles for input items
+ *
+ *  Version:
+ *    2.0.0 - 2019/01/08
+ */
+.o-input {
+  //Fix iOS Shadows
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  //Display Related
+  display: inline-block;
+  padding: $s-input--padding;
+  border-radius: $s-input--radius;
+  outline: none;
+
+  //Typography
+  background: $s-color--background;
+  color: $s-color--default;
+  border: $s-input--border $s-color--border-default;
+
+  transition: border-color 0.2s $s-animation--ease-out;
+
+  /*** Styles ***/
+  //Size Styles
+  &.is-large {
+    padding: $s-input--padding-large;
+  }
+
+  &.is-wide {
+    padding: $s-input--padding-wide;
+  }
+
+  &.is-large.is-wide {
+    padding: $s-input--padding-large-wide;
+  }
+
+  &.is-block {
+    width: 100%;
+    display: block;
+  }
+
+  &.is-disabled,&[disabled] {
+    cursor: not-allowed;
+    background: $s-color--disabled;
+    color: $s-color--disabled-compliment;
+    border-color: $s-color--disabled-border;
+
+    &:hover {
+      background: $s-color--disabled;
+      color: $s-color--disabled-compliment;
+      border-color: $s-color--disabled-border;
+    }
+  }
+
+  &.has-error {
+    border-color: $s-color--error;
+  }
+
+  /*** States ***/
+  &:hover {
+    border-color: $s-color--border-default-hover;
+  }
+
+  &:focus {
+    border-color: $s-color--secondary;
+  }
+}

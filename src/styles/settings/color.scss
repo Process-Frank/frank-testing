@@ -1,0 +1,71 @@
+/*
+ *  Color Settings
+ *    Settings for the colors/colours used throughout the styles. We will be
+ *    using the term 'color' exclusively!
+ *
+ *  Version:
+ *    2.0.0 - 2018/10/31
+ */
+
+/*** Standard Color Definitions ***/
+$s-color--background: white;
+$s-color--default: black;
+
+$s-color--background-alternate: #F8F8F8;
+
+
+/*** Border Colors ***/
+$s-color--border-default: #EEE;
+$s-color--border-default-hover: #F3F3F3;
+
+
+/*** Common Color Sets ***/
+//Primary
+$s-color--primary: #792C58;
+$s-color--primary-compliment: white;
+
+//Secondary
+$s-color--secondary: #80C062;
+$s-color--secondary-compliment: white;
+
+//Tertiary (if you need it)
+$s-color--tertiary: white;
+$s-color--tertiary-compliment: $s-color--secondary;
+
+$s-color--quaternary: #F8F8F8;
+$s-color--quaternary-compliment: $s-color--default;
+$s-color--quaternary-muted: #999;
+
+//Disabled
+$s-color--disabled: transparent;
+$s-color--disabled-compliment: rgba($s-color--secondary, 0.3);
+$s-color--disabled-border: $s-color--disabled-compliment;
+
+/*** Generated Color Sets (Can be overridden with specific colors) ***/
+//Primary
+$s-color--primary-hover: lighten($s-color--primary, 10%);
+$s-color--primary-compliment-hover: lighten($s-color--primary-compliment, 10%);
+
+//Secondary
+$s-color--secondary-hover: lighten($s-color--secondary, 10%);
+$s-color--secondary-compliment-hover: lighten($s-color--secondary-compliment, 10%);
+
+//Tertiary
+$s-color--tertiary-hover: lighten($s-color--tertiary, 10%);
+$s-color--tertiary-compliment-hover: lighten($s-color--tertiary-compliment, 10%);
+
+
+/*** Extra Colors ***/
+$s-color--drop-effect: 0px 0.25em 0.5em 0px rgba(#EEE, 0.75);
+
+//Review Stars
+$s-color--grey-star: #EEE;
+$s-color--gold-star: #FFDF58;
+
+//Product
+$s-color--vendor: $s-color--quaternary-muted;
+$s-color--sale: $s-color--quaternary-muted;
+
+//Error
+$s-color--error: red;
+$s-color--success: $s-color--secondary;

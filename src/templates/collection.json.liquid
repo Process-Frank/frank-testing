@@ -1,0 +1,16 @@
+{% comment %}
+  Collection JSON
+    Simple template containing JSON data for a collection, can be fetched via
+    AJAX
+
+  Dependencies:
+    snippets/json.collection.liquid
+
+  Version:
+    1.0.0 - 2018/07/23
+{% endcomment %}
+{% layout none %}
+{%- include 'tool.collection-per-page' -%}
+{% paginate collection.products by perPage %}
+  {%- include 'json.collection' -%}
+{% endpaginate %}

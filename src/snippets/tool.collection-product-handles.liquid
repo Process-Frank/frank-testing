@@ -1,0 +1,16 @@
+{% comment %}
+  Collection Product Handles
+    Simple snippet that will print the handles of all products in a collection.
+    NOTE that this is a potentially dangerous script! It does a hack to get all
+    these handles print.
+
+  Version:
+    1.0.0 - 2018/08/16
+{% endcomment %}
+{%- assign col = collections[collection.handle] -%}
+[
+  {%- for product in col.products -%}
+    {{- product.handle | json -}}
+    {%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+]

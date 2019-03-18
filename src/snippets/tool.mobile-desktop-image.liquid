@@ -1,0 +1,33 @@
+{%- comment -%}
+  Mobile/Desktop Image Switching Tool
+    Automatically determines and switches images for mobile and desktop
+
+  Params:
+    mobileImage: Mobile Image (if any)
+    desktopImage: Desktop Image (if any)
+
+  Returns:
+    mobile: Either mobile version OR desktop
+    desktop: Either desktop version OR mobile
+    hasImage: True if there's either a desktop image or a mobile image
+
+  Version:
+    2.0.0 - 2018/11/05
+{%- endcomment -%}
+{%- assign hasImage = false -%}
+
+{%- if mobileImage != blank -%}
+  {%- assign mobile = mobileImage -%}
+  {%- assign hasImage = true -%}
+  {%- if desktopImage == blank -%}
+    {%- assign desktop = mobileImage -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if desktopImage != blank -%}
+  {%- assign desktop = desktopImage -%}
+  {%- assign hasImage = true -%}
+  {%- if mobileImage == blank -%}
+    {%- assign mobile = desktopImage -%}
+  {%- endif -%}
+{%- endif -%}

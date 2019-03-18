@@ -1,0 +1,91 @@
+{%- comment -%}
+  Footer
+    Footer of the webpage, not much to say
+
+  Version:
+    2.0.0 - 2019/08/01
+{%- endcomment -%}
+
+{%- assign menu = linklists[section.settings.menu] -%}
+
+<footer class="c-footer">
+  {%- comment -%} Content (Menus and Forms) {%- endcomment -%}
+  <nav role="navigation" class="c-footer__content">
+
+    {%- comment -%} Groups {%- endcomment -%}
+    {%- for link in menu.links limit: 2 -%}
+      <div class="c-footer__group">
+        <h3 class="c-footer__group-title">{{- link.title | escape -}}</h3>
+        {%- comment -%} Submenu {%- endcomment -%}
+        {%- assign submenu = linklists[link.handle] -%}
+        {%- if submenu != blank -%}
+          <ul class="c-footer__group-list">
+            {%- for sublink in submenu.links -%}
+              <li class="c-footer__group-list-item">
+                <a href="{{ sublink.url }}">{{ sublink.title | escape }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+
+    {%- comment -%} Large Group (Newsletter and Social) {%- endcomment -%}
+    <div class="c-footer__group is-large">
+      <h3 class="c-footer__group-title">
+        {{- section.settings.newsletter-title | escape -}}
+      </h3>
+      <p>{{- section.settings.newsletter-text | escape -}}</p>
+
+      {%- comment -%} Newsletter Form {%- endcomment -%}
+      {%- include 'newsletter-signup-inline' with { class: 'c-footer__newsletter' } -%}
+
+      {%- comment -%} Payment Icons {%- endcomment -%}
+      <div class="c-footer__payment">
+        {%- for type in shop.enabled_payment_types -%}
+          {%- capture clazz -%}icon icon-{{ type | handle }} c-footer__payment-icon{%- endcapture -%}
+          {{ type | payment_type_svg_tag: class: clazz }}
+        {%- endfor -%}
+      </div>
+    </div>
+
+  </nav>
+
+  {%- comment -%} Copyright {%- endcomment -%}
+  <div class="c-footer__copyright">
+    <span class="c-footer__copyright-year">
+      &copy; {{ 'now' | date: "%Y" | escape }} {{ shop.name | escape }}
+    </span>
+
+    <a href="//processcreative.com.au" class="c-footer__copyright-process">
+      Site <em>by</em> Process
+    </a>
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "class": "c-section c-section__foot",
+    "settings": [
+      {
+        "type": "text",
+        "id": "newsletter-title",
+        "label": "Newsletter Title",
+        "default": "Stay in touch"
+      },
+      {
+        "type": "textarea",
+        "id": "newsletter-text",
+        "label": "Newsletter Text",
+        "default": "Subscribe to our newsletter and receive 5% off your first purchase"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "footer"
+      }
+    ]
+  }
+{% endschema %}

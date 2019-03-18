@@ -1,60 +1,12 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Process Creative Framework",
+    "theme_name": "Process Creative",
     "theme_version": "3.0.0",
     "theme_author": "Process Creative",
     "theme_documentation_url": "https://bitbucket.org/procescreative/process-slate",
     "theme_support_url": "https://bitbucket.org/procescreative/process-slate"
   },
-
-  
-  {
-    "name": "Currency",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "To offer multiple currencies on your online store, you must first [edit your store's currency formatting]({{ site.url }}/manual/using-themes/troubleshooting/help-script-find-money-formats)."
-      },
-      {
-        "type": "checkbox",
-        "id": "currency_conversion_enable",
-        "label": "Enable currency conversion",
-        "default": true,
-        "info": "Even though prices are displayed in different currencies, orders will still be processed in your store's currency"
-      },
-      {
-        "type": "select",
-        "id": "currency_conversion_format",
-        "label": "Format",
-        "options": [
-         {
-           "value": "money_format",
-           "label": "Without currency ($10.00)"
-         },
-         {
-           "value": "money_with_currency_format",
-           "label": "With currency ($10.00 AUD)"
-         }
-        ],
-        "default": "money_with_currency_format"
-      },
-      {
-        "type": "text",
-        "id": "currency_conversion_currencies",
-        "label": "Supported currencies",
-        "default": "AUD USD GBP EUR CAD JPY INR",
-        "info": "Use the country's ISO [currency code](http://www.xe.com/iso4217.php). Separate your currency codes with a space."
-      },
-      {
-        "type": "text",
-        "id": "currency_conversion_default",
-        "label": "Default currency",
-        "default": "AUD"
-      }
-    ]
-  },
-
 
   {
     "name": "Social media",
@@ -137,53 +89,6 @@
         "info": "Will be scaled down to 32 x 32px"
       }
     ]
-  },
-
-  {
-    "name": "Bundle Campaign [Plus]",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Bundle Campaign settings"
-      },
-      {
-        "type": "paragraph",
-        "content": "Controls display of messages on product pages and the cart that tell the user about tiered discounts for products based on quantity."
-      },
-      {
-        "type": "checkbox",
-        "id": "plus_enable_discount_notices",
-        "label": "Enable discount notices",
-        "default": true,
-        "info": "Will enable discount messages to be displayed on product pages and the cart."
-      },
-      {
-        "type": "text",
-        "id": "plus_excluded_tag",
-        "label": "Excluded product tag",
-        "info": "Define the product tag that will not be valid for the discount.",
-        "default": "Value-Packs"
-      },
-      {
-        "type": "text",
-        "id": "plus_discount_tiers",
-        "label": "Discount Tiers",
-        "default": "3:10, 4:15, 5:20",
-        "info": "Define tiers for discounts. Enter as comma separated pairs of quantities, and percent discount amounts. Separate quantities and percentages by a colon. Ie 10% off 3 items, 15% off 4 items would be entered as \"3:10, 4:15\""
-      }
-    ]
-  },
-
-  {
-    "name": "Size Labels",
-    "settings": [
-      {
-        "type": "textarea",
-        "id": "size_labels",
-        "label": "Size Labels",
-        "info": "Enter your size variant labels, followed by their full label. e.g. \"S:Small\" or \"L:Large\"",
-        "default": "S:Small\nM:Medium\nL:Large\nXL:X Large"
-      }
-    ]
   }
+  
 ]

@@ -1,0 +1,67 @@
+/*
+ *  Collection Template Faceted Nav
+ *    Contains the styles for the faceted nav used on the collection page
+ *
+ *  Version:
+ *    1.0.0 - 2019/01/09
+ */
+$c-collection-faceted-nav--radius: 1em;
+.c-collection-faceted-nav {
+  //position: sticky;
+
+  &__group {
+    padding: 2em 0;
+    position: relative;
+    border-bottom-right-radius: $c-collection-faceted-nav--radius;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 90%;
+      width: calc(100% - #{$c-collection-faceted-nav--radius});
+      height: 100%;
+      background: $s-color--background-alternate;
+    }
+  }
+
+  &__filter {
+    position: relative;
+    display: block;
+    padding: $s-gutter--small $s-gutter--medium;
+    text-transform: uppercase;
+    width: 100%;
+    border-top-right-radius: $c-collection-faceted-nav--radius;
+    border-bottom-right-radius: $c-collection-faceted-nav--radius;
+    color: $s-color--primary;
+
+    &.is-active,&:hover {
+      background: $s-color--primary;
+      color: $s-color--primary-compliment;
+      text-decoration: none;
+    }
+  }
+
+  &__check{
+    &-group {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  @include t-media-query($s-xsmall-up) {
+    &__check {
+      &-group {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      &-item {
+        width: 50%;
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{% comment %}
+  Reviews Carousel
+    Section that allows a set of reviews to be featured in a carousel.
+
+  Version:
+    1.0.0 - 2018/11/28
+{% endcomment %}
+<section class="c-reviews-carousel" data-reviews-carousel>
+  <header role="banner" class="c-section__heading">
+    <h2 class="o-heading is-size-4">
+      {{- section.settings.s-title | escape -}}
+    </h2>
+  </header>
+
+  <div class="c-reviews-carousel__carousel has-peak has-arrows-inset" data-reviews-carousel-carousel>
+    {%- for block in section.blocks -%}
+      {%- assign rating = block.settings.rating -%}
+      {%- assign quote = block.settings.review | escape | newline_to_br -%}
+      {%- assign author = block.settings.author | escape -%}
+
+      {%- include 'review-carousel-slide' with { rating: rating, author: author, quote: quote } -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Reviews Carousel",
+    "class": "c-section c-section__reviews-carousel",
+    "settings": [
+      {
+        "id": "s-title",
+        "label": "Title",
+        "default": "Hear from happy customers",
+        "type": "text"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Review",
+        "type": "review",
+        "settings": [
+          {
+            "id": "rating",
+            "type": "range",
+            "min": 0,
+            "max": 5,
+            "default": 4,
+            "label": "Rating"
+          },
+          {
+            "type": "textarea",
+            "id": "review",
+            "label": "Review",
+            "default": "Esse ab hic anim eiusmod, constias ea singulis. Ex eram doctrina consequat id iudicem summis fabulas."
+          },
+          {
+            "type": "text",
+            "id": "author",
+            "label": "Author",
+            "default": "John Smith"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Reviews Carousel",
+        "category": "Review"
+      }
+    ]
+  }
+{% endschema %}

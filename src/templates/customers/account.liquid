@@ -1,43 +1,88 @@
-<h1>{{ 'customer.account.title' | t }}</h1>
+{% comment %}
+  Account Template
+    Template for account page.
 
-<h2>{{ 'customer.orders.title' | t }}</h2>
+  Dependencies:
+    styles/components/_account-page.scss
 
-{% paginate customer.orders by 20 %}
-  {% if customer.orders.size != 0 %}
-    <table class="responsive-table">
-      <thead>
-        <tr>
-          <th>{{ 'customer.orders.order_number' | t }}</th>
-          <th>{{ 'customer.orders.date' | t }}</th>
-          <th>{{ 'customer.orders.payment_status' | t }}</th>
-          <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
-          <th>{{ 'customer.orders.total' | t }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for order in customer.orders %}
-          <tr class="responsive-table-row">
-            <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
-            <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
-            <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
-            <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
-            <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>{{ 'customer.orders.none' | t }}</p>
-  {% endif %}
+  Version:
+    1.0.0 - 2018/02/21
+{% endcomment %}
 
-  {% if paginate.pages > 1 %}
-    {% include 'pagination' %}
-  {% endif %}
+<div class="c-account-template">
+  <div class="c-account-template__sections">
+    {% comment %} Account Details {% endcomment %}
+    <section class="c-account-template__section c-account-template__section-details">
+      <h3>{{ 'customer.account.details' | t }}</h3>
 
-{% endpaginate %}
+      {{ customer.default_address | format_address }}
 
-<h2>{{ 'customer.account.details' | t }}</h2>
+      <a href="/account/addresses" class="o-btn is-large is-secondary c-account-template__section-btn">
+        {{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})
+      </a>
 
-{{ customer.default_address | format_address }}
+      <a href="/pages/edit-vendors" class="o-btn is-large is-secondary c-account-template__section-btn">
+        {{ 'customer.account.edit_vendor' | t }}
+      </a>
 
-<a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+      <a href="/account/logout" class="o-btn is-large c-account-template__section-btn">
+        {{ 'layout.customer.log_out' | t }}
+      </a>
+    </section>
+
+    {% comment %} Orders {% endcomment %}
+    <section class="c-account-template__section c-account-template__section-orders">
+      <h3>{{ 'customer.orders.title' | t}}</h3>
+      {%- paginate customer.orders by 20 -%}
+        {%-if customer.orders.size != 0-%}
+          <table class="c-account-template__orders">
+            <thead>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {%-for order in customer.orders-%}
+                <tr>
+                  <td>
+                    {{ order.name | link_to: order.customer_url }}
+                  </td>
+
+                  <td>
+                    {{ order.created_at | date: format: 'month_day_year' }}
+                  </td>
+
+                  <td>
+                    {{ order.financial_status_label }}
+                  </td>
+
+                  <td>
+                    {{ order.fulfillment_status_label }}
+                  </td>
+
+                  <td>
+                    {{ order.total_price | money_with_currency }}
+                  </td>
+                </tr>
+              {%-endfor-%}
+            </tbody>
+          </table>
+
+          {%-if paginate.pages > 1-%}
+            {%-include 'pagination'-%}
+          {%-endif-%}
+        {%-else-%}
+
+          <p>{{ 'customer.orders.none' | t }}</p>
+
+        {%-endif-%}
+      {%- endpaginate -%}
+    </section>
+
+  </div>
+</div>

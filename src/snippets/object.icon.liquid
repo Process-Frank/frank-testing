@@ -1,0 +1,33 @@
+{%- comment -%}
+  Icon Object
+    Object Tool for importing an icon
+
+  Parameters:
+    icon - The icon to use
+    class - Extra (optional) classes you want to add to the icon
+    title - Reader friendly title and alt tag
+    alt - (Optional) override for the alt tag.
+    attributes - (Optional) Attributes to apply to the SVG/Image
+
+  Version:
+    1.0.0 - 2018/11/01
+{%- endcomment -%}
+{%- assign iconAlt = icon -%}
+{%- if title != blank -%}{%- assign iconAlt = title | t -%}{%- endif -%}
+{%- if alt != blank -%}{%- assign iconAlt = alt -%}{%- endif -%}
+
+{%- capture classes -%}
+  o-icon o-icon--{{ icon | handlize }}
+  {%- if class != blank %} {{ class }}{%- endif -%}
+{%- endcapture -%}
+
+{% comment %} Generate an img {% endcomment %}
+{%- capture filename -%}icon-{{ icon | handlize }}.svg{%- endcapture -%}
+<img
+  src="{{ filename | asset_url }}"
+  {%- if title != blank %} title="{{ title | escape }}"{% endif %}
+  {%- if alt != blank %} alt="{{ alt | escape }}"{% endif %}
+  {%- if attributes != blank %} {{ attributes }}{% endif %}
+  class="{{ classes }}"
+  data-icon
+/>

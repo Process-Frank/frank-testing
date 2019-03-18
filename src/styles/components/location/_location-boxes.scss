@@ -1,0 +1,91 @@
+/*
+ *  Location Boxes
+ *    Boxes in a grid format for showing the location of things, generall
+ *    with an associated image
+ *
+ *  Version:
+ *    1.0.0 - 2018/11/16
+ */
+.c-location-boxes {
+  padding: 0 $s-gutter--xsmall;
+
+  &__box {
+    display: flex;
+    align-items: center;
+    padding: $s-gutter--xsmall;
+
+    + #{&} {
+      padding-top: 0;
+    }
+
+    &:nth-child(n+5) {
+      display: none;
+    }
+
+
+    &-image {
+      width: (100% / 3);
+      border-radius: 0.75em;
+      overflow: hidden;
+      display: block;
+
+      &:hover {
+        .c-location-boxes__box-img { transform: scale(1.02); }
+      }
+    }
+    &-img { width: 100%; display: block; transition: all 0.2s $s-animation--ease-out; }
+
+    &-content {
+      padding-left: $s-gutter--xsmall;
+      width: (100% / 3) * 2;
+    }
+
+    &-title {
+      margin-top: 0;
+      margin-bottom: $s-gutter--xsmall;
+    }
+  }
+
+
+  @include t-media-query($s-xsmall-up) {
+    padding: 0 $s-gutter--small;
+
+    &__boxes {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    &__box {
+      width: 50%;
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    padding: 0 $s-gutter--medium;
+
+    &__box {
+      padding: $s-gutter--xsmall;
+      margin-bottom: $s-gutter--xsmall;
+      display: block;
+
+      + #{&} { padding-top: $s-gutter--xsmall*2; }
+
+      &-content {width:100%;}
+      &-image,&-title {
+        width: 100%;
+        margin-bottom: $s-gutter--xsmall*2;
+      }
+    }
+  }
+
+  @include t-media-query($s-medium-up) {
+    padding: 0 $s-gutter--large;
+
+    &__box {
+      width: 25%;
+
+      &:nth-child(n+5) { display: block; }
+    }
+  }
+}

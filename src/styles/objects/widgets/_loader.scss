@@ -1,0 +1,63 @@
+/*
+ *  Loader
+ *    Simple loader styles
+ *
+ *  Dependencies:
+ *    styles/settings/animation.scss
+ *    tools/mixin.animation.scss
+ *    tools/_mixin.transform.scss
+ *    styles/settings/colors.scss
+ *    tools/_mixin.absolute-centering.scss
+ *
+ *  Version:
+ *    1.1.0 - 2018/04/10
+ */
+$o-loader--overlay-color: rgba(255, 255, 255, 0.8);
+$o-loader--color: $s-color--secondary;
+$o-loader--duration: 0.75s;
+$o-loader--z-index: $s-z--loader;
+
+@keyframes o-loader--animation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.o-loader {
+  font-size: 3em;
+  display: inline-block;
+
+  &__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: $o-loader--overlay-color;
+    z-index: $o-loader--z-index;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s $s-animation--ease-out;
+
+    > .o-loader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &.is-visible {
+      display: block;
+      opacity: 1;
+    }
+  }
+
+
+  > svg {
+    animation: o-loader--animation #{$o-loader--duration} #{$s-animation--ease-in-out} infinite;
+    width: 100%;
+  }
+
+  * {
+    stroke: $o-loader--color;
+  }
+}

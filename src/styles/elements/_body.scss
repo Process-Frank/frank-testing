@@ -1,0 +1,19 @@
+/*
+ *  Body Styles
+ *    Applies these styles directly to the body element
+ *
+ *  Version:
+ *    1.0.0 - 2018/10/31
+ */
+body {
+  color: $s-color--default;
+  background: $s-color--background;
+
+  font-family: $s-font--stack-default;
+  font-size: $s-font--size-default;
+  font-weight: $s-font--weight-default;
+  line-height: $s-font--line-default;
+  letter-spacing: $s-font--letter-default;
+
+  min-height: 100vh;
+}

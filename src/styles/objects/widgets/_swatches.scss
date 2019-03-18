@@ -1,0 +1,28 @@
+/*
+ *  Swatches
+ *    Styles for product swatches
+ *
+ *  Version:
+ *    2.0.0 - 2019/01/21
+ */
+.o-swatches {
+
+  &__variant-selector {}
+
+  &__swatch {
+    &-title {
+      display: inline-block;
+      padding-right: 0.5em;
+      font-weight: bold;
+    }
+
+    &-options {
+      display: inline-block;
+    }
+
+    &-color {
+      &-inner {}
+      &-label {}
+    }
+  }
+}

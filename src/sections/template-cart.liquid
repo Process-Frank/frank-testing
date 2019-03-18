@@ -1,0 +1,135 @@
+<section class="c-cart-template" data-cart-template>
+  {%- comment -%} Header {%- endcomment -%}
+  <header role="banner" class="c-section__heading c-cart-template__heading">
+    <h1 class="o-title c-cart-template__title">
+      {{- 'cart.general.title' | t -}}
+    </h1>
+  </header>
+
+  {%- comment -%} Is Cart Empty? {%- endcomment -%}
+  <div class="c-cart-template__body" data-cart-body>
+    {%- if cart.items.size < 1 -%}
+      <h2>{{ 'cart.general.empty' | t }}</h2>
+      <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+    {%- else -%}
+      <form action="/cart" method="post" novalidate class="c-cart-template__products">
+        <div class="c-cart-template__products-scroll">
+          <table class="c-cart-template__products-table" data-cart-template-products>
+            <tbody>
+              {%- for item in cart.items -%}
+                {%- assign url = item.url | within: collections.all -%}
+                <tr
+                  data-cart-template-product data-index="{{ forloop.index }}"
+                  data-item="{{ item.id }}" class="c-cart-template__product"
+                >
+
+                  {%- comment -%} Item Image {%- endcomment -%}
+                  <td class="c-cart-template__product-picture">
+                    <a href="{{ url }}" class="c-cart-template__product-picture-container">
+                      {%- include 'tool.picture' with {
+                        image: item.image,
+                        width: 400,
+                        widths: '100,200'
+                        class: 'c-cart-template__product-picture-image'
+                      } -%}
+                    </a>
+                  </td>
+
+                  {%- comment -%} Item Details {%- endcomment -%}
+                  <td class="c-cart-template__product-details">
+                    <a href="{{ url }}">
+                      <h2 class="o-heading is-size-5 c-cart-template__product-title">
+                        {{- item.product.title | escape -}}
+                      </h2>
+                    </a>
+
+                    {%- if item.product.vendor != blank -%}
+                      <span class="c-cart-template__product-vendor">
+                        {{- item.product.vendor | escape -}}
+                      </span>
+                    {%- endif -%}
+
+                    {%- unless item.product.has_only_default_variant -%}
+                      <p class="o-heading is-size-2 c-cart-template__product-variant">
+                        {{- item.variant.title | escape -}}
+                      </p>
+                    {%- endunless -%}
+                  </td>
+
+                  {%- comment -%} Quantity Selector {%- endcomment -%}
+                  <td class="c-cart-template__product-cart">
+                    {%- assign max = "null" -%}
+                    {%- include 'tool.is-available' with { variant: item.variant } -%}
+                    {%- if isAvailable -%}
+                      {%- assign max = item.variant.inventory_quantity -%}
+                      {%- if max == blank or max <= 0 %}{% assign max = "null" %}{% endif -%}
+                    {%- endif -%}
+
+                    {%- include 'object.quantity-selector' with {
+                      quantity: item.quantity, min: 1, max: max,
+                      name: 'updates[]', class: 'c-cart-template__product-cart-selector'
+                    } -%}
+                  </td>
+
+                  {%- comment -%} Remove {%- endcomment -%}
+                  <td class="c-cart-template__product-remove">
+                    <a
+                      href="/cart/remove?line={{ forloop.index }}&amp;quantity=0"
+                      data-cart-template-remove
+                    >
+                      {{- 'cart.general.remove' | t -}}
+                    </a>
+                  </td>
+
+                  {%- comment -%} Item Pricing {%- endcomment -%}
+                  <td class="c-cart-template__product-pricing o-heading is-size-2">
+                    {%- include 'object.product-pricing' with {
+                      price: item.line_price, compare_price: item.original_line_price,
+                      class: 'c-cart-template__product-pricing-price'
+                    } -%}
+                  </td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+        </div>
+
+        {%- comment -%} Cart Total {%- endcomment -%}
+        <div class="o-heading is-size-2 c-cart-template__subtotal">
+          {{- 'cart.general.subtotal' | t -}}:
+          <span data-currency data-money="{{ cart.total_price }}" data-cart-template-subtotal>
+            {{- cart.total_price | money -}}
+          </span>
+        </div>
+
+        {%- comment -%} Bundl specific, must be logged in {%- endcomment -%}
+        {%- if customer -%}
+          <div class="o-btn-group c-cart-template__buttons">
+            <a href="/collections/all" class="o-btn is-tertiary is-large">
+              {{- 'cart.general.continue_browsing' | t -}}
+            </a>
+
+            <button type="submit" name="update" class="o-btn is-quaternary is-large no-js">
+              {{- 'cart.general.update' | t -}}
+            </button>
+
+            <button
+              type="submit" name="checkout" class="o-btn is-secondary is-large"
+              data-cart-template-checkout
+            >
+              {{- 'cart.general.checkout' | t -}}
+            </button>
+          </div>
+        {%- endif -%}
+      </form>
+    {%- endif -%}
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Cart Template",
+    "class": "c-section c-section__cart-template"
+  }
+{% endschema %}

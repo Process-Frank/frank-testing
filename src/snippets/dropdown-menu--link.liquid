@@ -1,0 +1,28 @@
+{% comment %}
+  Dropdown Menu Link
+    Provides the code for each dropdown menu link item, includes children
+    and submenus
+
+  Params:
+    link - Link to generate for.
+
+  Version:
+    2.0.0 - 2018/11/03
+{% endcomment %}
+{%- include 'tool.does-link-have-submenu' with { link: link } -%}
+
+<li class="c-dropdown-menu__item {% if hasSubmenu %}has-submenu{% endif %} is-level-{{ level }}">
+  <a href="{{ link.url }}" class="c-dropdown-menu__item-link" title="{{ link.title | escape }}">
+    {{ link.title | escape }}
+  </a>
+
+  {%- if hasSubmenu -%}
+    {%- assign submenu = linklists[link.handle] -%}
+    {%- assign nextLevel = level | plus: 1 -%}
+    <ul class="c-dropdown-menu__submenu is-level-{{ nextLevel }}">
+      {%- for sublink in submenu.links -%}
+        {%- include 'dropdown-menu--link' with { link: sublink, level: nextLevel } -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</li>

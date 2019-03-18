@@ -1,0 +1,185 @@
+/*
+ *  Button Styles
+ *    Clicky tappy touchy buttons
+ *
+ *  Version:
+ *    2.0.0 - 2018/11/02
+ */
+
+.o-btn {
+  //Display Related
+  display: inline-block;
+  padding: $s-input--padding;
+  cursor: pointer;
+
+  border-radius: $s-input--radius;
+  text-align: center;
+
+  //Typography Related
+  @extend %s-font--button;
+  background: $s-color--primary;
+  color: $s-color--primary-compliment;
+  border: $s-input--border $s-color--primary;
+
+  /*** Styles ***/
+  //Size Styles
+  &.is-large {
+    padding: $s-input--padding-large;
+  }
+
+  &.is-wide {
+    padding: $s-input--padding-wide;
+  }
+
+  &.is-square {
+    padding: $s-input--padding-square;
+    .o-btn__icon { margin: 0 0.1em; }
+  }
+
+  &.is-large.is-wide {
+    padding: $s-input--padding-large-wide;
+  }
+
+  &.is-large.is-square {
+    padding: $s-input--padding-large-square;
+  }
+
+  //Color Styles
+  &.is-secondary {
+    background: $s-color--secondary;
+    color: $s-color--secondary-compliment;
+    border-color: $s-color--secondary;
+
+    &:hover {
+      border-color: $s-color--secondary-hover;
+      background: $s-color--secondary-hover;
+      color: $s-color--secondary-compliment-hover;
+
+      .o-btn__icon,
+      .o-btn__icon * {
+        fill: $s-color--secondary-compliment-hover;
+      }
+    }
+
+    .o-btn__icon,
+    .o-btn__icon * {
+      fill: $s-color--secondary-compliment;
+    }
+  }
+
+  &.is-tertiary {
+    background: $s-color--tertiary;
+    color: $s-color--tertiary-compliment;
+    border-color: $s-color--secondary;
+
+    .o-btn__icon,
+    .o-btn__icon * {
+      fill: $s-color--tertiary-compliment;
+    }
+
+    &:hover {
+      background: $s-color--tertiary-hover;
+      color: $s-color--tertiary-compliment-hover;
+
+      .o-btn__icon,
+      .o-btn__icon * {
+        fill: $s-color--tertiary-compliment-hover;
+      }
+    }
+  }
+
+  &.is-quaternary {
+    @extend %s-font--button-quaternary;
+    background: $s-color--quaternary;
+    color: $s-color--quaternary-compliment;
+    border-color: $s-color--quaternary;
+
+    &:hover {
+      background: $s-color--quaternary;
+      color: $s-color--quaternary-compliment;
+      border-color: $s-color--quaternary;
+    }
+  }
+
+  /*** States ***/
+  &:hover {
+    text-decoration: none;
+    background: $s-color--primary-hover;
+    color: $s-color--primary-compliment-hover;
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+
+  &.is-disabled,&[disabled] {
+    cursor: not-allowed;
+    background: $s-color--disabled;
+    color: $s-color--disabled-compliment;
+    border-color: $s-color--disabled-border;
+
+    .o-btn__icon,
+    .o-btn__icon * {
+      fill: $s-color--disabled-compliment;
+    }
+
+    &:hover {
+      background: $s-color--disabled;
+      color: $s-color--disabled-compliment;
+      border-color: $s-color--disabled-border;
+
+      .o-btn__icon,
+      .o-btn__icon * {
+        fill: $s-color--disabled-compliment;
+      }
+    }
+  }
+
+
+  /*** Groups ***/
+  &-group {
+    width: 100%;
+
+    > .o-btn {
+      width: 100%;
+      + .o-btn { margin-top: 1em; }
+    }
+  }
+
+
+  /*** Sub Components ***/
+  &__icon {
+    vertical-align: sub;
+    align-items: center;
+    width: 1em;
+    height: 1em;
+    object-fit: contain;
+  }
+
+
+  .o-loader {
+    font-size: 0;
+    opacity: 1;
+    display: block;
+  }
+
+  @include t-media-query($s-small-up) {
+    &-group {
+      display: flex;
+      justify-content: stretch;
+
+      > .o-btn {
+        width: 50%;
+        margin-right: $s-gutter--xsmall/2;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
+
+        & + .o-btn {
+          margin-left: $s-gutter--xsmall/2;
+          margin-right: 0;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}

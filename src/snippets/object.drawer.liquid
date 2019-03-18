@@ -1,0 +1,26 @@
+{% comment %}
+  Drawer Object
+    Simple slide out drawer.
+
+  Params:
+    attributes - Extra data attributes to add to drawer
+    body - Body of the drawer
+
+  Note:
+    You must add data-drawer to the container of the drawer.
+
+  Version:
+    1.0.0 - 2018/11/01
+{% endcomment %}
+<div class="o-drawer {{ class }}" {{ attributes }} data-drawer-drawer>
+  <div class="o-drawer__drawer">
+    {% comment %} Backgorund {% endcomment %}
+    <div class="o-drawer__background" data-drawer-close></div>
+
+    {% comment %} Body {% endcomment %}
+    <div class="o-drawer__body">
+      {{- body -}}
+    </div>
+
+  </div>
+</div>

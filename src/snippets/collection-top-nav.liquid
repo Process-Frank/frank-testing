@@ -1,0 +1,47 @@
+{% comment %}
+  Collection Template Top Nav
+    Contains the top navigation for the collection template
+
+  Version:
+    1.0.0 - 2019/01/18
+{%- endcomment -%}
+<div class="c-collection-top-nav has-js">
+  {%- comment -%} Tag Pills (Desktop Only) {%- endcomment -%}
+  <div class="c-collection-top-nav__pills is-tag" data-faceted-nav-tag-pills>
+  </div>
+
+  {%- comment -%} Type Pills (Mobile Only) {%- endcomment -%}
+  <div class="c-collection-top-nav__pills is-type" data-faceted-nav-type-pills>
+  </div>
+
+  {%- comment -%} More Button {%- endcomment -%}
+  <div class="c-collection-top-nav__options">
+    <div class="c-collection-top-nav__more" data-faceted-nav-more>
+      <button type="button" class="o-btn is-large is-quaternary" data-faceted-nav-more-button>
+        More..
+      </button>
+
+      <div class="c-collection-top-nav__more-menu" data-faceted-nav-more-dropdown>
+      </div>
+    </div>
+
+    {%- comment -%} Sort {%- endcomment -%}
+    <select class="c-collection-top-nav__options-sort" data-collection-template-sort>
+    </select>
+  </div>
+
+  {%- comment -%} Filters (Mobile) {%- endcomment -%}
+  <div class="c-collection-top-nav__filters" data-faceted-nav-filters>
+    <span class="c-collection-top-nav__filters-title" data-faceted-nav-filters-toggle>
+      {{- 'collections.filter.label' | t -}}
+    </span>
+
+    <div class="c-collection-top-nav__filters-wrapper">
+      <select data-collection-template-sort></select>
+
+      {%- comment -%} Tag Filter {%- endcomment -%}
+      <div class="c-collection-top-nav__filters-checkboxes is-tag" data-faceted-nav-filters-tags>
+      </div>
+    </div>
+  </div>
+</div>

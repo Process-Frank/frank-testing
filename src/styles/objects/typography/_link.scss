@@ -1,0 +1,21 @@
+/*
+ *  Link Object
+ *    A basic hyperlink with some unique styling, not as clicky as a button but
+ *    more clickable than a standard anchor tag.
+ *
+ *  Version:
+ *    1.0.0 - 2018/11/08
+ */
+.o-link {
+  color: $s-color--default;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: $s-color--default;
+    text-decoration: none;
+  }
+
+  &.is-block {display: block;}
+  &.is-primary {color: $s-color--primary;}
+}

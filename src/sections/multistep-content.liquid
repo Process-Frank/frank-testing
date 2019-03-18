@@ -1,0 +1,155 @@
+{% comment %}
+  Multistep Content Section
+    Section for multiple steps, multistep if you will.
+
+  Version:
+    1.0.0 - 2018/11/12
+{% endcomment %}
+<section class="c-multistep-content">
+  {%- comment -%} Background Image {%- endcomment -%}
+  {%- include 'tool.mobile-desktop-image' with {
+    desktopImage: section.settings.image,
+    mobileImage: section.settings.image-mobile,
+  } -%}
+  {%- if hasImage -%}
+    {%- include 'tool.picture' with {
+      image: desktop,
+      class: 'c-multistep-content__background is-desktop'
+    } -%}
+
+    {%- include 'tool.picture' with {
+      image: mobile,
+      class: 'c-multistep-content__background is-mobile'
+    } -%}
+  {%- endif -%}
+
+  {%- comment -%} Section Heading {%- endcomment -%}
+  <heading role="banner" class="c-section__heading c-multistep-content__heading">
+    <h2 class="o-heading is-size-1 c-multistep-content__title">
+      {{- section.settings.s-title | escape -}}
+    </h2>
+  </heading>
+
+  {%- comment -%} Section Video {%- endcomment -%}
+  {%- if section.settings.video != blank -%}
+    <div class="c-multistep-content__video">
+      {%- include 'object.video' with {
+        video: section.settings.video,
+      } -%}
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Step Blocks {%- endcomment -%}
+  <div class="c-multistep-content__steps">
+    {%- for block in section.blocks -%}
+      <div class="c-multistep-content__step" {{ block.shopify_attributes }}>
+        <div class="c-multistep-content__step-icon">
+          {{- forloop.index | escape -}}
+        </div>
+
+        <h3 class="o-heading is-size-2 c-multistep-content__step-title">
+          {{- block.settings.title | escape -}}
+        </h3>
+
+        <p>
+          {{- block.settings.text | escape | newline_to_br -}}
+        </p>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- comment -%} Footer {%- endcomment -%}
+  {%- if section.settings.label != blank -%}
+    <div class="c-section__footer c-multistep-content__footer">
+      <a
+        href="{{ section.setings.link | default: '#' }}"
+        class="o-btn is-secondary is-wide c-multistep-content__btn"
+      >
+        {{- section.settings.label | escape -}}
+      </a>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+  {
+    "name": "Multistep Content",
+    "class": "c-section c-section__multistep-content",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Video Settings"
+      },
+      {
+        "type": "video_url",
+        "id": "video",
+        "label": "Video URL",
+        "accept": ["youtube", "vimeo"],
+        "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Content Settings"
+      },
+      {
+        "type": "text",
+        "id": "s-title",
+        "label": "Title",
+        "default": "How it works"
+      },
+      {
+        "type": "text",
+        "id": "label",
+        "label": "Button Label",
+        "default": "Build your store"
+      },
+      {
+        "type": "url",
+        "id": "link",
+        "label": "Button Link"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Background Settings"
+      },
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Desktop Background"
+      },
+      {
+        "type": "image_picker",
+        "id": "image-mobile",
+        "label": "Mobile Background"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Step",
+        "type": "step",
+        "settings": [
+          {
+            "id": "title",
+            "label": "Title",
+            "type": "text"
+          },
+          {
+            "id": "text",
+            "label": "Text",
+            "type": "textarea"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Multistep Content",
+        "category": "Content"
+      }
+    ]
+  }
+{% endschema %}

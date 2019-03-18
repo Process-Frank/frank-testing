@@ -1,0 +1,54 @@
+/*
+ *  Article Template
+ *    Styles for the generic article template
+ *
+ *  Version:
+ *    1.0.0 - 2019/01/31
+ */
+.c-article-template {
+  &__title {
+    color: $s-color--primary;
+  }
+
+  &__body {
+    padding: 0 $s-gutter--xsmall $s-gutter--xsmall;
+
+    &-inner {
+      margin: 0 auto;
+      max-width: $s-screen-small;
+    }
+  }
+
+
+  &__description {
+    max-width: $s-screen-medium;
+    margin: 0 auto;
+    margin-top: $s-gutter--medium;
+
+    img { width: 100%; max-width: $s-screen-small; display: block; margin: 0 auto; }
+  }
+
+  &__author {
+    color: $s-color--quaternary-muted;
+  }
+
+  &__picture, img {
+    max-width: $s-screen-small;
+    margin: 0 auto;
+    &-image { width: 100%; display: block; }
+  }
+
+  @include t-media-query($s-xsmall-up) {
+    &__body { padding: 0 $s-gutter--small $s-gutter--small; }
+  }
+
+  @include t-media-query($s-small-up) {
+    &__body { padding: 0 $s-gutter--medium $s-gutter--small; }
+    &__description { margin-top: $s-gutter--medium; }
+  }
+
+  @include t-media-query($s-medium-up) {
+    &__body { padding: 0 $s-gutter--large $s-gutter--large; }
+    &__description { margin-top: $s-gutter--large; }
+  }
+}

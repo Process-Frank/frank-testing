@@ -1,5 +1,13 @@
-<h1>{{ page.title }}</h1>
+<div class="c-page-template">
+  <header role="banner" class="c-section__heading">
+    <h1 class="o-title c-page-template__title">
+      {{- page.title | escape -}}
+    </h1>
+  </header>
 
-<div class="rte">
-  {{ page.content }}
+  <div class="c-page-template__body">
+    <div class="c-page-template__body-inner">
+      {{- page.content -}}
+    </div>
+  </div>
 </div>

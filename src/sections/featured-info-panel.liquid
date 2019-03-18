@@ -1,0 +1,153 @@
+{% comment %}
+  Featured Information Panel
+    Section that features some information in a panel while allowing an image to
+    be displayed on the left that can be used to help feature the information
+    panel better.
+
+  Version:
+    1.0.0 - 2018/11/27
+{% endcomment %}
+
+{%- include 'tool.mobile-desktop-image' with {
+  desktopImage: section.settings.image,
+  mobileImage: section.settings.image-mobile
+} -%}
+
+<section class="c-featured-info-panel">
+  {% comment %} Banner Image {% endcomment %}
+  <div class="c-featured-info-panel__banner">
+    {%- if hasImage -%}
+      {%- include 'tool.picture' with {
+        image: mobile,
+        class: 'c-featured-info-panel__banner-image is-mobile'
+      } -%}
+
+      {%- include 'tool.picture' with {
+        image: desktop,
+        class: 'c-featured-info-panel__banner-image is-desktop'
+      } -%}
+    {%- endif -%}
+  </div>
+
+  {% comment %} Content Image {% endcomment %}
+  <div class="c-featured-info-panel__picture">
+    {%- include 'tool.picture' with {
+      image: section.settings.small-image,
+      class: 'c-featured-info-panel__picture-image'
+    } -%}
+  </div>
+
+
+  {% comment %} Content {% endcomment %}
+  <div class="c-featured-info-panel__content">
+
+    {% comment %} Title {% endcomment %}
+    {%- if section.settings.s-title != blank -%}
+      <header role="banner" class="c-featured-info-panel__heading">
+        <h2 class="o-heading is-size-1 c-featured-info-panel__title">
+          {{- section.settings.s-title | escape -}}
+        </h2>
+      </header>
+    {%- endif -%}
+
+
+    {% comment %} Text {% endcomment %}
+    {%- if section.settings.text != blank -%}
+      <p class="c-featured-info-panel__text">
+        {{- section.settings.text | escape | newline_to_br -}}
+      </p>
+    {%- endif -%}
+
+    {% comment %} Footer {% endcomment %}
+    <footer class="c-featured-info-panel__footer">
+      <div class="o-btn-group">
+        {%- if section.settings.left-label != blank -%}
+          <a href="{{ section.settings.left-link | default:'#' }}'" class="o-btn is-large is-tertiary">
+            {{ section.settings.left-label | escape }}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.right-label != blank -%}
+          <a href="{{ section.settings.right-link | default: '#' }}" class="o-btn is-large is-secondary">
+            {{ section.settings.right-label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    </footer>
+
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Featured Info Panel",
+    "class": "c-section is-alternate c-section__featured-info-panel",
+    "settings": [
+      {
+        "id": "image",
+        "label": "Banner Image",
+        "type": "image_picker"
+      },
+      {
+        "id": "image-mobile",
+        "label": "Banner Image Mobile Override",
+        "type": "image_picker"
+      },
+      {
+        "id": "small-image",
+        "label": "Content Image",
+        "type": "image_picker"
+      },
+
+      {
+        "type": "header",
+        "content": "Content Settings"
+      },
+      {
+        "type": "text",
+        "id": "s-title",
+        "label": "Title",
+        "default": "Lorem ipsum"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+
+      {
+        "type": "header",
+        "content": "Button Settings"
+      },
+      {
+        "type": "text",
+        "id": "left-label",
+        "label": "Left Button Label",
+        "default": "Read More"
+      },
+      {
+        "type": "url",
+        "id": "left-link",
+        "label": "Left Button Link"
+      },
+      {
+        "type": "text",
+        "id": "right-label",
+        "label": "Right Button Label",
+        "default": "Build your store"
+      },
+      {
+        "type": "url",
+        "id": "right-link",
+        "label": "Right Button Link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Info Panel",
+        "category": "Content"
+      }
+    ]
+  }
+{% endschema %}

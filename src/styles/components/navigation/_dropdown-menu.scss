@@ -1,0 +1,104 @@
+/*
+ *  Dropdown Menu
+ *    Styles for the dropdown menu
+ *
+ *  Version:
+ *    2.0.0 - 2018/11/03
+ */
+.c-dropdown-menu {
+  &__submenu,
+  &__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    display: block;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    position: relative;
+
+    &-link {
+      display: block;
+      padding: 1em;
+      white-space: nowrap;
+      position: relative;
+
+      text-transform: uppercase;
+
+      transition: all 0.2s $s-animation--ease-out;
+      background: $s-color--primary-compliment;
+      color: $s-color--primary;
+      font-size: 0.9em;
+
+      /*
+      OLD Hover state
+      &::after {
+        content: "";
+        display: block;
+        width: 70%;
+        height: 2px;
+        background: $s-color--primary;
+        position: absolute;
+        top: 80%;
+        left: 15%;
+        opacity: 0;
+        transition: all 0.2s $s-animation--ease-out;
+
+        .c-dropdown-menu__item.is-level-0:hover > & {
+          //opacity: 1;
+        }
+      }*/
+
+
+      &:hover { text-decoration: none; }
+
+      .c-dropdown-menu__item.is-level-0:hover > & {
+        color: $s-color--secondary-hover;
+      }
+
+      .c-dropdown-menu__item.is-level-1:hover > &,
+      .c-dropdown-menu__item.is-level-2:hover > & {
+        background: $s-color--primary-hover;
+        color: $s-color--primary-compliment-hover;
+      }
+    }
+
+  }
+
+  &__menu {
+    display: flex;
+    padding: 0 1em;
+  }
+
+  &__submenu {
+    display: none;
+    position: absolute;
+    z-index: $s-z--dropdown;
+
+    .c-dropdown-menu__item:hover > & {
+      display: block;
+    }
+
+    &.is-level-1 {
+      left: 0;
+      bottom: 0;
+      transform: translateY(100%);
+    }
+
+    &.is-level-2 {
+      top: 0;
+      right: 0;
+      transform: translateX(100%);
+    }
+  }
+
+  @include t-media-query($s-large-up) {
+    &__item-link {
+      padding: 1em 1.5em;
+      font-size: 1em;
+    }
+  }
+}

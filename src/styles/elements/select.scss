@@ -1,0 +1,36 @@
+/*
+ *  Select Styles
+ *    Base styles for select elements.
+ *
+ *  Version:
+ *    1.0.0 - 2019/01/18
+ */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  &::-ms-expand {display: none;}
+
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+
+  border: none;
+  margin: 0;
+  background: none;
+
+  display: inline-block;
+  background-image: url("./../assets/svgs/icon-chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: 90% center;
+  background-size: auto 45%;
+  padding: 0.5em;
+  padding-right: 2.5em;
+
+  /*position: relative;
+  background-image: url("icon-chevron-down.svg");*/
+
+  &:focus {
+    outline: 0;
+  }
+}

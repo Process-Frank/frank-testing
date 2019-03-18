@@ -1,0 +1,31 @@
+{%- comment -%}
+  JSON Vendors
+    Vendors for Bundlfresh web build JSON data generator.
+
+  Version:
+    1.0.0 - 2019/02/01
+{%- endcomment -%}
+
+{%- assign menu = linklists['vendors'] -%}
+
+{
+  "vendors": {
+    {%- for link in menu.links -%}
+
+      {%- assign submenu = linklists[link.handle] -%}
+      {{ link.title | json }}: [
+        {%- for sublink in submenu.links -%}
+          {%- assign collection = collections[sublink.handle] -%}
+          {
+            "title": {{ sublink.title | json }},
+            "url": {{ collection.url | json }},
+            "location": {{ collection.metafields.vendor.location | default: '' | json }},
+            "image": {{ collection.image | json }}
+          }
+          ,
+        {%- endfor -%}
+      ]
+      {%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  }
+}

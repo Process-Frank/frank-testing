@@ -1,0 +1,111 @@
+{%- comment -%}
+  Product Thumbnail Collection
+    Product Thumbnail for Collection pages
+
+  Version:
+    1.0.0 - 2019/01/19
+{%- endcomment -%}
+
+{%- comment -%} Select variant {%- endcomment -%}
+{%- assign variant = product.selected_or_first_available_variant -%}
+
+{%- capture url -%}
+  {{- product.url | within: collection -}}
+{%- endcapture -%}
+
+{%- assign inCart = 0 -%}
+{%- for item in cart.items -%}
+  {%- if item.product_id != product.id %}{% continue %}{% endif -%}
+  {%- assign inCart = inCart | plus: item.quantity -%}
+{%- endfor -%}
+
+<div
+  class="o-product-thumbnail-collection {% if inCart > 0 %}is-in-cart{% endif %}"
+  data-product-thumbnail data-product-handle="{{ product.handle }}"
+  data-product-thumbnail-collection
+  data-product-id="{{ product.id }}" data-variant-id="{{ variant.id }}"
+  itemprop="itemListElement" itemscope itemtype="http://schema.org/Product"
+>
+  <div class="o-product-thumbnail-collection__container">
+    {%- comment -%} Product Meta {%- endcomment -%}
+    {%- include 'meta.product-thumbnail' -%}
+
+    {%- include 'object.loader' with { container: true, class: 'o-product-thumbnail-collection__loader' } -%}
+
+    <a href="{{ url }}" class="o-product-thumbnail-collection__picture">
+      {%- include 'tool.picture' with {
+        image: product.featured_image,
+        class: 'o-product-thumbnail-collection__picture-image',
+        attributes: 'itemprop="image"'
+      } -%}
+
+      <div
+        data-product-thumbnail-quantity
+        class="o-product-thumbnail-collection__picture-quantity {% if inCart > 0 %}is-visible{% endif %}"
+        title="You have {{ inCart | escape }} in your cart."
+      >
+        {{- inCart | escape -}}
+      </div>
+    </a>
+
+    <div  class="o-product-thumbnail-collection__details">
+      <h3 itemprop="name" class="o-product-thumbnail-collection__title">
+        <a href="{{ url }}">{{- product.title | escape  -}}</a>
+      </h3>
+
+      {%- if product.vendor != blank -%}
+        <span itemprop="brand" class="o-product-thumbnail-collection__vendor">
+          {{- product.vendor | escape -}}
+        </span>
+      {%- endif -%}
+    </div>
+
+
+    <div class="o-product-thumbnail-collection__quantity">
+      {%- if product.has_only_default_variant -%}
+        <span class="o-product-thumbnail-collection__quantity-title">
+          {%- assign vt = '1' -%}
+          {%- if variant.title != 'Default Title' -%}
+            {%- assign vt = variant.title -%}
+          {%- endif -%}
+          {{- vt | escape }} /
+          <span data-currency data-money="{{variant.price }}">
+            {{- variant.price | money -}}
+          </span>
+        </span>
+
+        <div class="o-product-thumbnail-collection__quantity-selector">
+          {%- assign max = "null" -%}
+          {%- include 'tool.is-available' with { variant: item.variant } -%}
+          {%- if isAvailable -%}
+            {%- assign max = variant.inventory_quantity -%}
+            {%- if max == blank or max <= 0 %}{% assign max = "null" %}{% endif -%}
+          {%- endif -%}
+          {%- include 'object.quantity-selector' with {
+            isSmall: true, min: 0, max: max, quantity: inCart,
+            stylePlus: 'secondary'
+          } -%}
+        </div>
+
+      {%- else -%}
+
+        <div class="o-product-thumbnail-collection__selector">
+          <div class="o-product-thumbnail-collection__selector-select o-dropdown is-upward" data-dropdown>
+            <select data-dropdown-select>
+              {%- for v in product.variants -%}
+                <option value="{{ v.id }}" {% if v.id == variant.id %}selected{% endif %}>
+                  {{- v.title | escape }} / {{ variant.price | money -}}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+
+          <button type="button" class="o-btn is-secondary is-square" data-add-selected>
+            {%- include 'object.icon' with { icon: 'plus', class: 'o-btn__icon' } -%}
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</div>

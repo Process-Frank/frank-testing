@@ -1,0 +1,179 @@
+{% comment %}
+  Address Form
+    Reusable Address Edit/Insertion form
+
+  Dependencies:
+    templates/customer/addresses.liquid
+
+  Settings:
+    address (Optional) - Address to edit, if none is supplied this will be assumed to be a create address form.
+
+  Version:
+    1.0.0 - 2018/02/21
+{% endcomment %}
+{%-assign isEdit = false-%}
+{%-if address-%}
+  {%-assign isEdit = true-%}
+{%-endif-%}
+
+<h4>
+  {%-if isEdit-%}
+    {{ 'customer.addresses.edit_address' | t }}
+  {%-else-%}
+    {{ 'customer.addresses.add_new' | t }}
+  {%-endif-%}
+</h4>
+
+{% comment %} Standard Fields (Text box with no special rules) {% endcomment %}
+<div class="o-form">
+  {%- assign standardFields = 'first_name,last_name,company,address1,address2,city' -%}
+  {%- assign stdSplit = standardFields | split: ',' -%}
+  {%- for f in stdSplit -%}
+    {%- assign isStart = false -%}
+    {%- assign isEnd = false -%}
+    {%- assign even = forloop.index0 | modulo: 2 -%}
+    {%- if even == 0 -%}
+      {%- assign isStart = true -%}
+    {%- endif -%}
+
+    {% if even == 1 or forloop.last -%}
+      {%- assign isEnd = true -%}
+    {%- endif -%}
+
+    {%- if isStart -%}
+      <div class="o-form__form-group">
+    {%- endif -%}
+      <div class="o-form__input-group is-side">
+        <label for="address[{{ field_name }}]" class="o-form__label">
+          {{ 'customer.addresses.' | append: f | t }}
+        </label>
+
+        <input
+          type="text" name="address[{{ f }}]"
+          placeholder="{{ 'customer.addresses.' | append: f | t }}"
+          class="o-input is-large {% if form.errors contains f %}has-error{%endif%}"
+          {% if f != 'address2' and f != 'company' %}required{% endif %}
+          autocapitalize="words" spellcheck="false"
+          value="
+            {%-if form[f]-%}
+              {{ form[f] }}
+            {%-elsif address[f]-%}
+              {{ address[f] }}
+            {%-endif-%}
+          "
+        />
+      </div>
+    {%- if isEnd -%}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+
+  {% comment %} Country {% endcomment %}
+  <div class="o-form__input-group">
+    <label for="address[country]" class="o-form__label">
+      {{ 'customer.addresses.country' | t }}
+    </label>
+
+    {%- assign value = '' -%}
+    {%- if form['country'] != blank -%}
+      {%- assign value = form['country'] -%}
+    {%- elsif address['country'] != blank -%}
+      {%- assign value = address['country'] -%}
+    {%- endif -%}
+
+    <select
+      name="address[country]" required value="{{ value }}"
+      class="o-input is-large {% if form.errors contains 'country' %}has-error{% endif %}"
+      data-form-id="{{ form.id }}" data-default="{{ value | escape }}"
+      data-address-form-country
+    >
+      {{ country_option_tags }}
+    </select>
+  </div>
+
+  {% comment %} Province / State {% endcomment %}
+  {%-assign field_name = 'province' -%}
+  <div class="o-form__input-group ">
+    <label for="address[province]" class="o-form__label">
+      {{ 'customer.addresses.province' | t }}
+    </label>
+
+    {%- assign value = '' -%}
+    {%- if form['province'] != blank -%}
+      {%- assign value = form['province'] -%}
+    {%- elsif address['province'] != blank -%}
+      {%- assign value = address['province'] -%}
+    {%- endif -%}
+
+    <select name="address[province]" class="o-input is-large" data-address-form-province data-value="{{ value | escape }}">
+    </select>
+  </div>
+
+
+  {% comment %} Zip {% endcomment %}
+  {%-assign field_name = 'zip' -%}
+  <div class="o-form__input-group">
+    <label for="address[zip]" class="o-form__label">
+      {{ 'customer.addresses.zip' | t }}
+    </label>
+
+    <input
+      type="text" name="address['zip']"
+      placeholder="{{ 'customer.addresses.zip' | t }}"
+      class="o-input is-large {%if form.errors contains 'zip' %}has-error{%endif%}"
+      required autocapitalize="characters" spellcheck="false"
+      value="
+        {%-if form['zip'] != blank -%}
+          {{ form['zip'] != blank }}
+        {%-elsif address['zip'] != blank -%}
+          {{address['zip']}}
+        {%-endif-%}
+      "
+    />
+  </div>
+
+
+  {% comment %} Phone {% endcomment %}
+  <div class="o-form__input-group">
+    <label for="address[phone]" class="o-form__label">
+      {{ 'customer.addresses.phone' | t }}
+    </label>
+
+    <input
+      type="text" name="address[phone]"
+      placeholder="{{ 'customer.addresses.phone' | t }}"
+      class="o-input is-large {%if form.errors contains 'phone' %}has-error{%endif%}"
+      value="
+        {%-if form['phone']-%}
+          {{ form['phone'] }}
+        {%-elsif address['phone']-%}
+          {{ address['phone'] }}
+        {%-endif-%}
+      "
+    />
+  </div>
+
+
+  <div class="o-form__input-group">
+    {{ form.set_as_default_checkbox }}
+
+    <label for="address_default_address_{{ form.id }}">
+      {{ 'customer.addresses.set_default' | t }}
+    </label>
+  </div>
+
+  <div class="o-btn-group">
+    <button type="button" class="o-btn is-large is-quaternary" data-address-create-hide data-address-edit-hide>
+      {{ 'customer.addresses.cancel' | t }}
+    </button>
+
+    <button type="submit" class="o-btn is-large is-secondary">
+      {%- if isEdit -%}
+        {{ 'customer.addresses.update' | t }}
+      {%- else -%}
+        {{ 'customer.addresses.add' | t }}
+      {%- endif -%}
+    </button>
+  </div>
+</div>

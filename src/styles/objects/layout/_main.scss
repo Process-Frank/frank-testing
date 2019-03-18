@@ -1,0 +1,15 @@
+/*
+ *  Main
+ *    Wrapper for all content within the page itself.
+ *
+ *  Version:
+ *    1.0.0 - 2018/10/20
+ */
+.o-main {
+
+  &__wrapper {
+    position: relative;
+    margin: 0 auto;
+    max-width: $s-screen-xlarge;
+  }
+}

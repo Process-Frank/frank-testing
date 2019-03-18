@@ -1,0 +1,40 @@
+{%- assign collection = collections[section.settings.s-collection] -%}
+
+<section class="c-cart-featured-collection" data-cart-featured-collection>
+  {%- comment -%} Title {%- endcomment -%}
+  {%- if section.settings.s-title != blank -%}
+    <header role="banner" class="c-section__heading c-cart-featured-collection__heading">
+      <h2 class="o-heading is-size-1">
+        {{- section.settings.s-title | escape -}}
+      </h2>
+    </header>
+  {%- endif -%}
+
+  {%- comment -%} Products & Carousel {%- endcomment -%}
+  <div class="c-cart-featured-collection__products" data-cart-featured-collection-carousel>
+    {%- for product in collection.products limit: 12 -%}
+      {%- include 'object.product-thumbnail-collection' -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Cart Featured Collection",
+    "class": "c-section c-section__cart-featured-collection",
+    "settings": [
+      {
+        "id": "s-title",
+        "label": "Title",
+        "default": "Popular",
+        "type": "text"
+      },
+      {
+        "id": "s-collection",
+        "type": "collection",
+        "label": "Featured Collection"
+      }
+    ]
+  }
+{% endschema %}

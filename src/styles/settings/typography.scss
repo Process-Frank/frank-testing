@@ -1,0 +1,32 @@
+/*
+ *  Typography Settings
+ *    Contains fonts, and font definitions for use throughout the styles.
+ *
+ *  Version:
+ *    2.0.0 - 2018/10/31
+ */
+/*** Font Stacks ***/
+$s-font--stack-default: brandon-grotesque, sans-serif;
+$s-font--stack-secondary:  ccsignlanguage, sans-serif;
+
+/*** Font Sizes ***/
+$s-font--size-default: 16px;
+
+/*** Font Weights ***/
+$s-font--weight-default: 400;
+
+/*** Line Heights ***/
+$s-font--line-default: 1.5;
+
+/*** Letter Spacing ***/
+$s-font--letter-default: 0.020em;
+
+/*** Font Sets ***/
+%s-font--button {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+%s-font--button-quaternary {
+  text-transform: none;
+}

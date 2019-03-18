@@ -1,0 +1,138 @@
+{% comment %}
+  FAQ Accordion
+    Accordion of FAQ Items
+
+  Version:
+    1.0.0 - 2018/12/03
+{% endcomment %}
+<section class="c-faq-accordion" data-faq-accordion>
+  {%- comment -%} Background Image {%- endcomment -%}
+  {%- include 'tool.picture' with {
+    image: section.settings.image,
+    class: 'c-faq-accordion__background'
+  } -%}
+
+  {%- comment -%} Title {%- endcomment -%}
+  <header role="banner" class="c-section__heading c-faq-accordion__header">
+    {%- if section.settings.s-title != blank -%}
+      <h2 class="o-heading is-size-4">{{- section.settings.s-title | escape -}}</h2>
+    {%- endif -%}
+  </header>
+
+  {%- comment -%} Accordion {%- endcomment -%}
+  <div class="o-accordion c-faq-accordion__accordion" data-faq-accordion-accordion data-multiple="{{ section.settings.multiple }}">
+    <div class="c-faq-accordion__accordion-fix"></div>
+
+    {%- for block in section.blocks -%}
+      <div class="o-accordion__slide c-faq-accordion__slide" data-accordion-slide>
+        <div class="o-accordion__slide-title" data-accordion-title>
+          <p>{{ block.settings.title | escape }}</p>
+          {%- include 'object.icon' with {
+            icon: 'plus', class: 'o-accordion__slide-icon is-open'
+          } -%}
+          {%- include 'object.icon' with {
+            icon: 'minus', class: 'o-accordion__slide-icon is-close'
+          } -%}
+        </div>
+
+        <div class="o-accordion__slide-body" data-accordion-body>
+          <p>{{ block.settings.text | escape | newline_to_br }}</p>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- comment -%} Footer {%- endcomment -%}
+  {%- if section.settings.footer != blank or section.settings.link-label != blank -%}
+    <footer role="contentinfo" class="c-section__footer c-faq-accordion__footer">
+      {%- if section.settings.footer != blank -%}
+        <div>{{- section.settings.footer | escape }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.link-label != blank -%}
+        <a href="{{ section.settings.footer-link | default: '#' }}" class="o-link is-primary">
+          {{- section.settings.link-label | escape -}}
+        </a>
+      {%- endif -%}
+    </footer>
+  {%- endif -%}
+</section>
+
+{% schema %}
+  {
+    "name": "FAQ Accordion",
+    "class": "c-section c-section__faq-accordion",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Background Image"
+      },
+
+      {
+        "type": "header",
+        "content": "Accordion Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "multiple",
+        "default": false,
+        "label": "Allow multiple slides to be open"
+      },
+
+      {
+        "type": "header",
+        "content": "Content Settings"
+      },
+      {
+        "type": "text",
+        "id": "s-title",
+        "label": "Title",
+        "default": "Frequently Asked Questions"
+      },
+      {
+        "type": "text",
+        "label": "Footer Text",
+        "id": "footer",
+        "default": "Any other questions and other lorem ipsum?"
+      },
+      {
+        "type": "text",
+        "label": "Footer Link Label",
+        "id": "link-label",
+        "default": "Talk to us on our live chat."
+      },
+      {
+        "type": "url",
+        "label": "Footer Link",
+        "id": "footer-link"
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Slide",
+        "type": "slide",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Lorem Ipsum"
+          },
+          {
+            "type": "textarea",
+            "id": "text",
+            "label": "Text",
+            "default": "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQ Accordion",
+        "category": "Review"
+      }
+    ]
+  }
+{% endschema %}

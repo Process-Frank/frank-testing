@@ -1,0 +1,17 @@
+/*
+ *  JavaScript
+ *    Provides styles for switching certain things when JS is in different states
+ *
+ *  Version:
+ *    2.0.0 - 2018/01/08
+ */
+//Definition for when JS is NOT available
+.js-unavailable {
+  //Hide anything with .has-js when there is no JS available
+  .has-js { display: none !important; }
+}
+
+//Definition for when JS is available
+.js-available {
+  .no-js { display: none !important; }
+}

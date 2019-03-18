@@ -1,3 +1,9 @@
+{% comment %}
+  Process Creative Slate 1x
+
+  Version:
+    1.0.0 - 2019/03/01
+{% endcomment %}
 <!DOCTYPE HTML>
 <!--[if IE 9]> <html cclass="is-ie9 js-unavailable supports-no-cookies" lang="{{ shop.locale }}"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html class="js-unavailable supports-no-cookies" lang="{{ shop.locale }}"> <!--<![endif]-->
@@ -23,7 +29,16 @@
       {%- comment -%} Main (Template) Content {%- endcomment -%}
       <main role="main" class="o-main">
         <div class="o-main__wrapper" id="MainContent">
+          {%- comment -%} Static (Site Wide) Sections {%- endcomment -%}
+          {%- section 'topbar' -%}
+          {%- section 'header' -%}
+
           {{ content_for_layout }}
+
+          {%- if template.name == 'index' -%}
+            {%- section 'newsletter-signup' -%}
+          {%- endif -%}
+          {%- section 'footer' -%}
         </div>
       </main>
     </div>

@@ -1,0 +1,17 @@
+/*
+ *  Debug Styles
+ *    Styles for various debugging reasons, should be excluded from the final
+ *    site build.
+ *
+ *  Version:
+ *    1.0.0 - 2018/10/31
+ */
+
+//Hide the shopify preview bar
+#__bs_notify__, .shopify-preview-bar, #preview-bar-iframe {
+  height: 60px !important;
+}
+
+html {
+  padding-bottom: 0 !important;
+}

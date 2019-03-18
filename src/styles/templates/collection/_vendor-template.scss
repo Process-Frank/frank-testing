@@ -1,0 +1,226 @@
+.c-vendor-template {
+  //Hide title, for SEO only
+  &__title { display: none; }
+
+  //Header, Location, Logo and banner image
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    background: $s-color--background-alternate;
+
+    &-details {
+      width: 100%;
+      order: 2;
+      padding: $s-gutter--xsmall;
+      margin-top: -$s-input--radius*2;
+      border-top-left-radius: $s-input--radius;
+      border-top-right-radius: $s-input--radius;
+      overflow: hidden;
+
+      .o-location { width: 100%; }
+    }
+
+    &-picture {
+      width: 100%;
+      order: 1;
+
+      &-image {
+        width: 100%;
+        @supports(object-fit: cover) {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &-description {
+      width: 100%;
+      &-button { margin-top: 1em; }
+    }
+  }
+
+  //Logo (part of header)
+  &__logo {
+    width: 100%;
+    background: $s-color--background;
+    &-image { width: 100%; }
+  }
+
+
+
+  //Content Sections
+  &__section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding: $s-gutter--xsmall;
+
+    &-picture {
+      order: 1;
+      width: 100%;
+
+      &-image {
+        width: 100%;
+        @supports(object-fit: cover) { height: 100%; object-fit: cover; }
+      }
+    }
+
+    &-details {
+      order: 2;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding-top: $s-gutter--small;
+
+      &-inner {
+        width: 100%;
+      }
+
+      a,span {
+        display: block;
+        color: $s-color--default;
+      }
+
+      &-description { margin-top: 4em; }
+    }
+
+  }
+
+  &__carousel {
+    border: 2px solid $s-color--border-default;
+    border-left: none;
+    border-right: none;
+  }
+
+  &__instagram {
+    margin: 2em 0;
+  }
+
+
+
+  ///
+  /// Media Queries
+  ///
+  @include t-media-query($s-xsmall-up) {
+    //Remove radius on xsmall+ screens
+    &__header-details { margin-top: 0; border-radius: 0;}
+
+    //Increase content section paddings
+    &__section {
+      padding: $s-gutter--small;
+    }
+  }
+
+
+
+
+  @include t-media-query($s-small-up) {
+    //Header Section, stop stacking and rearrange elements
+    &__header {
+      &-details {
+        padding: 0;
+        width: 50%;
+        order: 1;
+        padding-top: $s-gutter--small;
+        padding-right: $s-gutter--small;
+      }
+
+      &-picture {
+        width: 50%;
+        order: 2;
+      }
+
+      &-description {
+        padding: $s-gutter--xsmall $s-gutter--small;
+        padding-right: 0;
+      }
+    }
+
+    &__logo {
+      border-top-right-radius: $s-input--radius;
+      border-bottom-right-radius: $s-input--radius;
+      padding: $s-gutter--small;
+    }
+
+    //Content Sections, stop stacking and adjust paddings
+    &__section {
+      &-picture {
+        order: 3;
+        width: 50%;
+        border-top-left-radius: $s-input--radius;
+        border-bottom-left-radius: $s-input--radius;
+        overflow: hidden;
+
+        &.is-left {
+          order: 1;
+          border-radius: 0;
+          border-top-right-radius: $s-input--radius;
+          border-bottom-right-radius: $s-input--radius;
+        }
+      }
+
+      &-details {
+        padding: $s-gutter--small;
+        padding-left: 0;
+        width: 50%;
+
+        &.is-right { padding-left: $s-gutter--small; padding-right: 0; }
+      }
+    }
+  }
+
+
+
+  @include t-media-query($s-medium-up) {
+    //Header, increase size of image and paddings
+    &__header {
+      &-details {
+        width: 40%;
+        padding-top: $s-gutter--medium;
+        padding-right: $s-gutter--medium;
+      }
+
+      &-picture { width: 60%; }
+
+      &-description {
+        padding: $s-gutter--small $s-gutter--medium;
+        padding-right: 0;
+      }
+    }
+    &__logo { padding: $s-gutter--small $s-gutter--medium; }
+
+    //Content Sections, increase sizes and paddings
+    &__section {
+      padding: $s-gutter--medium;
+
+      &-picture {
+        width: 55%;
+      }
+
+      &-details {
+        padding: $s-gutter--medium;
+        padding-left: 0;
+        width: 45%;
+
+        &.is-right { padding-left: $s-gutter--medium; padding-right: 0; }
+      }
+    }
+  }
+
+
+
+  @include t-media-query($s-large-up) {
+    //Content sections, increase paddings
+    &__section {
+      padding: $s-gutter--large;
+      &-details {
+        padding: $s-gutter--medium $s-gutter--large;
+        padding-left: 0;
+        &.is-right { padding-left: $s-gutter--large; padding-right: 0; }
+      }
+    }
+  }
+
+  //End of styles for template
+}

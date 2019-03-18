@@ -1,22 +1,14 @@
 {
   "general": {
     "close": "Close",
-
-    "accessibility": {
-      "skip_to_content": "Skip to content."
-    },
-
     "meta": {
       "tags": "Tagged \"{{ tags }}\"",
       "page": "Page {{ page }}"
     },
     "404": {
       "title": "404 Page Not Found",
-      "subtext_html": "The page you requested does not exist. Click <a href=\"/collections/all\">here</a> to continue shopping."
+      "subtext_html": "The page you requested does not exist. Click <a href=\"\/collections\/all\">here<\/a> to continue shopping."
     },
-
-
-
     "password_page": {
       "opening_soon": "Opening Soon",
       "spread_the_word": "Spread the word",
@@ -29,23 +21,14 @@
       "signup_form_email_placeholder": "Your email",
       "signup_form_submit": "Submit",
       "signup_form_success": "We will send you an email right before we open!",
-      "admin_link_html": "Are you the store owner? <a href=\"/admin\">Log in here</a>",
+      "admin_link_html": "Are you the store owner? <a href=\"\/admin\">Log in here<\/a>",
       "password_link": "Enter using password",
       "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
     },
-
-
-
-
-
     "social": {
       "social_menu_title": "Social",
       "sharing": "Share"
     },
-
-
-
-
     "search": {
       "no_results_html": "Your search for \"{{ terms }}\" did not yield any results.",
       "results_for_html": "Your search for \"{{ terms }}\" revealed the following:",
@@ -54,11 +37,9 @@
       "submit": "Search"
     }
   },
-
-
   "blogs": {
     "article": {
-      "author_on_date_html": "{{ date }} // By {{ author }}",
+      "author_on_date_html": "{{ date }} \/\/ By {{ author }}",
       "comment_meta_html": "{{ author }} on {{ date }}",
       "read_more": "Read more",
       "featured_products": "Featured Products"
@@ -84,22 +65,20 @@
       "show_all": "Show All"
     }
   },
-
-
   "cart": {
     "general": {
-      "title": "Your Cart",
+      "title": "Your Bundl",
       "close": "Close",
       "remove": "Remove",
       "note": "Special instructions for seller",
       "subtotal": "Subtotal",
-      "shipping_at_checkout": "Shipping & taxes calculated at checkout",
-      "update": "Update Cart",
-      "checkout": "Check Out",
-      "empty": "Your cart is currently empty.",
+      "shipping_at_checkout": "Delivery & GST calculated at checkout",
+      "update": "Update Bundl",
+      "checkout": "Checkout",
+      "empty": "Your basket is currently empty.",
       "cookies_required": "Enable cookies to use the shopping cart",
       "continue_browsing": "Continue Shopping",
-      "continue_browsing_html": "Continue browsing <a href=\"/collections/all\">here</a>.",
+      "continue_browsing_html": "Continue browsing <a href=\"\/collections\/all\">here<\/a>.",
       "savings": "You're saving"
     },
     "label": {
@@ -111,17 +90,31 @@
       "original_price": "Original price"
     }
   },
-
-
   "collections": {
+    "vendor": {
+      "add_bundle": "Add to bundle",
+      "edit_bundle": "Edit my Market",
+      "carousel_title": "More Produce",
+      "view_all": "View all produce",
+      "shop_all": "Shop produce",
+      "reviews": "Reviews"
+    },
+    "banner": {
+      "title": "Hi {{ name }}, welcome to your marketplace!",
+      "view_bundle": "View my Marketplace",
+      "bundle_popup": {
+        "title": "My Market",
+        "edit": "Edit my marketplace"
+      }
+    },
     "general": {
       "no_matches": "Sorry, there are no results.",
       "link_title": "Browse our {{ title }} collection",
       "product_count": "{{ count }} products.",
-      "view_more": "View More"
+      "load_more": "Load More"
     },
     "filter": {
-      "label": "Filter"
+      "label": "Filter & Sort"
     },
     "sort": {
       "label": "Sort by",
@@ -135,8 +128,6 @@
       "sort-best-selling": "Best Selling"
     }
   },
-
-
   "contact": {
     "form": {
       "name": "Name",
@@ -152,16 +143,14 @@
       "fax": "Fax: "
     }
   },
-
-
   "customer": {
     "account": {
       "title": "My Account",
       "details": "Account Details",
       "view_addresses": "View Addresses",
+      "edit_vendor": "Edit your Marketplace",
       "return": "Return to Account Details"
     },
-
     "activate_account": {
       "title": "Activate Account",
       "subtext": "Create your password to activate your account.",
@@ -170,7 +159,6 @@
       "submit": "Activate Account",
       "cancel": "Decline Invitation"
     },
-
     "addresses": {
       "title": "Your Addresses",
       "default": "Default",
@@ -184,7 +172,7 @@
       "city": "City",
       "country": "Country",
       "province": "Province",
-      "zip": "Postal/Zip Code",
+      "zip": "Post Code",
       "phone": "Phone",
       "set_default": "Set as default address",
       "add": "Add Address",
@@ -194,21 +182,18 @@
       "delete": "Delete",
       "delete_confirm": "Are you sure you wish to delete this address?"
     },
-
     "login": {
       "seperator": "or",
-      "title": "Login",
-      "returning": "Returning Customer?",
+      "title": "Log In",
+      "returning": "Already have an account?",
       "email": "Email",
       "password": "Password",
       "forgot_password": "Forgot your password?",
       "sign_in": "Sign In",
       "cancel": "Return to Store",
-
       "guest_title": "Continue as a guest",
       "guest_continue": "Continue"
     },
-
     "orders": {
       "title": "Order History",
       "order_number": "Order",
@@ -218,7 +203,6 @@
       "total": "Total",
       "none": "You haven't placed any orders yet."
     },
-
     "order": {
       "title": "Order {{ name }}",
       "date": "Placed on {{ date }}",
@@ -226,10 +210,10 @@
       "cancelled_reason": "Reason: {{ reason }}",
       "billing_address": "Billing Address",
       "payment_status": "Payment Status",
-      "shipping_address": "Shipping Address",
+      "shipping_address": "Delivery Address",
       "fulfillment_status": "Fulfillment Status",
       "discount": "Discount",
-      "shipping": "Shipping",
+      "shipping": "Delivery",
       "tax": "Tax",
       "product": "Product",
       "sku": "SKU",
@@ -243,7 +227,6 @@
       "tracking_number": "Tracking number",
       "subtotal": "Subtotal"
     },
-
     "recover_password": {
       "title": "Reset your password",
       "email": "Email",
@@ -252,7 +235,6 @@
       "subtext": "We will send you an email to reset your password.",
       "success": "We've sent you an email with a link to update your password."
     },
-
     "reset_password": {
       "title": "Reset account password",
       "subtext": "Enter a new password for {{ email }}",
@@ -260,23 +242,35 @@
       "password_confirm": "Confirm Password",
       "submit": "Reset Password"
     },
-
     "register": {
-      "pretitle": "New around here?",
-      "title": "Create Account",
       "first_name": "First Name",
       "last_name": "Last Name",
       "email": "Email",
       "password": "Password",
-      "submit": "Create",
-      "cancel": "Return to Store"
+      "confirm_password": "Confirm Password",
+      "submit": "Start Shopping",
+      "password_no_match": "Passwords do not match!",
+      "cooldown": "You have tried to submit too many requests! Try again in 10 minutes.",
+      "back": "Back",
+      "continue": "Continue",
+      "postcode": {
+        "title": "Enter delivery address Postcode",
+        "message": "This is the Postcode of the address we will send your Bundlfresh order to!",
+        "error_html": "Sorry! Unfortunately we don't deliver to this postcode at this time. We're expanding, so <span class=\"o-link\">sign up to our newsletter<\/span>  so we can let you know when we start deliveries to your area."
+      },
+      "details": {
+        "title": "Enter your personal details",
+        "message": "We just need a couple of details and then you'll be ready to start using Bundlfresh!"
+      },
+      "vendor": {
+        "title": "Choose your favourite vendor",
+        "subtitle": "Choose a vendor in each category to create your own marketplace!"
+      }
     }
   },
-
-
   "layout": {
     "cart": {
-      "title": "Cart",
+      "title": "Bundl (Basket)",
       "items_count": {
         "one": "item",
         "other": "items"
@@ -286,8 +280,8 @@
       "account": "Account",
       "logged_in_as_html": "Logged in as {{ first_name }}",
       "log_out": "Log out",
-      "log_in": "Login/Register",
-      "create_account": "Create account"
+      "log_in": "Log In",
+      "create_account": "Sign Up"
     },
     "footer": {
       "social_platform": "{{ name }} on {{ platform }}",
@@ -295,16 +289,15 @@
       "payment_methods": "Payment methods accepted"
     }
   },
-
-
   "newsletter": {
-    "email": "Your email address"
+    "email": "Your Email",
+    "subscribe": "Join Now",
+    "success": "Thanks for joining!"
   },
-
-
   "products": {
     "general": {
-      "description": "Description"
+      "description": "Description",
+      "back": "Back to marketplace"
     },
     "reviews": {
       "leave_review": "Leave a review",
@@ -313,19 +306,20 @@
     "product": {
       "regular_price": "Regular price",
       "sold_out": "Sold Out",
+      "all_in_cart": "All in Bundl",
+      "in_cart": "Added to bundl",
       "unavailable": "Unavailable",
+      "view_cart": "View Bundl",
       "on_sale": "On Sale",
       "on_sale_from_html": "On Sale from {{ price }}",
       "from_text_html": "From {{ price }}",
       "quantity": "Quantity",
-      "add_to_cart": "Add to Cart",
+      "add_to_cart": "Add to Bundl",
       "color_picker": "Colour",
       "size_picker": "Size",
       "size_guide": "Size Guide"
     }
   },
-
-
   "gift_cards": {
     "issued": {
       "title": "Here's your {{ value }} gift card for {{ shop }}!",
@@ -341,22 +335,17 @@
       "initial_value": "Gift card value: {{ value }}"
     }
   },
-
-
-  "date_formats":{
+  "date_formats": {
     "month_day_year": "%B %d, %Y"
   },
-
-
   "currency": {
     "change_currency": "Change Currency"
   },
-
   "bulk_discounts": {
     "upsell": {
       "product": "Create a value pack, simply add {{ min_qty }} or more of this style to save up to {{ max_discount }}%",
       "generic_html": "Some of the products in your cart are eligible for a discount if you add more. To find out more, <a href='{{ link }}'>click here<\/a>.",
-      "specific_html": "Value pack offer, add {{ quantity }} more of <a href=\"{{ link }}\">{{ title }}</a> and save {{ discount }}%"
+      "specific_html": "Value pack offer, add {{ quantity }} more of <a href=\"{{ link }}\">{{ title }}<\/a> and save {{ discount }}%"
     }
   }
 }

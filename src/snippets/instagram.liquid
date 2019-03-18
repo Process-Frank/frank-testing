@@ -1,0 +1,42 @@
+{%- comment -%}
+  Instagram Section Snippet
+    Includable instagram section as a snippet
+
+  Parameters:
+    token - Access Token
+    id - Section ID
+    follow - Text to show in follow square
+    link - Link to instagram page
+
+  Version:
+    1.0.0 - 2019/02/06
+{%- endcomment -%}
+<section
+  class="c-instagram has-js {% if class != blank %}{{ class }}{% endif %}"
+  data-instagram data-token="{{ token | escape }}" id="instagram-{{ id }}"
+>
+  {%- comment -%} JS Will inject the instagram photos into here. {%- endcomment -%}
+  {%- if follow != blank -%}
+    <div class="c-instagram__photo is-fake">
+
+      {% if link != blank %}
+        <a href="{{ link | default: '//instagram.com' }}" class="c-instagram__photo-container">
+      {% else %}
+        <span class="c-instagram__photo-container">
+      {% endif %}
+
+
+        <span class="c-instagram__photo-text">
+          {{ follow | escape }}
+        </span>
+
+
+      {% if link != blank %}
+        </a>
+      {% else %}
+        </span>
+      {% endif %}
+
+    </div>
+  {%- endif -%}
+</section>

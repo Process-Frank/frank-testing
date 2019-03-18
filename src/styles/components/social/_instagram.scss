@@ -1,0 +1,92 @@
+/*
+ *  Instagram
+ *    Styles for the Instagram feed section.
+ *
+ *  Version:
+ *    2.0.0 - 2019/01/08
+ */
+$c-instagram--radius: $s-input--radius;
+
+.c-instagram {
+  display: flex;
+  flex-wrap: wrap;
+  //padding: $s-gutter--xsmall/2;
+
+  &__photo {
+    overflow: hidden;
+    width: 50%;
+    padding: 0.1em;
+
+    &.is-fake {
+      order: 20;
+
+      .c-instagram__photo-container {
+        background: $s-color--secondary;
+      }
+    }
+
+    &-container {
+      border-radius: $c-instagram--radius;
+      display: block;
+      overflow: hidden;
+      width: 100%;
+      padding-bottom: 100%;
+      position: relative;
+    }
+
+    &-image,&-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+    }
+
+    &-image {
+      transition: all 0.2s $s-animation--ease-out;
+      &:hover { transform: translate(-50%, -50%) scale(1.03); }
+
+      @supports(object-fit: contain) {
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &-text {
+      @extend %s-font--button;
+      text-align: center;
+      color: $s-color--secondary-compliment;
+      padding: 0.5em;
+    }
+
+    //Hide every element after the first 4 on small screens
+    &:nth-child(n+5) { display: none; }
+  }
+
+
+  @include t-media-query($s-xsmall-up) {
+    &__photo {
+      width: (100%/3);
+      &:nth-child(n+5) { display: block; }
+      &:nth-child(n+7) { display: none; }
+    }
+  }
+
+  @include t-media-query($s-small-up) {
+    //On small screens, go horizontal and hide all but 4
+    flex-wrap: nowrap;
+    &__photo {
+      &:nth-child(n+5) { display: none; }
+      &-text {
+        padding: 2em;
+      }
+    }
+  }
+
+  @include t-media-query($s-medium-up) {
+    //On Medium up just keep horizontal and show all photos
+    &__photo {
+      &:nth-child(n+1) { display:block; }
+    }
+  }
+}

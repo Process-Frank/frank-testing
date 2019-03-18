@@ -1,0 +1,57 @@
+{% comment %}
+  Product Pricing
+    Generates a simple set of pricing elements for displaying a price, including
+    all the required data-attributes to listen to most events.
+
+  Paramaters:
+    price - Useful product_price from tool.product-variables
+    compare_price - Compare at pricing
+
+    class - Extra class to prefix all the pseudo classes with
+
+  Version:
+    1.0.0 - 2018/07/27
+{% endcomment %}
+<div class="o-product-pricing {{ class }}" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+  <meta itemprop="price" content="{{ price | divided_by: 100 }}" />
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+
+  {% comment %} Regular Price Display {% endcomment %}
+  {%- if price == 0 -%}
+    <span
+      class="o-product-pricing__money o-product-pricing__price {{ class }}-money {{ class }}-price"
+      data-currency
+      data-product-money
+    >
+      FREE
+    </span>
+  {%- else -%}
+    <span
+      class="o-product-pricing__money o-product-pricing__price {{ class }}-money {{ class }}-price"
+      data-currency data-money="{{ price | divided_by: 100 }}" data-product-money
+    >
+      {{- price | money -}}
+    </span>
+  {%- endif -%}
+
+  {% comment %}
+    Please note that this pricing logic also exists in the variant-selector.js
+    file, ensure that all logic changes here are mimiced there.
+  {% endcomment %}
+  {%- capture compareClasses -%}
+    o-product-pricing__money o-product-pricing__compare {{ class }}-money {{ class }}-compare
+  {%- endcapture -%}
+
+  {%- if compare_price > price -%}
+    <span
+      class="{{ compareClasses }}"
+      data-currency data-money="{{ compare_price }}" data-product-compare-money
+    >
+      {{- compare_price | money }}
+    </span>
+  {%- else -%}
+    <span class="{{ compareClasses }}" data-currency data-product-compare-money>
+      {% comment %} Currency Selector won't convert without the data-money attribute {% endcomment %}
+    </span>
+  {% endif %}
+</div>

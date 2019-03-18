@@ -1,0 +1,118 @@
+{% comment %}
+  Video
+    Video Object that does options automatically.
+
+  Settings:
+      video - Video Section Setting object
+    OR
+      video_type - youtube oir vimeo
+      video_url - Full url
+    autoplay - Autoplay true or false
+    loop - Loop true or false
+    class - Extra classes
+
+  Version:
+    2.0.0 - 2019/03/14
+{% endcomment %}
+
+{%- comment -%} Setup initial classes {%- endcomment -%}
+{%- capture containerClass -%}
+  o-video {% if class != blank %}{{ class }}{% endif %}
+{%- endcapture -%}
+
+{%- capture frameClass -%}
+  o-video__frame {% if class != blank %}{{ class}}-frame{% endif %}
+{%- endcapture -%}
+
+{%- comment -%} Video URL and Type Determining {%- endcomment -%}
+{%- if video.type != blank -%}
+  {%- if video.type == 'youtube' -%}
+    {%- assign video_type = 'youtube' -%}
+    {%- assign video_url = video.id -%}
+  {%- elsif video.type == 'vimeo' -%}
+    {%- assign video_type = 'vimeo' -%}
+    {%- assign video_url = video.id -%}
+  {%- endif -%}
+{%- else -%}
+  {%- if video_url contains 'youtube' -%}
+    {%- assign video_type = 'youtube' -%}
+    {%- assign video_url = video_url |
+      remove: 'http://youtube' |
+      remove: 'https://youtube' |
+      remove: 'http://www.youtube' |
+      remove: 'https://www.youtube' |
+      remove: 'http://embed.youtube' |
+      remove: 'https://embed.youtube' |
+      remove: 'http://youtu.be' |
+      remove: 'https://youtu.be' |
+      remove: 'http://www.youtu.be' |
+      remove: 'https://www.youtu.be' |
+      remove: 'watch?' |
+      remove: 'v=' |
+      remove: '&'
+    -%}
+  {%- elsif video_url contains 'vimeo' -%}
+    {%- assign video_type = 'vimeo' -%}
+    {%- assign video_url = video_url |
+      remove: 'http://vimeo.com' |
+      remove: 'https://vimeo.com' |
+      remove: 'http://www.vimeo.com' |
+      remove: 'https://www.vimeo.com' |
+      remove: 'http://player.youtube' |
+      remove: 'https://player.youtube' |
+      remove: 'video'
+    -%}
+  {%- endif -%}
+
+  {%- assign video_url = video_url |
+    remove: '/' |
+    remove: '.com' |
+    remove: '.co' |
+    remove: '.au' |
+    remove: '.jp' |
+    remove: '.uk' |
+    remove: '.nz' |
+    remove: '.net' |
+    remove: '.be'
+  -%}
+{%- endif -%}
+
+{%- comment -%} URL Determining {%- endcomment -%}
+{%- assign sources = '' -%}
+{%- if video_type == 'youtube' -%}
+  {%- capture sources -%}
+    //www.youtube.com/embed/{{ video_url }}?
+    autoplay={%-if autoplay -%}true{%- else -%}false{%- endif -%}
+    &loop={%-if loop -%}true{%- else -%}false{%- endif -%}
+  {%- endcapture -%}
+  {%- assign classes = classes | prepend: 'o-youtube ' -%}
+
+{%- elsif video_type == 'vimeo' -%}
+  {%- capture sources -%}
+    //player.vimeo.com/video/{{ video_url }}?
+    autoplay={%-if autoplay -%}1{%- else -%}0{%- endif -%}
+    &loop={%-if loop -%}1{%- else -%}0{%- endif -%}
+  {%- endcapture -%}
+  {%- assign classes = classes | prepend: 'o-vimeo ' -%}
+
+{%- endif -%}
+
+{%- comment -%} Generate HTML {%- endcomment -%}
+<div class="{{ containerClass }}">
+  {%- if sources != blank -%}
+    <iframe
+      type="text/html"
+      width="640"
+      height="360"
+      src="{{ sources | remove: ' ' }}"
+      frameborder="0"
+      class="{{ frameClass }}"
+      {%- if attributes != blank -%}{{ attributes }}{%- endif -%}
+    >
+    </iframe>
+  {%- else -%}
+    <div class="{{ frameClass }}">
+      Unsupported video type.
+    </div>
+  {%- endif -%}
+</div>

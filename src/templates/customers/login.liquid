@@ -1,87 +1,126 @@
-<div class="form-success hide" id="ResetSuccess">
-  {{ 'customer.recover_password.success' | t }}
-</div>
+{%- comment -%}
+  Login template
 
-<div id="CustomerLoginForm">
-  {% form 'customer_login' %}
-    <h1>{{ 'customer.login.title' | t }}</h1>
+  Version:
+    2.0.0 - 2019/02/05
+{%- endcomment -%}
+
+{%- assign forgotForm = false -%}
+
+{%- comment -%}
+  First let's determine which form we want to display on page launch
+  We're wrapping this all in a capture so we can remove the generated html
+  junk that we don't want
+{%- endcomment -%}
+
+{%- capture formJunk -%}
+  {%- form 'recover_customer_password' -%}
+    {%- if form.posted_successfully -%} {%- assign forgotForm = true -%} {%- endif -%}
+    {%- capture errors -%}{{ form.errors | default_errors }}{%- endcapture -%}
+    {%- if errors != blank -%}{%- assign forgotForm = true -%}{%- endif -%}
+  {%- endform -%}
+{%- endcapture -%}
+
+<section class="c-login-template" data-login-template>
+
+  {%- comment -%} Login Form {%- endcomment -%}
+  {%- assign loginClasses = 'o-form c-login-template__form' -%}
+  {%- if forgotForm %}{% assign loginClasses = loginClasses | append: ' is-hidden' %}{% endif -%}
+
+  {%- form 'customer_login', class: loginClasses, data-login-form: true -%}
+
+    <input type="hidden" name="return_to" value="/collections/all" />
+
+    <header role="banner" class="c-section__heading c-login-template__header">
+      <h1 class="o-title c-login-template__title">
+        {{- 'customer.login.title' | t -}}
+      </h1>
+    </header>
 
     {{ form.errors | default_errors }}
 
-    <label for="CustomerEmail" class="label-hidden">
-      {{ 'customer.login.email' | t }}
-    </label>
-    <input type="email"
-           name="customer[email]"
-           id="CustomerEmail"
-           class="{% if form.errors contains 'email' %}input-error{% endif %}"
-           placeholder="{{ 'customer.login.email' | t }}"
-           spellcheck="false"
-           autocomplete="off"
-           autocapitalize="off"
-           autofocus>
+    {%- comment -%} Email {%- endcomment -%}
+    <div class="o-form__input-group">
+      <label for="customer[email]" class="o-form__label">{{ 'customer.login.email' | t }}</label>
+      <input
+        type="email" name="customer[email]"
+        class="
+          o-input is-large {% if form.errors contains 'email' %}has-error{%- endif -%}
+        "
+        placeholder="{{ 'customer.login.email' | t }}"
+        spellcheck="false" autocomplete="off" autocapitalize="off"
+        autofocus
+      />
+    </div>
 
-    {% if form.password_needed %}
-      <label for="CustomerPassword" class="label-hidden">
-        {{ 'customer.login.password' | t }}
-      </label>
-      <input type="password"
-             name="customer[password]"
-             id="CustomerPassword"
-             class="{% if form.errors contains 'password' %}input-error{% endif %}"
-             placeholder="{{ 'customer.login.password' | t }}">
-    {% endif %}
+    {%- if form.password_needed -%}
+      <div class="o-form__input-group">
+        <label for="customer[password]" class="o-form__label">{{ 'customer.login.password' | t }}</label>
+        <input
+          class="
+            o-input is-large {% if form.errors contains 'password' %}has-error{%- endif -%}
+          "
+          type="password"
+          name="customer[password]"
+          placeholder="{{ 'customer.login.password' | t }}"
+        />
 
-    <input type="submit" class="button" value="{{ 'customer.login.sign_in' | t }}">
+        <span class="o-link c-login-template__forgot-link" data-login-forgot-password>
+          {{ 'customer.login.forgot_password' | t }}
+        </span>
+      </div>
+    {%- endif -%}
 
-    <a href="/">{{ 'customer.login.cancel' | t }}</a>
+    <div class="o-btn-group">
+      <a href="/" class="o-btn is-tertiary is-large">
+        {{- 'customer.login.cancel' | t -}}
+      </a>
 
-    <a href="/account/register">
-      {{ 'layout.customer.create_account' | t }}
-    </a>
+      <button type="submit" class="o-btn is-secondary is-large">
+        {{- 'customer.login.sign_in' | t -}}
+      </button>
+    </div>
 
-    {% if form.password_needed %}
-      <a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
-    {% endif %}
-  {% endform %}
+    <div class="c-section__footer">
+      <a href="/account/register" class="o-link">
+        {{- 'customer.login.returning' | t -}}
+      </a>
+    </div>
+  {%- endform -%}
 
-</div>
+  {%- comment -%} Reset Password Form {%- endcomment -%}
+  {%- assign forgotClasses = 'o-form c-login-template__form' -%}
+  {%- unless forgotForm -%}{% assign forgotClasses = forgotClasses | append: ' is-hidden' %}{% endunless -%}
+  {%- form 'recover_customer_password', class: forgotClasses, data-forgot-form: true -%}
+    <header role="banner" class="c-section__heading c-login-template__header">
+      <h2 class="o-title c-login-template__title">
+        {{- 'customer.recover_password.title' | t -}}
+      </h1>
+    </header>
 
-<div id="RecoverPasswordForm" class="hide">
-  <h2>{{ 'customer.recover_password.title' | t }}</h2>
-  <p>{{ 'customer.recover_password.subtext' | t }}</p>
-
-  {% form 'recover_customer_password' %}
     {{ form.errors | default_errors }}
 
-    {% if form.posted_successfully? %}
-      <span class="hide reset-password-success"></span>
-    {% endif %}
+    {%- if form.posted_successfully -%}
+      <span>{{ 'customer.recover_password.success' | t }}</span>
+    {%- endif -%}
 
-    <label for="RecoverEmail" class="label-hidden">
-      {{ 'customer.recover_password.email' | t }}
-    </label>
-    <input type="email"
-           name="email"
-           id="RecoverEmail"
-           placeholder="{{ 'customer.recover_password.email' | t }}"
-           spellcheck="false"
-           autocomplete="off"
-           autocapitalize="off">
+    <div class="o-form__input-group">
+      <label class="o-form__label" for="email">{{- 'customer.recover_password.email' | t -}}</label>
+      <input
+        class="o-input is-large"
+        type="email" name="email" placeholder="{{ 'customer.recover_password.email' | t }}"
+        spellcheck="false" autocomplete="off" autocapitalize="off"
+      />
+    </div>
 
-    <input type="submit" class="button" value="{{ 'customer.recover_password.submit' | t }}">
+    <div class="o-btn-group">
+      <button type="button" class="o-btn is-large is-tertiary" data-forgot-cancel>
+        {{- 'customer.recover_password.cancel' | t -}}
+      </button>
 
-    <button type="button" id="HideRecoverPasswordLink">
-      {{ 'customer.recover_password.cancel' | t }}
-    </button>
-  {% endform %}
-
-</div>
-
-{% if shop.checkout.guest_login %}
-  <h2>{{ 'customer.login.guest_title' | t }}</h2>
-
-  {% form 'guest_login' %}
-    <input type="submit" class="button" value="{{ 'customer.login.guest_continue' | t }}">
-  {% endform %}
-{% endif %}
+      <button type="submit" class="o-btn is-large is-secondary">
+        {{- 'customer.recover_password.submit' | t -}}
+      </button>
+    </div>
+  {%- endform -%}
+</section>

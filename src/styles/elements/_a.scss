@@ -1,0 +1,16 @@
+/*
+ *  Anchor Tag Styling
+ *    For styling anchor tags
+ *
+ *  Version:
+ *    2.0.0 - 2018/10/31
+ */
+a {
+  text-decoration: none;
+  color: $s-color--primary;
+
+  &:hover {
+    color: $s-color--primary-hover;
+    text-decoration: underline;
+  }
+}

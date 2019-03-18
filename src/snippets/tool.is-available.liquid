@@ -1,0 +1,21 @@
+{%- comment -%}
+  Simple is-available tool, returns true of the supplied
+  variant is available, otherwise returns false
+
+  Params:
+    variant - Variant to check if available
+
+  Returns:
+    isAvailable - true / false
+
+  Version:
+    1.0.0 - 2019/01/30
+{%- endcomment -%}
+{%- assign isAvailable = true -%}
+{%- if
+  variant.inventory_policy != 'continue' and
+  variant.inventory_management == blank and
+  variant.inventory_quantity <= 0
+-%}
+  {%- assign isAvailable = false -%}
+{%- endif -%}

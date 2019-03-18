@@ -1,0 +1,41 @@
+{%- comment -%}
+  Newsletter Signup Form Inline
+    Displays the newsletter signup form inline, and stacks on smaller screens
+
+  Params:
+    class - Class prefix (will also apply this class to the form)
+
+  Version:
+    1.0.0 - 2019/01/08
+{%- endcomment -%}
+{%- capture formClass -%}o-newsletter-signup-inline {{ class | default: '' }}{%- endcapture -%}
+{%- form 'customer', class: formClass, data-newsletter-signup:'' -%}
+
+  {%- if form.posted_successfully? -%}
+    <p class="o-form__success">{{ 'newsletter.success' | t }}</p>
+
+  {%- else -%}
+    {%- if form.errors != blank -%}
+      <div clas="o-newsletter-signup-inline__errors">
+        {{ form.errors | default_errors }}
+      </div>
+    {%- endif -%}
+
+    <input
+      type="email"
+      placeholder="{{ 'newsletter.email' | t }}"
+      class="o-input is-large o-newsletter-signup-inline__email {{ class }}-email"
+      name="contact[email]"
+    />
+    <input type="hidden" name="contact[tags]" value="newsletter" />
+    <input type="hidden" name="customer[accepts_marketing]" value="" />
+
+    <button
+      type="submit" data-newsletter-signup-submit
+      class="o-btn is-secondary is-wide o-newsletter-signup-inline__submit {{ class }}-submit"
+    >
+      {{- 'newsletter.subscribe' | t -}}
+    </button>
+
+  {%- endif -%}
+{%- endform -%}

@@ -1,0 +1,9 @@
+{%- comment -%}
+  Get Vendor for Collection
+
+  Version:
+    1.0.0 - 2019/03/18
+{%- endcomment -%}
+
+{%- assign vendorHandle = product.vendor | handleize -%}
+{%- assign vendorCollection = collections[vendorHandle] -%}

@@ -1,0 +1,42 @@
+{% comment %}
+  Featured Collection Carousel
+    Simple section to feature a collection in a carousel, utilizing the
+    collection carousel snippet.
+
+  Version:
+    1.0.0 - 2018/11/27
+{% endcomment %}
+
+
+{%- include 'collection-carousel' with {
+  collection: collections[section.settings.s-collection],
+  title: section.settings.s-title,
+  class: 'has-peak has-arrows-inset',
+  attributes: 'data-collection-carousel-section'
+} -%}
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "class": "c-section c-section__featured-collection-carousel",
+    "settings": [
+      {
+        "id": "s-title",
+        "label": "Title",
+        "default": "Popular",
+        "type": "text"
+      },
+      {
+        "id": "s-collection",
+        "type": "collection",
+        "label": "Featured Collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection Carousel",
+        "category": "collection"
+      }
+    ]
+  }
+{% endschema %}

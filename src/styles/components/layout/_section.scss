@@ -1,0 +1,25 @@
+/*
+ *  Section Styles
+ *    Provides styles for all sections (global section styles)
+ *
+ *  Version:
+ *    1.0.0 - 2018/11/16
+ */
+.c-section {
+  &__heading,&__footer {
+    width: 100%;
+    position: relative;//Z-fight
+    padding: $s-gutter--small;
+    text-align: center;
+  }
+
+  @include t-media-query($s-medium-up) {
+    &__heading,&__footer {
+      padding: $s-gutter--medium $s-gutter--large;
+    }
+  }
+
+  &.is-alternate {
+    background: $s-color--background-alternate;
+  }
+}

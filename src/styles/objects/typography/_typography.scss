@@ -1,0 +1,17 @@
+/*
+ *  Typography Settings
+ *    Specific settings for controlling how typography elements (and classes)
+ *    will display.
+ *
+ *  Version:
+ *    1.0.0 - 2018/11/08
+ */
+p,.o-paragraph {
+  margin: 1em 0;
+}
+
+@include t-media-query($s-small-up) {
+  p,.o-paragraph {
+    font-size: 1.1em;
+  }
+}

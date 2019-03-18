@@ -1,0 +1,50 @@
+/*
+ *  Pagination
+ *    Standard pagination. A fair bit of trumping due to how Shopify injects the facets.
+ *
+ * Dependencies:
+ *
+ *  Version:
+ *    1.0.0 - 2018/02/12
+ */
+
+.o-pagination {
+  width: 100%;
+  padding: 2em 0;
+  text-align: center;
+  letter-spacing: 0;
+
+  > span {
+    display: inline-block;
+
+    > a, &.current, &.deco {
+      padding: 0.5em 1em;
+    }
+
+    > a, &.deco {
+    }
+
+    &.current {
+      cursor: default;
+    }
+
+    > a, &.current {
+    }
+
+    > a:hover, &.current:hover {
+    }
+
+    > a:hover {
+    }
+
+    &.current {
+    }
+
+    &:first-of-type {
+    }
+
+    &:last-of-type {
+    }
+    
+  }
+}
