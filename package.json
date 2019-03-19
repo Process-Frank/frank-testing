@@ -3,17 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "author": "Process Creative",
+  "pc-slate": "1.0.0",
   "description": "Process Creative internal Slate Framework",
-  "keywords": [
-    "shopify",
-    "theme",
-    "slate",
-    "framework",
-    "process",
-    "creative",
-    "pc",
-    "bem"
-  ],
+  "keywords": [ "shopify", "theme", "slate", "framework", "process", "creative", "pc", "bem" ],
   "license": "MIT",
   "repository": {
     "type": "git",
