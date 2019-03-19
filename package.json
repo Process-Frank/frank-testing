@@ -1,9 +1,9 @@
 {
   "name": "pc-slate-1x",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "author": "Process Creative",
-  "pc-slate": "1.0.0",
+  "pc-slate": "1.0.1",
   "description": "Process Creative internal Slate Framework",
   "keywords": [ "shopify", "theme", "slate", "framework", "process", "creative", "pc", "bem" ],
   "license": "MIT",
