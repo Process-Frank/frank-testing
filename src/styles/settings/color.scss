@@ -54,18 +54,7 @@ $s-color--secondary-compliment-hover: lighten($s-color--secondary-compliment, 10
 $s-color--tertiary-hover: lighten($s-color--tertiary, 10%);
 $s-color--tertiary-compliment-hover: lighten($s-color--tertiary-compliment, 10%);
 
-
-/*** Extra Colors ***/
-$s-color--drop-effect: 0px 0.25em 0.5em 0px rgba(#EEE, 0.75);
-
-//Review Stars
-$s-color--grey-star: #EEE;
-$s-color--gold-star: #FFDF58;
-
-//Product
-$s-color--vendor: $s-color--quaternary-muted;
-$s-color--sale: $s-color--quaternary-muted;
-
-//Error
+/*** Extra Colour Sets ***/
+//Forms
 $s-color--error: red;
 $s-color--success: $s-color--secondary;

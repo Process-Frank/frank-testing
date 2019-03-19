@@ -12,8 +12,7 @@ module.exports = {
     resolve: {
       alias: {
         '$': path.resolve('./node_modules/jquery/dist/jquery.js'),
-        'jquery': path.resolve('./node_modules/jquery/dist/jquery.js'),
-        'lodash-es': path.resolve('./node_modules/lodash-es')
+        'jquery': path.resolve('./node_modules/jquery/dist/jquery.js')
       },
     },
     externals: {

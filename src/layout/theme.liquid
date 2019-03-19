@@ -29,16 +29,11 @@
       {%- comment -%} Main (Template) Content {%- endcomment -%}
       <main role="main" class="o-main">
         <div class="o-main__wrapper" id="MainContent">
+          
           {%- comment -%} Static (Site Wide) Sections {%- endcomment -%}
-          {%- section 'topbar' -%}
-          {%- section 'header' -%}
-
           {{ content_for_layout }}
 
-          {%- if template.name == 'index' -%}
-            {%- section 'newsletter-signup' -%}
-          {%- endif -%}
-          {%- section 'footer' -%}
+
         </div>
       </main>
     </div>

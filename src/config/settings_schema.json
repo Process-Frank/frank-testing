@@ -55,25 +55,6 @@
         "type": "text",
         "id": "social_vimeo_link",
         "label": "Vimeo link"
-      },
-
-      {
-        "type": "checkbox",
-        "id": "share_facebook",
-        "label": "Share on Facebook",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "share_twitter",
-        "label": "Tweet on Twitter",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "share_pinterest",
-        "label": "Pin on Pinterest",
-        "default": true
       }
     ]
   },
@@ -90,5 +71,5 @@
       }
     ]
   }
-  
+
 ]

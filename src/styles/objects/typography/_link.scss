@@ -7,15 +7,14 @@
  *    1.0.0 - 2018/11/08
  */
 .o-link {
-  color: $s-color--default;
+  color: inherit;
   text-decoration: underline;
   cursor: pointer;
 
   &:hover {
-    color: $s-color--default;
+    color: inherit;
     text-decoration: none;
   }
 
   &.is-block {display: block;}
-  &.is-primary {color: $s-color--primary;}
 }

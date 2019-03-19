@@ -6,7 +6,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<meta name="theme-color" content="{{ settings.color_primary }}" />
 <link rel="canonical" href="{{ canonical_url }}" />
 
 
@@ -49,16 +48,13 @@
 {% include 'style-tags', layout: 'theme' %}
 {% include 'tool.css-variables' %}
 
-<link rel="stylesheet" href="https://use.typekit.net/hpv8vzx.css" type="text/css" />
-
 {%- comment -%} Shopify's Currencies Script {%- endcomment -%}
 {{- '/services/javascripts/currencies.js' | script_tag -}}
 
-
-{%- comment -%} Customer Scripts {%- endcomment -%}
+{%- comment -%} Customer Scripts
 {%- if template.directory == 'customers' -%}
   <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
-{%- endif -%}
+{%- endif -%}{%- endcomment -%}
 
 {%- comment -%} jQuery {%- endcomment -%}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -87,9 +83,6 @@
 
   window.Language = window.Language || {};
   window.Language.strings = window.Language.strings || {};
-
-  /* {% comment %} Vendor JSON Data for Bundlfresh {% endcomment %} */
-  window.Vendors = {%- include 'json.vendors' -%};
 </script>
 
 

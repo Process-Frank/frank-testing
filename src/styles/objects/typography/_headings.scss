@@ -72,12 +72,6 @@ h5,.o-heading.is-size-5 {
 
 /*** End custom headings ***/
 
-// Custom Nests //
-.c-section__heading > .o-heading {
-  color: $s-color--primary;
-  margin: 0;
-}
-
 @include t-media-query($s-medium-up) {
   h1,.o-heading.is-size-1 {
     font-size: 2em;

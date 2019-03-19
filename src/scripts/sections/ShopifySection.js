@@ -7,7 +7,6 @@
  */
 
 import $ from 'jquery';
-import _ from 'lodash';
 
 const Sections = {};
 
@@ -32,7 +31,11 @@ export class ShopifySection {
 
 //Initialize
 $(document).ready(() => {
-  _.forIn(Sections, (init, selector) => {
-    $(selector).each((i,e) => new init($(e)));
+  let keys = Object.keys(Sections);
+  keys.forEach(selector => {
+    let init = Sections[selector];
+    $(selector).each((i,e) => {
+      new init($(e));
+    });
   });
 });

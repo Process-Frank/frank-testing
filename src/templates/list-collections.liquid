@@ -1,50 +1,6 @@
 {%- comment -%}
   List Collections Template
-    Custom List Collections template for vendor based collection displaying only.
 
   Version:
     1.0.0 - 2019/02/14
 {%- endcomment -%}
-
-{%- comment -%} Bundlfresh Specific, Hijacking Location Boxes {%- endcomment -%}
-{%- assign collectionsSorted = collections | sort: 'title' -%}
-
-<section class="c-location-boxes">
-  <header role="banner" class="c-section__heading c-location-boxes__heading">
-    <h1>{{ page_title }}</h1>
-  </header>
-
-  <div class="c-location-boxes__boxes">
-    {%- for collection in collectionsSorted -%}
-      {%- if collection.template_suffix != 'vendor' %}{% continue %}{% endif -%}
-
-      <div class="c-location-boxes__box">
-        <a href="{{ collection.url }}" class="c-location-boxes__box-image">
-          {%- include 'tool.picture' with {
-            image: collection.image,
-            class: 'c-location-boxes__box-img'
-          } -%}
-        </a>
-
-        <a href="{{ collection.url }}" class="c-location-boxes__box-content">
-          <h3 class="c-location-boxes__box-title">
-            {{- collection.title | escape -}}
-          </h3>
-
-          {%- if collection.metafields.vendor.location != blank -%}
-            <span class="o-location is-block">
-              {%- include 'object.icon' with {
-                icon: 'location', class: 'o-location__icon',
-                title: collection.title
-              } -%}
-
-              <span class="o-location__title">
-                {{- collection.metafields.vendor.location | escape -}}
-              </span>
-            </span>
-          {%- endif -%}
-        </a>
-      </div>
-    {%- endfor -%}
-  </div>
-</section>

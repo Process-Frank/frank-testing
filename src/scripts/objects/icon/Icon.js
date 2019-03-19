@@ -7,7 +7,6 @@
  */
 import $ from 'jquery';
 import '@iconfu/svg-inject';
-import { handlize } from '@process-creative/pc-slate-tools';
 
 export const IMAGE_SELECTOR = "img[src*='.svg']";
 

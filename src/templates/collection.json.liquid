@@ -11,6 +11,6 @@
 {% endcomment %}
 {% layout none %}
 {%- include 'tool.collection-per-page' -%}
-{% paginate collection.products by perPage %}
+{%- paginate collection.products by perPage -%}
   {%- include 'json.collection' -%}
-{% endpaginate %}
+{%- endpaginate -%}

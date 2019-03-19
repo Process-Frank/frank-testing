@@ -4,35 +4,3 @@
   Version:
     1.0.0 - 2019/01/31
 {%- endcomment -%}
-<article role="article" class="c-article-template" itemscope itemtype="article">
-
-  <header role="banner" class="c-section__heading">
-    <h1 class="o-title c-article-template__title" itemprop="name">
-      {{- article.title | escape -}}
-    </h1>
-  </header>
-
-  <div class="c-article-template__body">
-    <div class="c-article-template__picture">
-      {%- if article.image != blank -%}
-        {%- include 'tool.picture' with {
-          image: article.image,
-          class: 'c-article-template__picture-image',
-          attributes: 'itemprop="image"'
-        } -%}
-      {%- endif -%}
-    </div>
-
-    <div class="c-article-template__description" itemprop="description">
-      <p class="c-article-template__author">
-        {%-capture date-%}
-          {{ article.published_at | time_tag: format: 'month_day_year' }}
-        {%-endcapture-%}
-        {{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}
-      </p>
-      {{- article.content -}}
-    </div>
-  </div>
-</article>
-
-{%- include 'meta.ld-article' -%}

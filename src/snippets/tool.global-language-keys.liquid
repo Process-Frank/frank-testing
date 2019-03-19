@@ -13,15 +13,5 @@
 {% comment %} Language Strings can be defined here, use a ; to seperate {% endcomment %}
 {%- capture languageKeys -%}
   products.product.add_to_cart;
-  products.product.sold_out;
-  products.product.all_in_cart;
-  products.product.in_cart;
-  cart.general.checkout;
-  cart.general.title;
-  cart.general.empty;
-  cart.general.continue_browsing_html;
-  cart.general.update;
-  cart.general.checkout;
-  cart.general.remove;
 {%- endcapture -%}
 {%- include 'tool.language-strings' with { keys: languageKeys } -%}

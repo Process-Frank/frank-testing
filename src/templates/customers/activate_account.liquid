@@ -1,36 +1,6 @@
-<header role="banner" class="c-section__heading">
-  <h1>{{ 'customer.activate_account.subtext' | t }}</h1>
-</header>
+{% comment %}
+  Activate Account Template
 
-<section class="c-activate-account-template">
-
-  {% form 'activate_customer_password', class: 'o-form c-activate-account-template__form' %}
-    {{ form.errors | default_errors }}
-
-    <div class="o-form__input-group ">
-      <label for="CustomerPassword" class="o-form__label">
-        {{ 'customer.activate_account.password' | t }}
-      </label>
-      <input type="password"
-        name="customer[password]"
-        class="o-input is-large is-block"
-        placeholder="{{ 'customer.activate_account.password' | t }}"
-      />
-    </div>
-
-    <div class="o-form__input-group ">
-      <label for="CustomerPasswordConfirmation" class="o-form__label">
-        {{ 'customer.activate_account.password_confirm' | t }}
-      </label>
-      <input type="password" class="o-input is-large is-block"
-        name="customer[password_confirmation]"
-        placeholder="{{ 'customer.activate_account.password_confirm' | t }}"
-      />
-    </div>
-
-    <div class="o-btn-group">
-      <input type="submit" class="o-btn is-large is-quaternary" name="decline" value="{{ 'customer.activate_account.cancel' | t }}">
-      <input type="submit" class="o-btn is-large is-secondary" value="{{ 'customer.activate_account.submit' | t }}">
-    </div>
-  {% endform %}
-</section>
+  Version:
+    1.0.0 - 2019/03/19
+{% endcomment %}
