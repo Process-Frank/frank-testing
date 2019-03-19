@@ -20,15 +20,11 @@ select {
   background: none;
 
   display: inline-block;
-  background-image: url("./../assets/svgs/icon-chevron-down.svg");
   background-repeat: no-repeat;
   background-position: 90% center;
   background-size: auto 45%;
   padding: 0.5em;
   padding-right: 2.5em;
-
-  /*position: relative;
-  background-image: url("icon-chevron-down.svg");*/
 
   &:focus {
     outline: 0;
