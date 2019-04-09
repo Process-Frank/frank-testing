@@ -1,33 +1,41 @@
 {
   "name": "pc-slate-1x",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "private": true,
   "author": "Process Creative",
-  "pc-slate": "1.0.1",
   "description": "Process Creative internal Slate Framework",
-  "keywords": [ "shopify", "theme", "slate", "framework", "process", "creative", "pc", "bem" ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://bitbucket.org/procescreative/pc-slate-1x.git"
-  },
+  "keywords": [
+    "shopify",
+    "theme",
+    "slate",
+    "framework",
+    "process",
+    "creative",
+    "pc",
+    "bem"
+  ],
   "devDependencies": {
     "@shopify/slate-tools": "^1.0.0-beta.17",
-    "@babel/polyfill": "^7.0.0",
     "babel-preset-shopify": "^16.2.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
     "@iconfu/svg-inject": "^1.2.1",
-    "@process-creative/ajax-collection-v3": "git+https://bitbucket.org/procescreative/ajax-collection-v3.git",
-    "@process-creative/pc-slate-tools": "git+https://bitbucket.org/procescreative/pc-slate-tools.git",
-    "jquery": "^3.2.1",
-    "js-cookie": "^2.2.0",
+    "@process-creative/ajax-collection-v3": "git+https://github.com/Process-Creative/Ajax-Collection-v3.git",
+    "@process-creative/pc-slate-tools": "git+https://github.com/Process-Creative/pc-slate-tools",
     "normalize.css": "^7.0.0",
-    "slick-carousel": "^1.8.1"
+    "jquery": "^3.2.1",
+    
+    "instafeed.js": "^1.4.1",
+    "js-cookie": "^2.2.0",
+    "lity": "^2.3.1",
+    "slick-carousel": "^1.8.1",
+    
+    "lazysizes": "^4.1.1"
   },
   "scripts": {
     "start": "slate-tools start",
-    "start-skip": "slate-tools start --skipFirstDeploy",
+    "watch": "slate-tools start --skipFirstDeploy",
     "build": "slate-tools build",
     "deploy": "slate-tools build && slate-tools deploy",
     "zip": "slate-tools build && slate-tools zip",
