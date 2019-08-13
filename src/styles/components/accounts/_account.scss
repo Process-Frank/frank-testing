@@ -1,0 +1,318 @@
+/*
+ *  Account page
+ *
+ *  Dependencies:
+ *    - src/templates/customers/account.liquid
+ *    - src/styles/settings/color.scss
+ *
+ *  Version:
+ *    1.0.0 - 2019/05/22
+ */
+
+.c-account-page{
+  position: relative;
+  background-color: $s-color--quaternary;
+  &__wrapper {
+    position: relative;
+    padding-top: 0.71em;
+  }
+  &__container{
+    padding: 1em;
+  }
+  
+  // Nav
+  &__sidebar__nav{
+    ul{
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    li:last-child .c-account-page__sidebar__nav-link{
+      background: transparent;
+      &:hover{
+        .c-account-page__sidebar__nav-link{
+          border-left: 0;
+        }
+      }
+    }
+    &-link{
+      text-transform: uppercase;
+      background: $s-color--background;
+      padding: 1.2em;
+      display: block;
+      margin-bottom: 1px;
+      color: $s-color--default;
+      opacity: 0.7;
+      // transition: all 300ms $s-animation--custom;
+      &:hover, &.current{
+        color: $s-color--primary;
+        border-left: 5px solid $s-color--primary;
+        opacity: 1;
+      }
+      li:last-child{
+        background: transparent;
+        &:hover{
+          border-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.c-account__header{
+  margin-bottom: 2em;
+  & > div:first-child{
+    margin-right: 1em;
+  }
+}
+
+
+
+// personal
+
+// tab section
+
+.c-account-page__sections {
+  background-color: $s-color--background;
+  .o-form__default-checkbox{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    p{
+      margin: 0 0 0 1em;
+    }
+  }
+}
+
+.c-account-page__section{
+  padding: 1em;
+  &-header{
+    margin-top: 0;  
+  }
+  &__personal{
+    input[type=password]{
+      display: block;
+    }
+  }
+  &-details {
+    width: 100%;
+    border-bottom: 1px solid $s-color--border-default;
+  }
+  &-orders {
+    width: 100%;
+    display: none;
+    h4{
+      margin-bottom: 1em;
+    }
+  }
+  &--orders-details{
+    display: none;
+    padding: 2em 1em;
+    h4{
+      margin-bottom: 1em;
+    }
+  }
+}
+
+
+.c-account-page__orders {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 3em;
+  a{
+    text-decoration: underline;
+    color: #000;
+  }
+  th,td {
+    text-align: center;
+    &:first-of-type {text-align: left;}
+    &:last-of-type {text-align: right;}
+  }
+
+  tbody td {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+
+  thead tr:last-of-type th {
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 1em;
+    color: #969696;
+    font-size: 1em;
+  }
+}
+
+
+// add address
+.c-addresses{
+  &__address{
+    &-list {
+      .o-input{
+        width: 100%;
+        max-width: 320px;
+        margin: 0 0 1em;
+        &.is-hidden{
+          display: none;
+        }
+      }
+    }
+  }
+  // forms
+  &__form__label {
+    display: none;
+  }
+  &__edit-address{
+    display: none;
+    margin-bottom: 2em;
+    &.is-visible{
+      display: block;
+    }
+  }
+}
+
+.c-addresses{
+  &__address{
+    padding: 1em;
+
+    &__create{
+      padding: 1em;
+    }
+    
+  }
+  &__create{
+    &-address {
+      margin-top: 2em;
+      display: none;
+      .o-btn{
+        margin-top: 2em; 
+      }
+      &.is-visible{
+        display: block;
+      }
+    }
+  }
+}
+.c-address__address-controls {
+  margin-bottom: 2em;
+}
+
+.c-order-page{
+
+  &__order-table {
+    border-collapse: collapse;
+    width: 100%;
+    th{
+      color: #969696;
+    }
+    th,td {
+      text-align: center;
+      &:first-of-type {text-align: left;}
+      &:last-of-type {text-align: right;}
+    }
+
+    tbody td {
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+
+    thead tr:last-of-type th {
+      border-bottom: 1px solid black;
+      padding-bottom: 1em;
+    }
+  }
+
+  //Order Table, for orders page
+  &__order-table {
+    margin-top: 2rem;
+    width: 100%;
+
+    &-totals {
+      //Extra specificity to trump styles above.
+      &.is-right:first-of-type { text-align: right; }
+    }
+  }
+}
+
+/*==== Media Queries ====*/
+@include t-media-query($s-xsmall-up) {
+  .c-account-page__section__personal{
+    display: flex;
+    flex-wrap: wrap;
+    & > div{
+      padding: 1em 2em 1em 0;
+      flex-basis:50%;
+    }
+  }
+
+  .c-addresses{
+    &__address {
+      width: 50%;
+      border-bottom: 1px solid $s-color--border-default;
+      &-list__wrapper{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      &:nth-child(1n){
+        border-right: 1px solid $s-color--border-default;
+      }
+      &:nth-child(2n){
+        border-right: 0;
+      }
+    }
+  }
+}
+
+@include t-media-query($s-small-up) {
+  .c-account-page {
+    padding: 0 1em 1em;
+    &__sections-wrapper{
+      display: flex;
+    }
+    &__sidebar{
+      flex-basis:30%;
+      margin-right: 2em;
+    }
+    &__sections {
+      flex-wrap: nowrap;
+      flex-basis: 75%;
+    }
+    &__section-details,
+    &__section-orders{
+      .o-heading{
+        margin-top: 0;
+      } 
+    }
+    &__section--orders-details{
+      padding: 2em;
+    }
+  }
+}
+
+
+@include t-media-query($s-medium-up) {
+  .c-account-page{
+    &__wrapper {
+      padding: 2em 3.14% 3.14%;
+    }
+    &__section-details,
+    &__section-orders{
+      padding: 2em;
+    }
+  }
+
+  .c-addresses{
+    &__address{
+      padding: 2em;
+      &__create{
+        padding: 2em;
+      }
+    }
+  }
+}
+
+@include t-media-query($s-large-up) {
+  .c-account-page__wrapper {
+    padding: 2em 4.14% 4.14%;
+  }
+}

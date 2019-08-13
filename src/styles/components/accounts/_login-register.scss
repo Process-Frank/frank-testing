@@ -1,0 +1,241 @@
+.c-section__login-register{
+    &__container {
+        padding-top: 2em;
+    }
+    &__heading {
+        font-size: 22px;
+        text-align: center;
+        font-family: $s-font--stack-black;
+    }
+}
+
+.c-reset-password-form__form__label{
+    text-align: left;
+}
+.c-register-form__error{
+    &.is-hidden{
+        display: none;
+    }
+    padding: 1em;
+    background: #dddddd;
+}
+.c-login-register {
+    display: flex;
+    margin: 0 auto 4rem;
+    flex-direction: column;
+
+    [type=submit] {
+        width: 100%;
+        padding: 1rem;
+        background-color: $s-color--primary;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: $s-color--secondary;
+            border-color: $s-color--secondary;
+        }
+    }
+
+    input {
+        width: 100%;
+        margin: 0.5rem auto;
+        padding: 0.8rem 1rem;
+
+        &::placeholder {
+            text-transform: uppercase;
+            font-family: $s-font--stack-medium;
+        }
+    }
+
+    // Register & Login (Login & Forgot Password)
+    &__section {
+        display: flex;
+        flex-direction: column;
+
+        // Login and Regster title
+        h3 {
+            text-align: center;
+            font-family: $s-font--stack-heavy;
+            margin: 0 auto 0.2em;
+        }
+    }
+
+    // Login
+    .c-login-form {
+        margin: 0.5rem 0;
+        &.is-hidden{
+            display: none;
+        }
+        &__title {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        &__description {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            margin: 0 auto 1.6rem;
+            
+            span {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: normal;
+            }
+        }
+
+        // Form
+        #customer_login {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .o-form__group {
+                width: 100%;
+            }
+
+            // forgotten password button
+            [data-login-form-forgot-password] {
+                background:none;
+                border: none;
+                color: $s-color--primary;
+                text-decoration: underline;
+                width: 100%;
+                padding: 0.9rem;
+                margin: 1.1rem 0;
+            }
+        }
+
+        &__reset-password {
+            text-align: center;
+            &.is-hidden{
+                display: none;
+            }
+            
+            h3 {
+                font-family: $s-font--stack-secondary;
+                font-size: 2rem;
+                text-transform: uppercase;
+            }
+        
+            .c-reset-password-form__description {
+                margin: 0 auto 2em;
+            }
+        
+            .o-form__group {
+                display: flex;
+                flex-direction: column;
+            }
+        
+            [data-login-form-cancel-forgot-password] {
+                background:none;
+                border: none;
+                color: $s-color--primary;
+                width: 100%;
+                padding: 1.3em;
+                margin: 0.8em 0;
+                font-size: 0.91em;
+                text-transform: none;
+                font-family: $s-font--stack-default;
+                letter-spacing: 0;
+            }
+        }
+    }
+
+    // Register
+    .c-register-form {
+        margin: 0.5rem 0;
+
+        &__title {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        &__description {
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            margin: 0 auto 1.6rem;
+            
+            span {
+                display: inline-block;
+                vertical-align: middle;
+                line-height: normal;
+            }
+        }
+
+        // Form
+        #create_customer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .o-form__group {
+                width: 100%;
+            }
+
+            .create_customer__name {
+                display: flex;
+                width: 100%;
+
+                .o-form__group + .o-form__group {
+                    margin-left: 0.5em;
+                }
+            }
+
+            .create_customer__password {
+                display: flex;
+                width: 100%;
+
+                .o-form__group + .o-form__group {
+                    margin-left: 0.5em;
+                }
+            }
+
+            [type=submit] {
+                margin: 1em auto;
+            }
+        }
+    }
+
+    /*==== Media Queries ====*/
+
+    @include t-media-query($s-xsmall-up) {
+        max-width: 27rem;
+        .c-login-register__section {
+            margin-bottom: 2rem;
+        }
+    }
+
+    @include t-media-query($s-small-up) {
+        max-width: 38rem;
+    }
+
+    @include t-media-query($s-medium-up) {
+        max-width: 60rem;
+        flex-direction: row;
+
+        .c-login-register__section {
+            width: 50%;
+        }
+
+        .c-login-register__seperator {
+            margin: 0 5rem;
+            align-self: center;
+
+            &-line {
+                background-color: $s-color--tertiary;
+                height:370px;
+                width: 1px;
+            }
+        }
+
+        .c-login-form {
+            &__description {
+                height: 70px;
+                line-height: 70px;
+            }
+        }
+    }
+}

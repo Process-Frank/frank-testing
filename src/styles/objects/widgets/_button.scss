@@ -50,16 +50,6 @@
     color: $s-color--secondary-compliment;
     border-color: $s-color--secondary;
 
-    &:hover {
-      border-color: $s-color--secondary-hover;
-      background: $s-color--secondary-hover;
-      color: $s-color--secondary-compliment-hover;
-
-      .o-btn__icon,
-      .o-btn__icon * {
-        fill: $s-color--secondary-compliment-hover;
-      }
-    }
 
     .o-btn__icon,
     .o-btn__icon * {
@@ -77,15 +67,6 @@
       fill: $s-color--tertiary-compliment;
     }
 
-    &:hover {
-      background: $s-color--tertiary-hover;
-      color: $s-color--tertiary-compliment-hover;
-
-      .o-btn__icon,
-      .o-btn__icon * {
-        fill: $s-color--tertiary-compliment-hover;
-      }
-    }
   }
 
   &.is-quaternary {
@@ -93,20 +74,9 @@
     background: $s-color--quaternary;
     color: $s-color--quaternary-compliment;
     border-color: $s-color--quaternary;
-
-    &:hover {
-      background: $s-color--quaternary;
-      color: $s-color--quaternary-compliment;
-      border-color: $s-color--quaternary;
-    }
   }
 
-  /*** States ***/
-  &:hover {
-    text-decoration: none;
-    background: $s-color--primary-hover;
-    color: $s-color--primary-compliment-hover;
-  }
+
 
   &.is-hidden {
     display: none;
@@ -123,16 +93,6 @@
       fill: $s-color--disabled-compliment;
     }
 
-    &:hover {
-      background: $s-color--disabled;
-      color: $s-color--disabled-compliment;
-      border-color: $s-color--disabled-border;
-
-      .o-btn__icon,
-      .o-btn__icon * {
-        fill: $s-color--disabled-compliment;
-      }
-    }
   }
 
 
@@ -182,4 +142,68 @@
       }
     }
   }
+
+
+    @include t-media-query($s-medium-up) {
+
+        /*** States ***/
+      &:hover {
+          text-decoration: none;
+          background: $s-color--primary-hover;
+          color: $s-color--primary-compliment-hover;
+      }
+      
+      &.is-secondary {
+
+        &:hover {
+          border-color: $s-color--secondary-hover;
+          background: $s-color--secondary-hover;
+          color: $s-color--secondary-compliment-hover;
+
+          .o-btn__icon,
+          .o-btn__icon * {
+            fill: $s-color--secondary-compliment-hover;
+          }
+        }
+
+      }
+
+
+      &.is-tertiary {
+       
+        &:hover {
+          background: $s-color--tertiary-hover;
+          color: $s-color--tertiary-compliment-hover;
+
+          .o-btn__icon,
+          .o-btn__icon * {
+            fill: $s-color--tertiary-compliment-hover;
+          }
+        }
+      }
+
+      &.is-quaternary {
+
+        &:hover {
+          background: $s-color--quaternary;
+          color: $s-color--quaternary-compliment;
+          border-color: $s-color--quaternary;
+        }
+      }
+
+      &.is-disabled,&[disabled] {
+
+        &:hover {
+          background: $s-color--disabled;
+          color: $s-color--disabled-compliment;
+          border-color: $s-color--disabled-border;
+
+          .o-btn__icon,
+          .o-btn__icon * {
+            fill: $s-color--disabled-compliment;
+          }
+        }
+      }
+
+    }
 }

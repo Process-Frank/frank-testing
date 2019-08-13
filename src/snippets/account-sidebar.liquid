@@ -1,0 +1,8 @@
+{% assign account_menu = linklists.account-menu %}
+<nav class="c-account-page__sidebar__nav">
+  <ul>
+    {% for link in account_menu.links %}
+      <li><a class="c-account-page__sidebar__nav-link" href="{{ link.url }}" {% if link.url == '#orders' %}data-show-orders{% elsif link.url == '#account' %}data-show-details{% endif %} {% if forloop.first %}class="current"{% endif %} >{{ link.title }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

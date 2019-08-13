@@ -1,0 +1,49 @@
+{% comment %}
+  Login/Register Section
+    Login and Register form section
+
+  Dependencies:
+    styles/components/_login-regsiter.scss
+
+  Version:
+    1.0.0 - 2018/02/21
+{% endcomment %}
+
+<div class="c-section__login-register__wrapper c-section__wrapper" data-login-register>
+  <div class="c-section__login-register__container">
+    {%- form 'reset_customer_password'-%}
+      {%- if form.errors -%}
+        <div class="o-form__errors o-form__errors--login">
+          {{form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+    {%- endform -%}
+    <h1 class="c-section__login-register__heading">{{'customer.login.login_create' | t }}</h1>
+    <div class="c-login-register"  >
+
+      {% comment %}Register Section{% endcomment %}
+      <section class="c-login-register__section c-login-register__register">
+        {%- include 'form.register' -%}
+      </section>
+
+      <div class="c-login-register__seperator">
+          <div class="c-login-register__seperator-line"></div>
+        </div>
+
+      {% comment %}Login Section{% endcomment %}
+      <section class="c-login-register__section c-login-register__login">
+          {%- include 'form.login' -%}
+        </section>
+        
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Login/Register Page",
+    "class": "c-section__login-register",
+    "settings": [
+    ]
+  }
+{% endschema %}

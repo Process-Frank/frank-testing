@@ -1,0 +1,86 @@
+/*
+ *  Account activation page
+ *
+ *  Dependencies:
+ *    - templates/customers/activate_account.liquid
+ *
+ *  Version:
+ *    1.0.0 - 2019/04/03
+ */
+
+.c-activate-account{
+  background-color: $s-color--background;
+  padding: 0 0.71em 0.71em;
+  &-box{
+
+    text-align: center;
+    form {
+      max-width: 500px;
+      margin: $s-gutter--medium auto;
+      text-align: center;
+    }
+  
+    .o-form__group+.o-btn{
+      max-width: 230px;
+    }
+    .o-input{
+      margin-bottom: $s-gutter--xsmall*2;
+    }
+    .o-btn--primary--plain{
+      margin: 1em 0.25em;
+    }
+    .errors {
+      color: $s-color--default;
+    }
+  }
+  &--button{
+    &.o-btn-solid{
+      color: white;
+      background: $s-color--primary;
+      padding: ($s-gutter--xsmall*2) ($s-gutter--xsmall*8);
+      &--secondary{
+        background: $s-color--secondary;
+      }
+    }
+  }
+}
+
+.c-activate-account__wrapper{
+  position: relative;
+  padding-top: 0.71em;
+}
+
+
+.label-hidden{
+  display: none;
+}
+
+
+/*
+ * Media Query
+ */
+
+@include t-media-query($s-small-up) {
+  .c-activate-account{
+    padding: $s-gutter--large;
+    &--button{
+      &.o-btn-solid{
+        margin-top: $s-gutter--medium;
+      }
+    }
+  }
+}
+
+@include t-media-query($s-medium-up) {
+  .c-activate-account{
+    // padding: $s-gutter--desktop-side-padding;
+    &-box{
+      form {
+        margin: $s-gutter--large auto;
+      }
+    }
+  }
+  .c-activate-account-box .o-form__input{
+    font-size: 1.15em;
+  }
+}

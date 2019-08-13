@@ -1,0 +1,32 @@
+{% if customer %}
+<style type="text/css">
+  @media screen and (max-width: 750px){
+    .c-header__account-tooltip{
+      width: 300px;
+    }
+  }
+</style>
+{% endif %}
+<div class="c-header__account-tooltip" >
+  <div class="c-header__account-tooltip__close"><button class="o-btn o-btn--close" data-account-close>{% include 'icon-close-bold' %}</button></div>
+  {% if customer %}
+    <div class="c-header__account-tooltip__welcome">
+      {% include 'icon-smile' %}
+      <p>Welcome {{customer.first_name}}!</p>
+      <p>Time to #stickittothezit</p>
+      <a href="/products/killa-sticka" class="o-btn o-btn--pink">Shop Now</a>
+    </div>
+  {% else %}
+  <div class="c-header__account-tooltip__login" data-login-form>
+    {%include 'login-form'%}
+  </div>
+
+  <div class="c-header__account-tooltip__register" data-register-form>
+    {%include 'register-form'%}
+  </div>
+
+  <div class="c-header__account-tooltip__register" data-password-form>
+    {%- include 'forgot-password-form' -%}
+  </div>
+  {% endif %}
+</div>

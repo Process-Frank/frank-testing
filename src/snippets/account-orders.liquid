@@ -1,0 +1,49 @@
+        {% comment %} Orders {% endcomment %}
+        <section class="c-account-page__section c-account-page__section-orders" data-orders-sections>
+          <h4 class="o-heading is-size-2 c-account-page__section-header">{{ 'customer.orders.title' | t}}</h4>
+            {%-if customer.orders.size != 0-%}
+              <table class="c-account-page__orders">
+                <thead>
+                  <tr>
+                    <th>{{ 'customer.orders.order_number' | t }}</th>
+                    <th>{{ 'customer.orders.date' | t }}</th>
+                    <th>{{ 'customer.orders.payment_status' | t }}</th>
+                    <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                    <th>{{ 'customer.orders.total' | t }}</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {%-for order in customer.orders-%}
+                    <tr>
+                      <td>
+                        <a href="{{order.customer_url}}" data-order-trigger="order-{{order.id}}" >{{order.name}}</a>
+                      </td>
+
+                      <td>
+                        {{ order.created_at | date: format: 'date_at_time' }}
+                      </td>
+
+                      <td>
+                        {{ order.financial_status_label }}
+                      </td>
+
+                      <td>
+                        {{ order.fulfillment_status_label }}
+                      </td>
+
+                      <td>
+                        {{ order.total_price | money }}
+                      </td>
+                    </tr>
+                  {%-endfor-%}
+                </tbody>
+              </table>
+
+              
+            {%-else-%}
+
+              <p>{{ 'customer.orders.none' | t }}</p>
+
+            {%-endif-%}
+        </section>
