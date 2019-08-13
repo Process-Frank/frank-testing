@@ -7,13 +7,13 @@
  */
 import $ from 'jquery';
 import '@iconfu/svg-inject';
-​
+
 export const IMAGE_SELECTOR = "img[src*='.svg']";
-​
+
 export const InitialzeSVGImages = () => {
   $(IMAGE_SELECTOR).each((e,i) => SVGInject(i));
-​
-  //Dom's weird fixing the SVGs to have unique classes for their selectors.
+
+//Dom's weird fixing the SVGs to have unique classes for their selectors.
   $('svg').each((i,e) => {
     let randomClass = null;
     while(!randomClass) {
@@ -21,10 +21,10 @@ export const InitialzeSVGImages = () => {
       if(!$(`.${randomClass}`).length) break;
       randomClass = null;
     }
-​
+
     let self = $(e);
     self.addClass(randomClass);
-​
+
     //I'm going to find all root selectors and prepend them with our new specific
     //selector. Some SVGs will have more than one <style>, hence the .each()
     let elStyle = self.find('style');
@@ -37,11 +37,14 @@ export const InitialzeSVGImages = () => {
         selectors[0] = `.${randomClass} `;
         return selectors.join('.');
       }).join('}');
-​
+
       styleEl.html(elStyleRaw);
     });
   });
+
+  
+
 }
-​
+
 $(document).ready(() => InitialzeSVGImages());
 $(document).on('load', IMAGE_SELECTOR, () => InitialzeSVGImages());
