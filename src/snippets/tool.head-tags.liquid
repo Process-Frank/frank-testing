@@ -70,14 +70,15 @@
 
 
   /* {% comment %} Pass Liquid Variables through to the scripts {% endcomment %} */
-  window.Asset = {{ 'layout.theme.js' | asset_url | json }}
+  window.Asset = {{ 'layout.theme.js' | asset_url | json }};
 
   window.Cart = window.Cart || {};
   window.Cart.data = window.Cart.data || {{ cart | json }};
 
   window.Currency = window.Currency || {};
-  window.Currency.format = {{ settings.currency_conversion_format | json }} || {{ shop.money_format | json }};
   window.Currency.currency = {{ shop.currency | json}};
+  window.Currency.format = {{ shop[settings.native_format] | default: shop.money_format | json }};
+  window.Currency.convertedFormat = {{ settings.currency_conversion_format | json }};
 
   window.Customer = {%- include 'json.customer' -%};
 
