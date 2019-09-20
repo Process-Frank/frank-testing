@@ -11,7 +11,7 @@
     ],
   {% endif %}
   "description": "{{ product.description | strip_html | escape | strip_newlines }}",
-  {% if current_variant.sku != blank %}
+  {% if product.selected_or_first_available_variant.sku != blank %}
     "sku": "{{ product.selected_or_first_available_variant.sku }}",
   {% endif %}
   "brand": {
