@@ -19,13 +19,12 @@
     "babel-preset-shopify": "^16.2.0"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0",
+    "core-js": "^3.2.1",
     "@iconfu/svg-inject": "^1.2.1",
     "@process-creative/ajax-collection-v3": "git+https://github.com/Process-Creative/Ajax-Collection-v3.git",
     "@process-creative/pc-slate-tools": "git+https://github.com/Process-Creative/pc-slate-tools",
     "normalize.css": "^7.0.0",
     "jquery": "^3.2.1",
-
     "instafeed.js": "^1.4.1",
     "js-cookie": "^2.2.0",
     "lity": "^2.3.1",
