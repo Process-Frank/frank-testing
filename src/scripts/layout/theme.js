@@ -8,7 +8,7 @@
 'use strict';//Strict Mode enforced
 
 //Imports
-import '@babel/polyfill';
+import 'core-js/stable';
 import $ from 'jquery';
 
 // Import our stylesheets

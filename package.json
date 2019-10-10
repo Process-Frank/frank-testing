@@ -28,7 +28,8 @@
     "instafeed.js": "^1.4.1",
     "js-cookie": "^2.2.0",
     "lity": "^2.3.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "nouislider": "^13.1.5"
   },
   "scripts": {
     "start": "slate-tools start",
