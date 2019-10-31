@@ -1,0 +1,29 @@
+/*
+ *  Gift Card Template
+ *    Styles for the gift card template.
+ *
+ *  Version:
+ *    1.0.0 - 2019/10/31
+ */
+
+.c-gift-card-template {
+  text-align: center;
+  padding: 0 $s-gutter--medium $s-gutter--large;
+
+  &__image {
+    width: 80%;
+    max-width: 450px;
+  }
+
+
+  /*==== Media Queries ====*/
+
+
+  @include t-media-query($s-medium-up) {
+    padding: 0 $s-gutter--large $s-gutter--xlarge;
+  }
+
+  @include t-media-query($s-large-up) {
+    padding: 0 $s-gutter--xlarge $s-gutter--xxlarge;
+  }
+}
