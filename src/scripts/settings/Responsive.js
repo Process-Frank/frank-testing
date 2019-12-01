@@ -4,10 +4,11 @@
  *
  *
  *  Version:
- *    1.0.0 - 2018/11/27
+ *    1.0.1 - 2019/12/01
  */
-export const xsmall = 500;
+export const xsmall = 350;
 export const small = 750;
-export const medium = 1000;
-export const large = 1250;
-export const xlarge = 1500;
+export const medium = 1100;
+export const large = 1350;
+export const xlarge = 1650;
+export const xxlarge = 2000;

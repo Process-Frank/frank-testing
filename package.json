@@ -15,7 +15,7 @@
     "bem"
   ],
   "devDependencies": {
-    "@shopify/slate-tools": "^1.0.0-beta.17",
+    "@shopify/slate-tools": "^1.0.0-beta.19",
     "babel-preset-shopify": "^16.2.0"
   },
   "dependencies": {
