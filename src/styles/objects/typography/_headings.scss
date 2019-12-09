@@ -97,3 +97,29 @@ h5,.o-heading.is-size-5 {
     font-size: 1.6em;
   }
 }
+
+@include t-media-query($s-xlarge-up) {
+  h1,.o-heading.is-size-1 {
+    font-size: 2.5em;
+  }
+
+  h2,.o-heading.is-size-2 {
+    font-size: 2.25em;
+  }
+
+  h3,.o-heading.is-size-3 {
+    font-size: 2em;
+  }
+
+  h4,.o-heading.is-size-4 {
+    font-size: 1.75em;
+  }
+
+  .o-title {
+    font-size: 2.5em;
+  }
+
+  .o-pretitle {
+    font-size: 1.6em;
+  }
+}

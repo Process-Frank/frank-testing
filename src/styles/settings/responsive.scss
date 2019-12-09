@@ -5,16 +5,16 @@
  *  Dependencies:
  *
  *  Version:
- *    1.0.1 - 2018/01/31
+ *    1.0.2 - 2019/12/01
  */
 
 //Pixel size definitions
-$s-screen-xsmall: 500px;  // Old Small Mobiles
+$s-screen-xsmall: 350px;  // Modern Phones
 $s-screen-small:  750px;  // Modern Large Mobiles / Small Tablets
-$s-screen-medium: 1000px; // Average Tablet / Small Old Laptop
-$s-screen-large:  1250px; // Large Tablet / Average Laptop
-$s-screen-xlarge: 1500px; // Large Laptop / Average - Large Desktop
-//Anything larger is a very large desktop (perhaps 4K at 1:1 or an ultrawide?)
+$s-screen-medium: 1100px; // Large Tablet / Small Old Laptop
+$s-screen-large:  1350px; // Large Tablet Landscape / Average Laptop
+$s-screen-xlarge: 1650px; // Large Laptop / Average - Large Desktop
+$s-screen-xxlarge: 2000px; // 4K Deskop
 
 //Size definitions
 $s-xsmall: 'xsmall';
@@ -22,12 +22,15 @@ $s-small: 'small';
 $s-medium: 'medium';
 $s-large: 'large';
 $s-xlarge: 'xlarge';
+$s-xxlarge: 'xxlarge';
 
 //Groups
 $s-xsmall-up: 'xsmall-up';
 $s-small-up: 'small-up';
 $s-medium-up: 'medium-up';
 $s-large-up: 'large-up';
+$s-xlarge-up: 'xlarge-up';
+$s-xxlarge-up: 'xxlarge-up';
 
 //Breakpoints
 $s-breakpoints: (
@@ -40,5 +43,7 @@ $s-breakpoints: (
   $s-xsmall-up  '(min-width: #{$s-screen-xsmall})',
   $s-small-up   '(min-width: #{$s-screen-small})',
   $s-medium-up  '(min-width: #{$s-screen-medium})',
-  $s-large-up   '(min-width: #{$s-screen-large})'
+  $s-large-up   '(min-width: #{$s-screen-large})',
+  $s-xlarge-up  '(min-width: #{$s-screen-xlarge})',
+  $s-xxlarge-up '(min-width: #{$s-screen-xxlarge})'
 );
