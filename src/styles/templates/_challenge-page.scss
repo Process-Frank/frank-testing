@@ -1,0 +1,61 @@
+/*
+ *  Challange page
+ *
+ *  Version:
+ *    1.0.0 - 2019/12/12
+ */
+
+.shopify-challenge{
+  &__container{
+    padding: ($s-gutter--xsmall*2) ($s-gutter--xsmall*2) ($s-gutter--xsmall*4);
+  }
+
+  &__button{
+    &.btn{
+      //Display Related
+      padding: $s-input--padding;
+      cursor: pointer;
+
+      border-radius: $s-input--radius;
+      text-align: center;
+
+      //Typography Related
+      @extend %s-font--button;
+      background: $s-color--default;
+      color: $s-color--primary-compliment;
+      border: $s-input--border $s-color--primary;
+      font-size: 0.75em;
+    }
+  }
+
+  /*==== Media Queries ====*/
+  @include t-media-query($s-small-up){
+    &__container{
+      padding: ($s-gutter--xsmall*4) ($s-gutter--xsmall*4) ($s-gutter--xsmall*8);
+    }
+  }
+
+  @include t-media-query($s-medium-up){
+    &__container{
+      padding: ($s-gutter--medium) ($s-gutter--medium) ($s-gutter--large);
+    }
+
+    &__button{
+      &.btn{
+        font-size: 0.88em;
+      }
+    }
+  }
+
+  @include t-media-query($s-xlarge-up){
+    &__container{
+      padding: ($s-gutter--large) ($s-gutter--medium);
+    }
+
+    &__button{
+      &.btn{
+        font-size: 1em;
+      }
+    }
+  }
+}
