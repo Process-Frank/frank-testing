@@ -10,6 +10,10 @@
     padding: ($s-gutter--xsmall*2) ($s-gutter--xsmall*2) ($s-gutter--xsmall*4);
   }
 
+  &__error{
+    padding: 0;
+  }
+
   &__button{
     &.btn{
       //Display Related
