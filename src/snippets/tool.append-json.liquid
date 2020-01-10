@@ -10,19 +10,25 @@
     appended - The Appended JSON Object, or null if the source is null
 
   Version:
-    1.0.0 - 2018/08/23
+    1.0.1 - 2020/01/10
 {% endcomment %}
 {%- if jsonData == 'null' or extra == blank -%}
   {%- assign appended = jsonData -%}
 {%- else -%}
-  {%- assign jsonSplit = jsonData | split: '}' -%}
+  {%- assign jsonSplit = jsonData | replace: '}', '+}' -%}
+  {%- assign jsonSplit = jsonSplit | split: '}' -%}
   {%- assign appended = '' -%}
 
-  {%- for split in jsonSplit -%}
-    {%- assign appended = appended | append: split -%}
-    {%- unless forloop.last -%}
-      {%- assign appended = appended | append: '}' -%}
-    {%- endunless -%}
+  {%- for split in jsonSplit %}
+    {%- if forloop.last -%}
+      {%- assign c = split | size | minus: 1 -%}
+      {%- assign b = split | slice: 0, c -%}
+      {%- assign appended = appended | append: b -%}
+    {%- else -%}
+      {%- assign b = split | append: '}' -%}
+      {%- assign b = b | replace: '+}', '}' -%}
+      {%- assign appended = appended | append: b -%}
+    {%- endif -%}
   {%- endfor -%}
 
   {%- assign appended = appended | append: ',' -%}
