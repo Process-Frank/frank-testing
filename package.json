@@ -24,7 +24,7 @@
     "@process-creative/ajax-collection-v3": "git+https://github.com/Process-Creative/Ajax-Collection-v3.git",
     "@process-creative/pc-slate-tools": "git+https://github.com/Process-Creative/pc-slate-tools",
     "normalize.css": "^7.0.0",
-    "jquery": "^3.2.1",
+    "jquery": "^3.7.1",
     "instafeed.js": "^1.4.1",
     "js-cookie": "^2.2.0",
     "lity": "^2.3.1",
